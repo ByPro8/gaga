@@ -18,6 +18,7 @@ module.exports = {
       'xs': '480px',   // Extra small devices
       'sm': '640px',   // Small devices
       'md': '768px',   // Medium devices (tablets)
+      'md2': '820px',   // Medium devices (tablets)
       'lg': '1024px',  // Large devices (laptops)
       'xl': '1440px',  // Extra large devices (desktops)
       '2xl': '1920px', // Bigger screens

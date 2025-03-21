@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import insta from '../assets/images/logos/instagram-outline-svgrepo-com.svg';
-import linkedin from '../assets/images/logos/linkedin-svgrepo-com.svg';
-import vimeo from '../assets/images/logos/vimeo-svgrepo-com.svg';
+import GAGALENS from "./GAGALENS";
+import ContactIcons from "./ContactIcons";
 
 interface MenuProps {
     className?: string;
@@ -9,28 +8,19 @@ interface MenuProps {
 
 export default function Menu({ className = "" }: MenuProps) {
     return <div className={`bg-white text-gray-500 flex flex-col ${className}`}>
-        <Link to='/'>
-            <div className="text-black">
-                <h1 className=" text-black text-[46px] font-normal italic text-gaga1 "> GAGALENS</h1>
-                <h1 className=" text-black text-[15xp] font-extralight text-black "> By Levan Gaga Kapanadze</h1>
-                {/* ///////////// <Link to="/" className="hover:text-gray-300">Home</Link> ////////// */}
-            </div>
-        </Link>
 
-        <nav className="mt-[103px] flex-1">
-            <ul className=''>
-                <Link to="/slideshow" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-100 block">Slideshow</Link>
-                <Link to="/about" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block ">About</Link>
-                <Link to="/projects" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-300 block">Projects</Link>
-                <Link to="/photography" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block">Photography</Link>
-                <Link to="/videography" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block">Videography</Link>
-                <Link to="/contact" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block mt-10 ">Contact</Link>
+        <GAGALENS className="sm:hidden lg:block" classNameB="text-[15px]" classNameG="text-[46px]" />
+
+        <nav className="sm:mt-[0px] mt-[103px] flex-1">
+            <ul className="flex flex-col">
+                <li className="order-1 sm:order-2"><Link to="/about" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block">About</Link></li>
+                <li className="order-2 sm:order-3"><Link to="/projects" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-300 block">Projects</Link></li>
+                <li className="order-3 sm:order-4"><Link to="/photography" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block">Photography</Link></li>
+                <li className="order-4 sm:order-5"><Link to="/videography" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block">Videography</Link></li>
+                <li className="order-5 sm:order-1"><Link to="/slideshow" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-100 block">Slideshow</Link></li>
+                <li className="order-6 sm:order-6"><Link to="/contact" className="py-3 font-extralight text-[18px] hover:text-black transition-all duration-200 block">Contact</Link></li>
             </ul>
-            <div className="flex justify-center space-x-6 mt-12">
-                <img src={insta} alt="Icon 1" className="w-10 h-10" />
-                <img src={linkedin} alt="Icon 2" className="w-10 h-10" />
-                <img src={vimeo} alt="Icon 3" className="w-10 h-10" />
-            </div>
+            <ContactIcons className="mt-32" />
         </nav>
-    </div>
+    </div >
 }

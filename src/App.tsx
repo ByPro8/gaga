@@ -9,8 +9,9 @@ import Projects from './pages/Projects';
 import Home from './pages/Home';
 
 function App() {
-  return (
-    <div className='h-screen w-full flex pt-10 font-fira '>
+  return (<>
+
+    <div className='h-screen w-full flex font-fira '>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -21,6 +22,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
+  </>
   )
 }
 
