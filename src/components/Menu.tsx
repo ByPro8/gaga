@@ -9,11 +9,13 @@ interface MenuProps {
 
 export default function Menu({ className = "" }: MenuProps) {
     return <div className={`bg-white text-gray-500 flex flex-col ${className}`}>
-        <div className="text-black">
-            <h1 className=" text-black text-[46px] font-normal italic text-gaga1 "> GAGALENS</h1>
-            <h1 className=" text-black text-[15xp] font-extralight text-black "> By Levan Gaga Kapanadze</h1>
-            {/* ///////////// <Link to="/" className="hover:text-gray-300">Home</Link> ////////// */}
-        </div>
+        <Link to='/'>
+            <div className="text-black">
+                <h1 className=" text-black text-[46px] font-normal italic text-gaga1 "> GAGALENS</h1>
+                <h1 className=" text-black text-[15xp] font-extralight text-black "> By Levan Gaga Kapanadze</h1>
+                {/* ///////////// <Link to="/" className="hover:text-gray-300">Home</Link> ////////// */}
+            </div>
+        </Link>
 
         <nav className="mt-[103px] flex-1">
             <ul className=''>
