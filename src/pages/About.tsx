@@ -10,44 +10,6 @@ export default function About() {
         classNameG="text-[46px]"
         classNameB="text-[15px]"
       />
-      {/* <div className="mt-10 items-center justify-center sm:hidden">
-        <img src={gaga} alt="Picture" className="px-8" />
-      </div>
-      <h1 className="text-blac mt-10 bg-white px-8 pb-10 text-gray-500 sm:hidden">
-        <strong>Levan Gaga Kapanadze</strong> is a filmmaker, photographer, and
-        media producer with over 15 years of experience in video production,
-        photography, and media management. As the founder of{" "}
-        <strong>Araki Production</strong>, he has collaborated with
-        international organizations such as{" "}
-        <strong>UNFPA, UNDP, WHO, and USAID</strong>, as well as various
-        commercial brands and businesses. His work covers a wide range of
-        topics, including gender equality, health, education, and social
-        development, bringing complex issues to life through compelling visuals.
-        <h1>
-          <br />
-          <strong>
-            As the Media Studio Manager at Free University of Tbilisi
-          </strong>
-          , he has played a key role in shaping the university’s visual
-          identity, producing high-quality educational content and promotional
-          videos that enhance student engagement and academic outreach.{" "}
-        </h1>{" "}
-        <br />
-        <h1>
-          His work has been showcased in exhibitions and publications, As the
-          Media Studio Manager at Free reflecting a deep passion for
-          storytelling that informs and inspires
-        </h1>
-        <div className="mt-4 flex justify-end">
-          <Link
-            to="/projects"
-            className="bg-white text-gray-500 hover:text-black"
-          >
-            Check my Projects --<span>&gt;</span>
-          </Link>
-        </div>
-      </h1> */}
-      ////////////////////////////////////// ///////////// ////////////
       <div className="mx-auto max-w-3xl p-6">
         <img
           src={gaga}
@@ -74,9 +36,14 @@ export default function About() {
         <div className="mt-4 flex justify-end">
           <Link
             to="/projects"
-            className="bg-white text-gray-500 hover:text-black"
+            className="bg-white text-gray-500 hover:text-gray-800"
           >
-            Check my Projects --<span>&gt;</span>
+            Check My Projects --<span>&gt;</span>
+          </Link>
+        </div>
+        <div className="mt-2 flex justify-end">
+          <Link to="/" className="bg-white text-gray-500 hover:text-gray-800">
+            Home --<span>&gt;</span>
           </Link>
         </div>
       </div>
