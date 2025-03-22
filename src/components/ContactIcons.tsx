@@ -6,10 +6,10 @@ interface ContactIconsProps {
     className?: string;
 }
 
-export default function ContactIcons({ className= "" }: ContactIconsProps) {
+export default function ContactIcons({ className = "" }: ContactIconsProps) {
     return <div className={`flex justify-center space-x-6 ${className}`}>
-        <img src={insta} alt="Icon 1" className="w-8 h-8" />
-        <img src={linkedin} alt="Icon 2" className="w-8 h-8" />
-        <img src={vimeo} alt="Icon 3" className="w-8 h-8" />
+        <img src={insta} alt="Icon 1" className="w-8 h-8 lg:w-5" />
+        <img src={linkedin} alt="Icon 2" className="w-8 h-8 lg:w-5" />
+        <img src={vimeo} alt="Icon 3" className="w-8 h-8 lg:w-5" />
     </div>
 }
