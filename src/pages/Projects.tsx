@@ -1,6 +1,7 @@
 import GAGALENS from "../components/GAGALENS";
 import { Link } from "react-router-dom";
 import projects from "../Data/projects.ts";
+import Menu from "../components/Menu.tsx";
 
 interface ProjectEntry {
   role: string;
@@ -15,20 +16,21 @@ interface ProjectYear {
 
 export default function Projects() {
   return (
-    <div className="mx-auto p-10 text-2xl">
-      <Link
+    <div className="mx-auto flex h-screen flex-col pt-6 text-2xl lg:flex-row">
+      {/* <Link
         to="/"
         className="xl2:left-24 xl2:top-24 fixed absolute left-[31px] top-[50px] rounded-full p-2 text-sm text-gray-500 transition-all duration-300 hover:bg-gray-100 hover:text-black sm:left-[80px] sm:top-[65px] lg:left-[130px] lg:top-[65px] lg:text-xl xl:left-[175px] xl:top-[65px]"
       >
         &larr;
-      </Link>
-
+      </Link> */}
       <GAGALENS
-        className="w-[100%] pt-8 text-center"
-        classNameG="text-[40px] sm:text-[48px] lg:text-[54px]"
-        classNameB="text-[13px] sm:text-[16px] lg:text-[20px]"
+        className="w-[100%] pt-8 text-center lg:hidden"
+        classNameG="text-[46px]"
+        classNameB="text-[15px]"
       />
-      <div className="max-w-8xl min-w-[300px] pt-10 text-gray-500 sm:px-12 lg:px-24">
+
+      <Menu />
+      <div className="max-w-8xl mx-auto min-w-[300px] px-6 pt-6 text-gray-500 lg:px-0 xl:ml-16">
         {projects.map((project: ProjectYear) => (
           <div key={project.year}>
             <span className="text-base font-bold xs:text-lg sm:text-xl md:text-2xl">
