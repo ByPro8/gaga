@@ -2,31 +2,10 @@ import { Link } from "react-router-dom";
 import GAGALENS from "./GAGALENS";
 import ContactIcons from "./ContactIcons";
 
-interface MenuProps {
-  className?: string;
-  home?: boolean;
-  about?: boolean;
-  slider?: boolean;
-}
-
-export default function Menu({
-  home = false,
-  about = false,
-  slider = false,
-}: MenuProps) {
-  let conditionalClass = "";
-
-  if (home) {
-    conditionalClass = "";
-  } else if (about) {
-    conditionalClass = "";
-  } else if (slider) {
-    conditionalClass = "";
-  }
-
+export default function Menu() {
   return (
     <div
-      className={`hidden w-[100%] flex-col pt-10 text-center text-gray-500 sm:hidden sm:w-[20%] sm:pl-10 sm:text-right lg:block lg:flex lg:w-[30%] lg:pl-0 lg:pr-8 lg2:w-[25%] xl:w-[20%] ${conditionalClass}`}
+      className={`hidden w-[100%] flex-col pt-10 text-center text-gray-500 sm:hidden sm:w-[20%] sm:pl-10 sm:text-right lg:block lg:flex lg:w-[30%] lg:pl-0 lg:pr-8 lg2:w-[25%] xl:w-[20%]`}
     >
       <GAGALENS
         className="sm:hidden lg:block"

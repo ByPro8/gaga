@@ -1,5 +1,4 @@
 import GAGALENS from "../components/GAGALENS";
-import { Link } from "react-router-dom";
 import projects from "../Data/projects.ts";
 import Menu from "../components/Menu.tsx";
 

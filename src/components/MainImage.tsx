@@ -1,8 +1,8 @@
 import img from "../assets/images/main.webp";
 
-interface MainImageProps {
-  className?: string;
-}
+// interface MainImageProps {
+//   className?: string;
+// }
 
 export default function MainImage() {
   return (
