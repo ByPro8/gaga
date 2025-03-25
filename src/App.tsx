@@ -8,7 +8,7 @@ import Videography from "./pages/Videography";
 import Projects from "./pages/Projects";
 import Home from "./pages/Home";
 import Album from "./pages/Album";
-import PhotoView from "./pages/PhotoView";
+import FromAlbumSlides from "./pages/FromAlbumSlides";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
           <Route path="/photography/:albumId" element={<Album />} />
           <Route
             path="/photography/:albumId/:photoId"
-            element={<PhotoView />}
+            element={<FromAlbumSlides />}
           />
           <Route path="/videography" element={<Videography />} />
           <Route path="/contact" element={<Contact />} />

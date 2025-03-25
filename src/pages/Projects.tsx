@@ -1,5 +1,5 @@
 import GAGALENS from "../components/GAGALENS";
-import projects from "../Data/projects.ts";
+import projects from "../data/projects.ts";
 import Menu from "../components/Menu.tsx";
 
 interface ProjectEntry {
