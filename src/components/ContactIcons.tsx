@@ -12,7 +12,7 @@ export default function ContactIcons({
   iconClassName = "",
 }: ContactIconsProps) {
   return (
-    <div className={`flex justify-center space-x-6 ${className}`}>
+    <div className={`flex justify-center space-x-3 ${className}`}>
       <img
         src={insta}
         alt="Icon 1"
