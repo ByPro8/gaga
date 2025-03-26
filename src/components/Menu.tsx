@@ -13,7 +13,7 @@ export default function Menu() {
         classNameB="text-[15px]"
       />
 
-      <nav className="mt-[103px] flex-1 text-[20px] sm:mt-[0px] lg:mt-5">
+      <nav className="mt-[103px] flex-1 text-[19px] sm:mt-[0px] lg:mt-5">
         <ul className="flex flex-col">
           <li className="order-5">
             <Link
