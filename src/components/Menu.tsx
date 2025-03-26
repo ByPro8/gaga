@@ -10,7 +10,7 @@ export default function Menu() {
       //
       // mt-[40px] block w-[17%] flex-col text-right text-gray-500
 
-      className="mt-[40px] block w-[17%] flex-col text-right text-gray-500"
+      className="mt-[40px] block w-[17%] min-w-[17%] flex-col text-right text-gray-500"
     >
       <GAGALENS
         className="sm:hidden lg:block"
