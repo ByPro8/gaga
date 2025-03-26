@@ -1,5 +1,5 @@
 import Menu from "../components/Menu";
-// import MainImage from "../components/MainImage";
+import MainImage from "../components/MainImage";
 import TabletMenu from "../components/TabletMenu";
 import GAGALENS from "../components/GAGALENS";
 
@@ -16,7 +16,7 @@ export default function Home() {
 
       {/*Normal menu and image  */}
       <Menu />
-      {/* <MainImage /> */}
+      <MainImage />
       {/*Normal menu and image />  */}
 
       {/* tablet menu */}
