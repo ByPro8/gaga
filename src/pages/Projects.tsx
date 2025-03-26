@@ -1,17 +1,17 @@
 import GAGALENS from "../components/GAGALENS";
-import projects from "../data/projects.ts";
+// import projects from "../data/projects.ts";
 import Menu from "../components/Menu.tsx";
 
-interface ProjectEntry {
-  role: string;
-  title: string;
-  company: string;
-}
+// interface ProjectEntry {
+//   role: string;
+//   title: string;
+//   company: string;
+// }
 
-interface ProjectYear {
-  year: number | string;
-  entries: ProjectEntry[];
-}
+// interface ProjectYear {
+//   year: number | string;
+//   entries: ProjectEntry[];
+// }
 
 export default function Projects() {
   return (
@@ -30,7 +30,7 @@ export default function Projects() {
 
       <Menu />
       <div className="max-w-8xl mx-auto min-w-[300px] px-6 pt-6 text-gray-500 lg:px-0 xl:ml-16">
-        {projects.map((project: ProjectYear) => (
+        {/* {projects.map((project: ProjectYear) => (
           <div key={project.year}>
             <span className="text-base font-bold xs:text-lg sm:text-xl md:text-2xl">
               {project.year}
@@ -55,7 +55,7 @@ export default function Projects() {
             ))}
             <br />
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
