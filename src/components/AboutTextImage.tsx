@@ -6,7 +6,7 @@ interface AboutTextImgProps {
 
 export default function AboutTextImg({ className = "" }: AboutTextImgProps) {
   return (
-    <div className={`mx-auto max-w-3xl px-6 lg:px-0 ${className}`}>
+    <div className={`mx-auto px-6 lg:px-0 ${className}`}>
       <h1 className="mb-[48px] hidden text-[30px] text-black lg:block">
         ABOUT
       </h1>

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import TextInput from "../components/TextInput";
 import EmailInput from "../components/EmailInput";
 import TextArea from "../components/TextArea";
+import Menu from "../components/Menu";
 
 interface FormData {
   firstName: string;
@@ -35,10 +36,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative mx-auto max-w-xl bg-white p-4">
-      <h2 className="mb-4 text-center text-2xl font-bold text-gray-500">
-        Contact Us
-      </h2>
+    <div className="flex min-h-screen w-full pt-6">
+      <Menu />
 
       {/* Popup message */}
       {popupMessage && (
@@ -52,60 +51,65 @@ const Contact = () => {
       )}
 
       {/* Contact form */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        name="contact" // Required for Netlify form handling
-        method="POST"
-        data-netlify="true" // This is needed for Netlify form submission
-        className="space-y-6"
-      >
-        {/* Hidden field for Netlify form handling */}
-        <input type="hidden" name="form-name" value="contact" />
+      <div className="px-auto">
+        <h2 className="mx-auto mb-4 text-center text-2xl font-bold text-gray-500">
+          Contact Us
+        </h2>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          name="contact" // Required for Netlify form handling
+          method="POST"
+          data-netlify="true" // This is needed for Netlify form submission
+          className="mx-auto space-y-6"
+        >
+          {/* Hidden field for Netlify form handling */}
+          <input type="hidden" name="form-name" value="contact" />
 
-        <TextInput
-          id="firstName"
-          label="First Name"
-          type="text"
-          placeholder="Enter your first name"
-          register={register}
-        />
-        <TextInput
-          id="lastName"
-          label="Last Name"
-          type="text"
-          placeholder="Enter your last name"
-          register={register}
-        />
-        <EmailInput
-          id="email"
-          label="Email Address"
-          placeholder="Enter your email"
-          register={register}
-        />
-        <TextInput
-          id="subject"
-          label="Subject"
-          type="text"
-          placeholder="Enter subject"
-          register={register}
-        />
-        <TextArea
-          id="message"
-          label="Message"
-          placeholder="Write your message"
-          rows={4}
-          register={register}
-        />
+          <TextInput
+            id="firstName"
+            label="First Name"
+            type="text"
+            placeholder="Enter your first name"
+            register={register}
+          />
+          <TextInput
+            id="lastName"
+            label="Last Name"
+            type="text"
+            placeholder="Enter your last name"
+            register={register}
+          />
+          <EmailInput
+            id="email"
+            label="Email Address"
+            placeholder="Enter your email"
+            register={register}
+          />
+          <TextInput
+            id="subject"
+            label="Subject"
+            type="text"
+            placeholder="Enter subject"
+            register={register}
+          />
+          <TextArea
+            id="message"
+            label="Message"
+            placeholder="Write your message"
+            rows={4}
+            register={register}
+          />
 
-        <div className="text-center">
-          <button
-            type="submit"
-            className="rounded bg-blue-500 px-6 py-3 text-white transition hover:bg-blue-700"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+          <div className="text-center">
+            <button
+              type="submit"
+              className="rounded bg-blue-500 px-6 py-3 text-white transition hover:bg-blue-700"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

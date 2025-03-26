@@ -16,6 +16,7 @@ export default function Photography() {
               src={album.thumbnail}
               hash={album.albumHash}
               alt={album.title}
+              className="h-[300px] w-[300px]"
             />
           </Link>
         ))}

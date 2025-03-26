@@ -15,7 +15,7 @@ interface ProjectYear {
 
 export default function Projects() {
   return (
-    <div className="mx-auto flex h-screen flex-col pt-6 text-2xl lg:flex-row">
+    <div className="flex min-h-screen w-full pt-6">
       {/* <Link
         to="/"
         className="fixed absolute left-[31px] top-[50px] rounded-full p-2 text-sm text-gray-500 transition-all duration-300 hover:bg-gray-100 hover:text-black sm:left-[80px] sm:top-[65px] lg:left-[130px] lg:top-[65px] lg:text-xl xl:left-[175px] xl:top-[65px] xl2:left-24 xl2:top-24"

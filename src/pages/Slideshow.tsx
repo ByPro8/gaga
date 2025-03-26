@@ -31,7 +31,8 @@ export default function Slideshow() {
   }, []);
 
   return (
-    <div className="mx-auto flex h-screen w-full max-w-[1760px] sm:flex-col lg:flex-row">
+    // mx-auto flex h-screen w-full max-w-[1760px] sm:flex-col lg:flex-row
+    <div className="flex min-h-screen w-full pt-6">
       <Menu />
       <Slider images={images} random={true} />
     </div>

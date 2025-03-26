@@ -5,10 +5,12 @@ export default function LazyImage({
   src,
   hash,
   alt,
+  className,
 }: {
   src: string;
   hash: string;
   alt: string;
+  className?: string;
 }) {
   const [loaded, setLoaded] = useState(false);
 
@@ -27,7 +29,7 @@ export default function LazyImage({
         alt={alt}
         loading="lazy"
         onLoad={() => setLoaded(true)}
-        className={`h-[300px] w-[300px] object-cover shadow-md transition-all duration-500 ease-in-out ${loaded ? "opacity-100" : "opacity-0"}`}
+        className={`object-cover shadow-md transition-all duration-500 ease-in-out ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
       />
     </div>
   );

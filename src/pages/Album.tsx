@@ -14,7 +14,7 @@ export default function Album() {
     return <div className="text-center text-gray-500">Album not found</div>;
 
   return (
-    <div className="flex h-screen w-full flex-col text-gray-500 sm:flex-col lg:flex-row">
+    <div className="flex min-h-screen w-full pt-6">
       <Menu />
 
       <div className="scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 flex h-[80vh] max-w-[1400px] flex-wrap justify-center gap-6 overflow-y-auto p-6 sm:w-full lg:w-[70%] lg:pl-0 lg2:w-[75%] xl:w-[80%]">
@@ -24,6 +24,7 @@ export default function Album() {
               src={photo.src}
               hash={photo.imageHash}
               alt={photo.desc || "Photo"}
+              className="h-[300px]"
             />
           </Link>
         ))}

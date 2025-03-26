@@ -1,6 +1,6 @@
-import insta from "../assets/images/logos/instagram-outline-svgrepo-com.svg";
-import linkedin from "../assets/images/logos/linkedin-svgrepo-com-new.svg";
-import vimeo from "../assets/images/logos/vimeo-svgrepo-com.svg";
+import insta from "../assets/images/logos/instagram.svg";
+import linkedin from "../assets/images/logos/Linkedin.svg";
+import vimeo from "../assets/images/logos/Vimeo.svg";
 
 interface ContactIconsProps {
   className?: string;
@@ -16,17 +16,17 @@ export default function ContactIcons({
       <img
         src={insta}
         alt="Icon 1"
-        className={`h-8 w-8 lg:w-5 ${iconClassName}`}
+        className={`h-8 w-8 lg:w-[28px] ${iconClassName}`}
       />
       <img
         src={linkedin}
         alt="Icon 2"
-        className={`h-8 w-8 lg:w-5 ${iconClassName}`}
+        className={`h-8 w-8 lg:w-[28px] ${iconClassName}`}
       />
       <img
         src={vimeo}
         alt="Icon 3"
-        className={`h-8 w-8 lg:w-5 ${iconClassName}`}
+        className={`h-8 w-8 lg:w-[28px] ${iconClassName}`}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import ContactIcons from "./ContactIcons";
 export default function Menu() {
   return (
     <div
-      className={`hidden w-[100%] flex-col pt-10 text-center text-gray-500 sm:hidden sm:w-[20%] sm:pl-10 sm:text-right lg:block lg:flex lg:w-[30%] lg:pl-0 lg:pr-8 lg2:w-[25%] xl:w-[20%]`}
+      className={`hidden w-[100%] flex-col pt-10 text-center text-gray-500 sm:hidden sm:w-[20%] sm:pl-10 sm:text-right lg:block lg:flex lg:w-[25%] lg:pl-0 lg:pr-8 lg2:w-[20%] xl:w-[17%]`}
     >
       <GAGALENS
         className="sm:hidden lg:block"
@@ -13,58 +13,59 @@ export default function Menu() {
         classNameB="text-[15px]"
       />
 
-      <nav className="mt-[103px] flex-1 sm:mt-[0px] lg:mt-5">
+      <nav className="mt-[103px] flex-1 text-[20px] sm:mt-[0px] lg:mt-5">
         <ul className="flex flex-col">
-          <li className="order-1 sm:order-2">
-            <Link
-              to="/about"
-              className="block py-2 text-[15px] font-extralight transition-all duration-200 hover:text-black"
-            >
-              About
-            </Link>
-          </li>
-          <li className="order-2 sm:order-3">
-            <Link
-              to="/projects"
-              className="block py-2 text-[15px] font-extralight transition-all duration-200 hover:text-black"
-            >
-              Projects
-            </Link>
-          </li>
-          <li className="order-3 sm:order-4">
-            <Link
-              to="/photography"
-              className="block py-2 text-[15px] font-extralight transition-all duration-200 hover:text-black"
-            >
-              Photography
-            </Link>
-          </li>
-          <li className="order-4 sm:order-5">
-            <Link
-              to="/videography"
-              className="block py-2 text-[15px] font-extralight transition-all duration-200 hover:text-black"
-            >
-              Videography
-            </Link>
-          </li>
-          <li className="order-5 sm:order-1">
+          <li className="order-5">
             <Link
               to="/slideshow"
-              className="block py-2 text-[15px] font-extralight transition-all duration-200 hover:text-black"
+              className="block py-2 text-[20px] font-extralight transition-all duration-200 hover:text-black"
             >
               Slideshow
             </Link>
           </li>
-          <li className="order-6 sm:order-6">
+          <li className="order-1">
+            <Link
+              to="/about"
+              className="block py-2 text-[20px] font-extralight transition-all duration-200 hover:text-black"
+            >
+              About
+            </Link>
+          </li>
+          <li className="order-2">
+            <Link
+              to="/projects"
+              className="block py-2 text-[20px] font-extralight transition-all duration-200 hover:text-black"
+            >
+              Projects
+            </Link>
+          </li>
+          <li className="order-3">
+            <Link
+              to="/photography"
+              className="block py-2 text-[20px] font-extralight transition-all duration-200 hover:text-black"
+            >
+              Photography
+            </Link>
+          </li>
+          <li className="order-4">
+            <Link
+              to="/videography"
+              className="block py-2 text-[20px] font-extralight transition-all duration-200 hover:text-black"
+            >
+              Videography
+            </Link>
+          </li>
+
+          <li className="order-6">
             <Link
               to="/contact"
-              className="block py-2 text-[15px] font-extralight transition-all duration-200 hover:text-black"
+              className="block py-2 text-[20px] font-extralight transition-all duration-200 hover:text-black"
             >
               Contact
             </Link>
           </li>
         </ul>
-        <ContactIcons className="xl2:mt-[0px] mt-32 lg:mt-0 lg:justify-end" />
+        <ContactIcons className="mt-32 lg:mt-0 lg:justify-end xl2:mt-[0px]" />
       </nav>
     </div>
   );
