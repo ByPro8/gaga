@@ -1,7 +1,7 @@
-import GAGALENS from "../components/GAGALENS";
+// import GAGALENS from "../components/GAGALENS";
 import AboutTextImg from "../components/AboutTextImage";
 import Menu from "../components/Menu";
-import TabletMenu from "../components/TabletMenu";
+// import TabletMenu from "../components/TabletMenu";
 
 export default function About() {
   return (
