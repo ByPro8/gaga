@@ -18,7 +18,7 @@ const Contact = () => {
 
   const { register, handleSubmit, reset } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = () => {
     // Trigger a popup message after form submission
     setPopupMessage("Form submitted successfully! 🎉");
     triggerPopup();
