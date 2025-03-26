@@ -14,7 +14,7 @@ import VimeoPlayer from "./pages/VimeoPlayer";
 function App() {
   return (
     <>
-      <div className="flex h-screen w-full font-fira">
+      <div className="flex h-screen w-full overflow-hidden font-fira">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
