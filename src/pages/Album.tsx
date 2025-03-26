@@ -1,4 +1,4 @@
-import Menu from "../components/Menu";
+// import Menu from "../components/Menu";
 import { useParams, Link } from "react-router-dom";
 import albums from "../site/data.json";
 import LazyImage from "../components/LazyImage";
@@ -15,7 +15,7 @@ export default function Album() {
 
   return (
     <div className="flex min-h-screen w-full pt-6">
-      <Menu />
+      {/* <Menu /> */}
 
       <div className="scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 flex h-[80vh] max-w-[1400px] flex-wrap justify-center gap-6 overflow-y-auto p-6 sm:w-full lg:w-[70%] lg:pl-0 lg2:w-[75%] xl:w-[80%]">
         {album.photos.map((photo: PhotoType) => (
