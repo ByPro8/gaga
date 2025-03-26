@@ -7,9 +7,9 @@ export default function Menu() {
     <div
       // hidden w-[100%] max-w-[300px] flex-col
       // text-center  sm:hidden sm:w-[20%] sm:pl-10 sm:text-right lg:block lg:flex lg:w-[25%] lg:pl-0 lg:pr-8 lg2:w-[20%] xl:w-[17%]
-
       //
       // mt-[40px] block w-[17%] flex-col text-right text-gray-500
+
       className="flex min-h-screen w-full pt-6"
     >
       <GAGALENS
