@@ -16,11 +16,15 @@ const Contact = () => {
   const [popupMessage, setPopupMessage] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
 
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
-  const onSubmit = () => {
+  const onSubmit = (data: FormData) => {
+    // Trigger a popup message after form submission
     setPopupMessage("Form submitted successfully! 🎉");
     triggerPopup();
+
+    // Optional: Reset the form after submission
+    reset();
   };
 
   const triggerPopup = () => {
@@ -47,13 +51,17 @@ const Contact = () => {
         </div>
       )}
 
+      {/* Contact form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        name="contact"
+        name="contact" // Required for Netlify form handling
         method="POST"
-        data-netlify="true"
+        data-netlify="true" // This is needed for Netlify form submission
         className="space-y-6"
       >
+        {/* Hidden field for Netlify form handling */}
+        <input type="hidden" name="form-name" value="contact" />
+
         <TextInput
           id="firstName"
           label="First Name"
