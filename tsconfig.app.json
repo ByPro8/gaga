@@ -20,7 +20,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Enable JSON imports */
+    "resolveJsonModule": true // <-- Add this line to allow importing .json files
   },
-  "include": ["src", "getNames.js"]
+  "include": ["src", "getNames.js", "src/data/**/*.json"] // Ensure JSON files are included
 }
