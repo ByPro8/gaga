@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import videosData from "../data/videos.json"; // Import JSON directly
 import LazyImage from "../components/LazyImage"; // Import the LazyImage component
+import { VideoType } from "../types/video"; // Import the VideoType
 
 const Videography = () => {
-  const [thumbnails, setThumbnails] = useState<
-    { id: string; thumbnail: string; hash: string }[]
-  >([]);
+  const [thumbnails, setThumbnails] = useState<VideoType[]>([]); // Use the VideoType here
   const navigate = useNavigate();
 
   useEffect(() => {

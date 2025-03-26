@@ -2,16 +2,22 @@ import { useParams, useNavigate } from "react-router-dom";
 import albums from "../data/data.json";
 import Menu from "../components/Menu";
 import { Slider } from "../components/Slider";
+import { AlbumType as AlbumType, PhotoType } from "../types/albums"; // Import the types
 
 export default function FromAlbumSlides() {
-  const { albumId, photoId } = useParams();
+  const { albumId, photoId } = useParams<{
+    albumId: string;
+    photoId: string;
+  }>(); // Ensure params are typed
   const navigate = useNavigate();
 
-  const album = albums.find((a) => a.title === albumId);
+  const album: AlbumType | undefined = albums.find((a) => a.title === albumId);
   if (!album)
     return <div className="text-center text-gray-500">Album not found</div>;
 
-  const imageIndex = album.photos.findIndex((photo) => photo.id === photoId);
+  const imageIndex = album.photos.findIndex(
+    (photo: PhotoType) => photo.id === photoId,
+  );
   if (imageIndex === -1)
     return <div className="text-center text-gray-500">Photo not found</div>;
 

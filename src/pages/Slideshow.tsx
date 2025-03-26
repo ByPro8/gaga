@@ -3,12 +3,17 @@ import Menu from "../components/Menu";
 import { Slider } from "../components/Slider";
 import albums from "../data/data.json";
 import shuffleArray from "../functions/shuffleArr";
-// Function to shuffle an array randomly
+import { PhotoType } from "../types/albums"; // Import the PhotoType
+
+// Define the type for shuffled images
+interface ShuffledImage extends PhotoType {
+  albumId: string;
+}
 
 export default function Slideshow() {
   // Collect all album photos and include album name
   const images = useMemo(() => {
-    let shuffledImages = albums.flatMap((album) =>
+    let shuffledImages: ShuffledImage[] = albums.flatMap((album) =>
       album.photos.map((photo) => ({
         id: photo.id,
         src: photo.src,
