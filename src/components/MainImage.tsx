@@ -1,6 +1,6 @@
 export default function MainImage() {
   return (
-    <div className="h-screen px-4 pb-7 pt-10">
+    <div className="h-screen pb-7 pt-10">
       <div className="relative w-full max-w-full">
         <img
           src="/home.webp"
