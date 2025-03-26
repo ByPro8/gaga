@@ -9,6 +9,8 @@ import projects from "../site/projects";
 
 export default function Album() {
   console.log(projects);
+  console.log(projects);
+  //
 
   // const { albumId } = useParams<{ albumId: string }>(); // Ensure `albumId` is typed
   // const album: AlbumType | undefined = albums.find((a) => a.title === albumId);
