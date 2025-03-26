@@ -5,7 +5,7 @@ import GAGALENS from "../components/GAGALENS";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen w-full">
+    <div className="mx-10 flex min-h-screen w-full">
       {/* tablet GAGALENS */}
       <GAGALENS
         className="sm:pt-18 hidden text-center sm:mb-[60px] sm:block sm:pt-10 md:mb-[80px] lg:hidden"
