@@ -25,5 +25,5 @@
     /* Enable JSON imports */
     "resolveJsonModule": true // <-- Add this line to allow importing .json files
   },
-  "include": ["src", "getNames.js", "src/data/**/*.json"] // Ensure JSON files are included
+  "include": ["src", "getNames.js", "src/site/**/*.json"] // Ensure JSON files are included
 }

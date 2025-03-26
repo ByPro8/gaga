@@ -2,13 +2,13 @@ import Menu from "../components/Menu";
 ///
 // import { useParams, Link } from "react-router-dom";
 // import albums from "../data/data.json";
-// import projects from "../data/projects";
+import projects from "../site/projects";
 // import LazyImage from "../components/LazyImage";
 // import { AlbumType as AlbumType, PhotoType } from "../types/albums";
 ////
 
 export default function Album() {
-  // console.log(projects);
+  console.log(projects);
 
   // const { albumId } = useParams<{ albumId: string }>(); // Ensure `albumId` is typed
   // const album: AlbumType | undefined = albums.find((a) => a.title === albumId);
