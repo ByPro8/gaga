@@ -4,21 +4,14 @@ import ContactIcons from "./ContactIcons";
 
 export default function Menu() {
   return (
-    <div
-      // hidden w-[100%] max-w-[300px] flex-col
-      // text-center  sm:hidden sm:w-[20%] sm:pl-10 sm:text-right lg:block lg:flex lg:w-[25%] lg:pl-0 lg:pr-8 lg2:w-[20%] xl:w-[17%]
-      //
-      // mt-[40px] block w-[17%] flex-col text-right text-gray-500
-
-      className="mt-[40px] block w-[17%] min-w-[17%] flex-col text-right text-gray-500"
-    >
+    <div className="font-custom mt-[40px] block w-full min-w-[17%] flex-col text-center text-gray-500 sm:hidden md2:text-right lg:block lg:w-[200px] lg:min-w-[230px] xl:w-[17%]">
       <GAGALENS
-        className="sm:hidden lg:block"
+        className="font-bold sm:hidden lg:block"
         classNameG="text-[46px] lg:text-[40px]"
         classNameB="text-[15px]"
       />
 
-      <nav className="mt-[103px] flex-1 text-[19px] sm:mt-[0px] lg:mt-5">
+      <nav className="mt-[75px] flex-1 text-[19px] sm:mt-[0px] lg:mt-5">
         <ul className="flex flex-col">
           <li className="order-5">
             <Link
@@ -70,7 +63,7 @@ export default function Menu() {
             </Link>
           </li>
         </ul>
-        <ContactIcons className="mt-32 lg:mt-0 lg:justify-end xl2:mt-[0px]" />
+        <ContactIcons className="mt-[30px] lg:mt-0 lg:justify-end xl2:mt-[0px]" />
       </nav>
     </div>
   );

@@ -10,7 +10,7 @@ export default function MainImage() {
   }, []);
 
   return (
-    <div className="h-screen px-10 pb-[100px] pt-10">
+    <div className="hidden px-10 pb-[40px] sm:block lg:h-screen lg:pb-[100px] lg:pt-10">
       <div className="relative w-full max-w-full">
         <img
           src="/home.webp"

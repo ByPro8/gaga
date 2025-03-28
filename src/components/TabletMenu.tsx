@@ -5,7 +5,7 @@ export default function TabletMenu() {
   return (
     <div
       id="Tablet horizontal menu"
-      className="hidden sm:mt-[30px] sm:flex sm:flex-col md2:mt-16 lg:hidden"
+      className="font-custom hidden sm:flex sm:flex-col lg:hidden"
     >
       <ul className="flex hidden flex-row flex-wrap text-gray-500 sm:flex sm:justify-center sm:gap-4 sm:text-center md:gap-8 lg:hidden">
         <li className="order-1 sm:order-2">
