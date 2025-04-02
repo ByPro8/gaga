@@ -1,9 +1,11 @@
 import { useMemo } from "react";
 import Menu from "../components/Menu";
-import { Slider } from "../components/Slider";
 import albums from "../site/data.json";
 import shuffleArray from "../functions/shuffleArr";
 import { PhotoType } from "../types/albums"; // Import the PhotoType
+import SliderImage from "../components/SliderImage";
+import BackToHome from "../components/BackToHome";
+import TabletMenu from "../components/TabletMenu";
 
 interface ShuffledImage extends PhotoType {
   albumId: string;
@@ -31,10 +33,11 @@ export default function Slideshow() {
   }, []);
 
   return (
-    // mx-auto flex h-screen w-full max-w-[1760px] sm:flex-col lg:flex-row
-    <div className="flex min-h-screen w-full pt-6">
+    <div className="flex min-h-screen w-full flex-col lg:flex-row">
       <Menu />
-      <Slider images={images} random={true} />
+      <BackToHome />
+      <SliderImage images={images} random={true} />
+      <TabletMenu />
     </div>
   );
 }

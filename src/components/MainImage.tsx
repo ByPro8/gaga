@@ -16,7 +16,7 @@ export default function MainImage() {
           src="/home.webp"
           alt=""
           style={{ maxHeight: `${maxHeight}px` }}
-          className="h-full w-full object-contain"
+          className="mt-[48px] h-full w-full object-contain lg:mt-0"
         />
       </div>
     </div>

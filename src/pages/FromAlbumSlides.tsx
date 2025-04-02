@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
-import { Slider } from "../components/Slider";
+import SliderImage from "../components/SliderImage";
 import { AlbumType as AlbumType, PhotoType } from "../types/albums"; // Import the types
 import albums from "../site/data.json";
 
@@ -28,7 +28,7 @@ export default function FromAlbumSlides() {
   return (
     <div className="mx-auto flex h-screen w-full max-w-[1760px] sm:flex-col lg:flex-row">
       <Menu />
-      <Slider images={album.photos} startIndex={imageIndex} />
+      <SliderImage images={album.photos} startIndex={imageIndex} />
       <button
         onClick={handleClose}
         className="absolute right-4 top-4 rounded bg-gray-800 px-4 py-2 text-white"

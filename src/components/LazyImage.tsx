@@ -6,11 +6,13 @@ export default function LazyImage({
   hash,
   alt,
   className,
+  style,
 }: {
   src: string;
   hash: string;
   alt: string;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const [loaded, setLoaded] = useState(false);
 
@@ -19,8 +21,8 @@ export default function LazyImage({
       {!loaded && (
         <Blurhash
           hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
-          width={300}
-          height={300}
+          width="100%"
+          height="100%"
           className="absolute left-0 top-0"
         />
       )}
@@ -30,6 +32,7 @@ export default function LazyImage({
         loading="lazy"
         onLoad={() => setLoaded(true)}
         className={`object-cover shadow-md transition-all duration-500 ease-in-out ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
+        style={style}
       />
     </div>
   );
