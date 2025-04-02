@@ -19,9 +19,9 @@ export default function Projects() {
       <BackToHome />
 
       <Menu />
-      <div className="max-w-8xl mx-10 mx-auto mb-10 mt-10 min-w-[300px] px-6 text-gray-500 lg:px-0 xl:ml-16">
+      <div className="max-w-8xl mx-10 mx-auto mb-10 ml-10 mt-10 min-w-[300px] px-6 text-gray-500 lg:px-0 xl:ml-16">
         <div>
-          <h1 className="mb-[48px] hidden text-[29px] font-bold text-gray-500 lg:block">
+          <h1 className="mb-[48px] text-[29px] font-bold text-gray-500">
             Projects
           </h1>
           {projects.map((project: ProjectYear) => (
