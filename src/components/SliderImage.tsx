@@ -70,14 +70,14 @@ export default function SliderImage({
 
         <button
           onClick={prevImage}
-          className="absolute left-0 top-0 flex h-full w-[50px] items-center justify-center border-0 text-white hover:bg-black/30 focus:outline-none focus:ring-0 active:outline-none sm:w-[70px]"
+          className="absolute left-0 top-0 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-white hover:bg-black/30 focus:outline-none focus:ring-0 active:outline-none sm:w-[70px]"
         >
           <ArrowLeft className="h-4 w-4 sm:h-6 sm:w-6" />
         </button>
 
         <button
           onClick={nextImage}
-          className="absolute right-0 top-0 flex h-full w-[50px] items-center justify-center border-0 text-white hover:bg-black/30 focus:outline-none focus:ring-0 active:outline-none sm:w-[70px]"
+          className="absolute right-0 top-0 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-white focus:outline-none focus:ring-0 active:bg-black/30 active:outline-none sm:w-[70px]"
         >
           <ArrowRight className="h-4 w-4 sm:h-6 sm:w-6" />
         </button>
