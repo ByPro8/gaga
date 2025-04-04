@@ -66,10 +66,10 @@ const Contact = () => {
         <form
           name="contact"
           method="POST"
-          action="/home"
+          action="/contact"
           className="w-full space-y-6"
         >
-          <input type="hidden" name="form-name" value="home" />
+          <input type="hidden" name="form-name" value="contact" />
 
           <div className="flex flex-col lg:flex-row lg:space-x-4">
             <TextInput
