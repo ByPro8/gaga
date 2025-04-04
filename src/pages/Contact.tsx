@@ -1,4 +1,4 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import TextInput from "../components/TextInput";
 import EmailInput from "../components/EmailInput";
 import TextArea from "../components/TextArea";
@@ -17,40 +17,11 @@ const Contact = () => {
   const { register, handleSubmit } = useForm<FormData>();
   const navigate = useNavigate(); // Initialize useNavigate
 
-  // The form submission handler
-  const onSubmit: SubmitHandler<FormData> = async (data, e) => {
-    e?.preventDefault(); // Prevent default form submission
-
-    // Create FormData object to use with fetch
-    const formData = new FormData();
-
-    // Append data to formData
-    for (const key in data) {
-      formData.append(key, data[key as keyof FormData]);
-    }
-
-    try {
-      console.log("Sending form data:", formData); // Debugging log
-
-      // Submit the form via fetch
-      const response = await fetch("/", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log("Form submission successful!"); // Debugging log
-        // Redirect to the custom thank you page
-        navigate("/submitted");
-      } else {
-        // Log the error response
-        console.error("Form submission failed:", response);
-        alert("There was an error with the form submission.");
-      }
-    } catch (error) {
-      console.error("Fetch error:", error); // Debugging log
-      alert("Error: " + error);
-    }
+  // The form submission handler (you don't need to handle form submission with JavaScript for Netlify)
+  const onSubmit = (data: FormData) => {
+    // No fetch or e.preventDefault() required
+    // Netlify will automatically handle the form submission
+    navigate("/submitted"); // Navigate to the custom thank-you page after form submission
   };
 
   return (
@@ -72,8 +43,8 @@ const Contact = () => {
         {/* Netlify form with manual submit handling */}
         <form
           name="contact" // Netlify form name
-          onSubmit={handleSubmit(onSubmit)} // Use react-hook-form's onSubmit
-          method="POST"
+          onSubmit={handleSubmit(onSubmit)} // React Hook Form's onSubmit handler
+          method="POST" // Standard form submission method
           data-netlify="true" // This tells Netlify to handle the form submission
           data-netlify-honeypot="bot-field" // Honeypot for bot prevention
           className="w-full space-y-6"
