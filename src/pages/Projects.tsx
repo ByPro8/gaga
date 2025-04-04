@@ -21,12 +21,10 @@ export default function Projects() {
       <Menu />
       <div className="max-w-8xl mx-10 mx-auto mb-10 ml-10 mt-10 min-w-[300px] px-6 text-gray-500 lg:px-0 xl:ml-16">
         <div>
-          <h1 className="mb-[48px] text-[29px] font-bold text-gray-500">
-            Projects
-          </h1>
+          <h1 className="mb-[48px] text-[29px] text-gray-500">Projects</h1>
           {projects.map((project: ProjectYear) => (
             <div key={project.year}>
-              <span className="text-base font-bold xs:text-lg sm:text-xl md:text-xl">
+              <span className="text-base xs:text-lg sm:text-xl md:text-xl">
                 {project.year}
               </span>
               <br />
@@ -38,8 +36,8 @@ export default function Projects() {
                   <span className="text- text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-xl">
                     •
                   </span>{" "}
-                  {entry.role} |{" "}
-                  <span className="font-normal">{entry.title}</span>{" "}
+                  <span className="text-[20px]">{entry.role}</span> |{" "}
+                  <span className="text-[20px]">{entry.title}</span>{" "}
                   {entry.company && (
                     <>
                       |{" "}
