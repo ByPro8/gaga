@@ -19,6 +19,8 @@ const Contact = () => {
 
   // The form submission handler (you don't need to handle form submission with JavaScript for Netlify)
   const onSubmit = (data: FormData) => {
+    console.log(data);
+
     // No fetch or e.preventDefault() required
     // Netlify will automatically handle the form submission
     navigate("/submitted"); // Navigate to the custom thank-you page after form submission
