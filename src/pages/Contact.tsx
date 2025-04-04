@@ -19,11 +19,16 @@ const Contact = () => {
 
   // The form submission handler
   const onSubmit: SubmitHandler<FormData> = (data, event) => {
-    event?.preventDefault(); // Prevent the default form submission (important for AJAX behavior)
+    // Prevent the default form submission (this prevents page reload)
+    event?.preventDefault();
     console.log(data);
 
-    // Netlify will handle the form submission automatically because of `data-netlify="true"`
-    // You can handle form submission success via the redirect attribute
+    // This is the trick:
+    // Netlify will automatically handle the form submission
+    // because of `data-netlify="true"`
+
+    // If you want to programmatically handle the redirect to the /submitted page,
+    // you can add a hidden field in the form for `redirect` to send the user there.
     navigate("/submitted"); // Navigate to '/submitted' after form submission
   };
 
