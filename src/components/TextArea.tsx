@@ -21,6 +21,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         {label}
       </label>
       <textarea
+        required
         id={id}
         {...register(id)}
         placeholder={placeholder}

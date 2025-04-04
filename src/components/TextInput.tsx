@@ -23,6 +23,7 @@ const TextInput: React.FC<TextInputProps> = ({
         {label}
       </label>
       <input
+        required
         id={id}
         {...register(id)}
         type={type}

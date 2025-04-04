@@ -64,10 +64,9 @@ const Contact = () => {
           look forward to hearing from you.
         </h1>
         <form
-          onSubmit={() => {}}
           name="contact"
           method="POST"
-          data-netlify="true"
+          action="/contact"
           className="w-full space-y-6"
         >
           <input type="hidden" name="form-name" value="contact" />

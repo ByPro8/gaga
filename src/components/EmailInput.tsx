@@ -19,6 +19,7 @@ const EmailInput: React.FC<EmailInputProps> = ({
         {label}
       </label>
       <input
+        required
         id={id}
         {...register(id)}
         type="email"
