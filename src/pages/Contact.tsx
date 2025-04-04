@@ -18,7 +18,7 @@ const Contact = () => {
   // const [showPopup, setShowPopup] = useState(false);
 
   ////////////////////////////////////////////////////////////////////// const { register, handleSubmit } = useForm<FormData>();
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register } = useForm<FormData>();
 
   // const onSubmit = () => {
   //   // Trigger a popup message after form submission
