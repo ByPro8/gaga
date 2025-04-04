@@ -10,7 +10,6 @@ import Home from "./pages/Home";
 import Album from "./pages/Album";
 import FromAlbumSlides from "./pages/FromAlbumSlides";
 import VimeoPlayer from "./pages/VimeoPlayer";
-import Thankyou from "./pages/Thankyou";
 
 function App() {
   return (
@@ -30,7 +29,6 @@ function App() {
           <Route path="/videography" element={<Videography />} />
           <Route path="/videography/:vimeoId" element={<VimeoPlayer />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/submitted" element={<Thankyou />} />
         </Routes>
       </div>
     </>
