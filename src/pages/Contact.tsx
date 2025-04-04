@@ -1,9 +1,9 @@
+// import { useState } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "../components/TextInput";
 import EmailInput from "../components/EmailInput";
 import TextArea from "../components/TextArea";
 import Menu from "../components/Menu";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 interface FormData {
   firstName: string;
@@ -14,47 +14,62 @@ interface FormData {
 }
 
 const Contact = () => {
-  const { register, handleSubmit } = useForm<FormData>();
-  const navigate = useNavigate(); // Initialize useNavigate
+  // const [popupMessage, setPopupMessage] = useState<string | null>(null);
+  // const [showPopup, setShowPopup] = useState(false);
 
-  // The form submission handler (you don't need to handle form submission with JavaScript for Netlify)
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  ////////////////////////////////////////////////////////////////////// const { register, handleSubmit } = useForm<FormData>();
+  const { register } = useForm<FormData>();
 
-    // Netlify will automatically handle the form submission
-    // Navigate to the custom thank-you page after form submission
-    navigate("/submitted");
-  };
+  // const onSubmit = () => {
+  //   // Trigger a popup message after form submission
+  //   setPopupMessage("Form submitted successfully! 🎉");
+  //   triggerPopup();
+
+  //   // Optional: Reset the form after submission
+  //   reset();
+  // };
+
+  // const triggerPopup = () => {
+  //   setShowPopup(true);
+  //   setTimeout(() => {
+  //     setShowPopup(false);
+  //   }, 2000);
+  // };
 
   return (
     <div className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row">
       <Menu />
+      {/* {popupMessage && (
+        <div
+          className={`absolute left-1/2 top-4 w-80 -translate-x-1/2 transform rounded bg-green-500 p-3 text-center text-white transition-opacity duration-500 ${
+            showPopup ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {popupMessage}
+        </div>
+      )} */}
+
+      {/* Contact form */}
 
       <div className="mx-auto mt-10 flex w-full min-w-[300px] max-w-[700px] flex-col px-8 sm:px-16">
+        {/* Contact Us heading aligned to the left */}
         <h2 className="mb-4 text-left text-xl font-normal text-gray-500">
           Contact Us
         </h2>
         <h1 className="text-gray-500">
-          For all pricing and booking inquiries, please fill out the form below.
-          Please include as much relevant information as possible, for example,
-          the location of the project, amount of images needed, intended usage
-          of the images, and timeframe for project completion. I look forward to
-          hearing from you.
+          For all pricing and booking inquiries , please fill out the form
+          below. Please include as much relevant information as possible, for
+          example, the location of the project, amount of images needed,
+          intended usage of the images, and timeframe for project completion. I
+          look forward to hearing from you.
         </h1>
-
-        {/* Netlify form with manual submit handling */}
         <form
-          name="contact" // Netlify form name
-          onSubmit={handleSubmit(onSubmit)} // React Hook Form's onSubmit handler
-          method="POST" // Standard form submission method
-          data-netlify="true" // This tells Netlify to handle the form submission
-          data-netlify-honeypot="bot-field" // Honeypot for bot prevention
+          name="contact"
+          method="POST"
+          action="/contact"
           className="w-full space-y-6"
         >
           <input type="hidden" name="form-name" value="contact" />
-
-          {/* Hidden redirect field to send users to /submitted after submission */}
-          <input type="hidden" name="redirect" value="/submitted" />
 
           <div className="flex flex-col lg:flex-row lg:space-x-4">
             <TextInput
