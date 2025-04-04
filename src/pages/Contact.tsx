@@ -66,7 +66,7 @@ const Contact = () => {
         <form
           name="contact"
           method="POST"
-          action="/contact"
+          action="/home"
           className="w-full space-y-6"
         >
           <input type="hidden" name="form-name" value="contact" />
