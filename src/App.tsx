@@ -30,7 +30,7 @@ function App() {
           <Route path="/videography" element={<Videography />} />
           <Route path="/videography/:vimeoId" element={<VimeoPlayer />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/submited" element={<Thankyou />} />
+          <Route path="/submitted" element={<Thankyou />} />
         </Routes>
       </div>
     </>
