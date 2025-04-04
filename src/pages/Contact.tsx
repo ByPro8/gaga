@@ -18,16 +18,34 @@ const Contact = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   // The form submission handler
-  const onSubmit: SubmitHandler<FormData> = () => {
-    // Prevent the default form submission (this prevents page reload)
+  const onSubmit: SubmitHandler<FormData> = async (data, e) => {
+    e?.preventDefault(); // Prevent default form submission
 
-    // This is the trick:
-    // Netlify will automatically handle the form submission
-    // because of `data-netlify="true"`
+    // Create FormData object to use with fetch
+    const formData = new FormData();
 
-    // If you want to programmatically handle the redirect to the /submitted page,
-    // you can add a hidden field in the form for `redirect` to send the user there.
-    navigate("/submitted"); // Navigate to '/submitted' after form submission
+    // Append data to formData
+    for (const key in data) {
+      formData.append(key, data[key as keyof FormData]);
+    }
+
+    // Submit the form via fetch
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Redirect to the custom thank you page
+        navigate("/submitted");
+      } else {
+        // Handle errors (optional)
+        alert("There was an error with the form submission.");
+      }
+    } catch (error) {
+      alert("Error: " + error);
+    }
   };
 
   return (
