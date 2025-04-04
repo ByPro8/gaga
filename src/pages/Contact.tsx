@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "../components/TextInput";
 import EmailInput from "../components/EmailInput";
@@ -14,26 +14,27 @@ interface FormData {
 }
 
 const Contact = () => {
-  const [popupMessage, setPopupMessage] = useState<string | null>(null);
-  const [showPopup, setShowPopup] = useState(false);
+  // const [popupMessage, setPopupMessage] = useState<string | null>(null);
+  // const [showPopup, setShowPopup] = useState(false);
 
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  ////////////////////////////////////////////////////////////////////// const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<FormData>();
 
-  const onSubmit = () => {
-    // Trigger a popup message after form submission
-    setPopupMessage("Form submitted successfully! 🎉");
-    triggerPopup();
+  // const onSubmit = () => {
+  //   // Trigger a popup message after form submission
+  //   setPopupMessage("Form submitted successfully! 🎉");
+  //   triggerPopup();
 
-    // Optional: Reset the form after submission
-    reset();
-  };
+  //   // Optional: Reset the form after submission
+  //   reset();
+  // };
 
-  const triggerPopup = () => {
-    setShowPopup(true);
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 2000);
-  };
+  // const triggerPopup = () => {
+  //   setShowPopup(true);
+  //   setTimeout(() => {
+  //     setShowPopup(false);
+  //   }, 2000);
+  // };
 
   return (
     <div className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row">
@@ -63,7 +64,7 @@ const Contact = () => {
           look forward to hearing from you.
         </h1>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={() => {}}
           name="contact"
           method="POST"
           data-netlify="true"
