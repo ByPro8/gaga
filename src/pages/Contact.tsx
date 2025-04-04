@@ -18,10 +18,8 @@ const Contact = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   // The form submission handler
-  const onSubmit: SubmitHandler<FormData> = (data, event) => {
+  const onSubmit: SubmitHandler<FormData> = () => {
     // Prevent the default form submission (this prevents page reload)
-    event?.preventDefault();
-    console.log(data);
 
     // This is the trick:
     // Netlify will automatically handle the form submission
