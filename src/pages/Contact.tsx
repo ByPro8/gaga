@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import TextInput from "../components/TextInput";
 import EmailInput from "../components/EmailInput";
 import TextArea from "../components/TextArea";
@@ -14,12 +14,17 @@ interface FormData {
 }
 
 const Contact = () => {
-  const { register } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<FormData>();
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const onSubmit = () => {
-    // You don't need to manually handle anything here because Netlify handles the form submission automatically
-    navigate("/submitted"); // Redirect to /submitted page after form submission
+  // The form submission handler
+  const onSubmit: SubmitHandler<FormData> = (data, event) => {
+    event?.preventDefault(); // Prevent the default form submission (important for AJAX behavior)
+    console.log(data);
+
+    // Netlify will handle the form submission automatically because of `data-netlify="true"`
+    // You can handle form submission success via the redirect attribute
+    navigate("/submitted"); // Navigate to '/submitted' after form submission
   };
 
   return (
@@ -38,10 +43,10 @@ const Contact = () => {
           hearing from you.
         </h1>
 
-        {/* Form submitted with Netlify handling */}
+        {/* Netlify form with manual submit handling */}
         <form
           name="contact" // Netlify form name
-          onSubmit={onSubmit} // Use onSubmit to redirect
+          onSubmit={handleSubmit(onSubmit)} // Use react-hook-form's onSubmit
           method="POST"
           data-netlify="true" // This tells Netlify to handle the form submission
           data-netlify-honeypot="bot-field" // Honeypot for bot prevention
