@@ -69,7 +69,7 @@ const Contact = () => {
           action="/home"
           className="w-full space-y-6"
         >
-          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="form-name" value="home" />
 
           <div className="flex flex-col lg:flex-row lg:space-x-4">
             <TextInput
