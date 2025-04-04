@@ -51,19 +51,19 @@
 }
 
 /* Apply to body or specific elements */
-body {
+/* body {
   font-family: "MyCustomFont", sans-serif;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 8px !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffe292;
-  border-radius: 4px;
+  background: #ffe292 !important;
+  border-radius: 4px !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffca21;
-}
+  background: #ffca21 !important;
+} */
