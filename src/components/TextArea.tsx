@@ -25,7 +25,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         {...register(id)}
         placeholder={placeholder}
         rows={rows}
-        className="w-full rounded border border-gray-300 bg-white p-3 text-gray-500"
+        className="w-full rounded border border-gray-300 bg-white p-3 text-gray-500 focus:border-[2px] focus:border-gaga1 focus:outline-none"
       />
     </div>
   );

@@ -36,11 +36,9 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-full pt-6">
+    <div className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row">
       <Menu />
-
-      {/* Popup message */}
-      {popupMessage && (
+      {/* {popupMessage && (
         <div
           className={`absolute left-1/2 top-4 w-80 -translate-x-1/2 transform rounded bg-green-500 p-3 text-center text-white transition-opacity duration-500 ${
             showPopup ? "opacity-100" : "opacity-0"
@@ -48,37 +46,50 @@ const Contact = () => {
         >
           {popupMessage}
         </div>
-      )}
+      )} */}
 
       {/* Contact form */}
-      <div className="px-auto">
-        <h2 className="mx-auto mb-4 text-center text-2xl font-bold text-gray-500">
+
+      <div className="mx-auto mt-10 flex w-full min-w-[300px] max-w-[700px] flex-col px-8 sm:px-16">
+        {/* Contact Us heading aligned to the left */}
+        <h2 className="mb-4 text-left text-xl font-normal text-gray-500">
           Contact Us
         </h2>
+        <h1 className="text-gray-500">
+          For all pricing and booking inquiries , please fill out the form
+          below. Please include as much relevant information as possible, for
+          example, the location of the project, amount of images needed,
+          intended usage of the images, and timeframe for project completion. I
+          look forward to hearing from you.
+        </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          name="contact" // Required for Netlify form handling
+          name="contact"
           method="POST"
-          data-netlify="true" // This is needed for Netlify form submission
-          className="mx-auto space-y-6"
+          data-netlify="true"
+          className="w-full space-y-6"
         >
-          {/* Hidden field for Netlify form handling */}
           <input type="hidden" name="form-name" value="contact" />
 
-          <TextInput
-            id="firstName"
-            label="First Name"
-            type="text"
-            placeholder="Enter your first name"
-            register={register}
-          />
-          <TextInput
-            id="lastName"
-            label="Last Name"
-            type="text"
-            placeholder="Enter your last name"
-            register={register}
-          />
+          <div className="flex flex-col lg:flex-row lg:space-x-4">
+            <TextInput
+              id="firstName"
+              label="First Name"
+              type="text"
+              placeholder="Enter your first name"
+              register={register}
+              className="w-full lg:w-1/2"
+            />
+            <TextInput
+              id="lastName"
+              label="Last Name"
+              type="text"
+              placeholder="Enter your last name"
+              register={register}
+              className="w-full lg:w-1/2"
+            />
+          </div>
+
           <EmailInput
             id="email"
             label="Email Address"
@@ -103,7 +114,7 @@ const Contact = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="rounded bg-blue-500 px-6 py-3 text-white transition hover:bg-blue-700"
+              className="rounded bg-gaga1 px-6 py-3 text-gray-500 transition hover:bg-blue-700"
             >
               Submit
             </button>

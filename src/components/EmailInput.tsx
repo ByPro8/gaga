@@ -23,7 +23,7 @@ const EmailInput: React.FC<EmailInputProps> = ({
         {...register(id)}
         type="email"
         placeholder={placeholder}
-        className="w-full rounded border border-gray-300 bg-white p-3 text-gray-500"
+        className="w-full rounded border border-gray-300 bg-white p-3 text-gray-500 focus:border-[2px] focus:border-gaga1 focus:outline-none"
       />
     </div>
   );
