@@ -29,21 +29,26 @@ const Contact = () => {
       formData.append(key, data[key as keyof FormData]);
     }
 
-    // Submit the form via fetch
     try {
+      console.log("Sending form data:", formData); // Debugging log
+
+      // Submit the form via fetch
       const response = await fetch("/", {
         method: "POST",
         body: formData,
       });
 
       if (response.ok) {
+        console.log("Form submission successful!"); // Debugging log
         // Redirect to the custom thank you page
         navigate("/submitted");
       } else {
-        // Handle errors (optional)
+        // Log the error response
+        console.error("Form submission failed:", response);
         alert("There was an error with the form submission.");
       }
     } catch (error) {
+      console.error("Fetch error:", error); // Debugging log
       alert("Error: " + error);
     }
   };
