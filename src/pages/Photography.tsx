@@ -14,7 +14,7 @@ export default function Photography() {
       <ContentContainer>
         {albums.map((album: AlbumType) => (
           <Link key={album.title} to={`/photography/${album.title}`}>
-            <div className="relative flex aspect-square items-center justify-center">
+            <div className="shadow-custom relative flex aspect-square items-center justify-center transition duration-300 hover:shadow-none">
               <LazyImage
                 src={album.thumbnail}
                 hash={album.albumHash}

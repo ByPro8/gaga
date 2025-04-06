@@ -16,12 +16,13 @@ interface ProjectYear {
 export default function Projects() {
   return (
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
-      <BackToHome />
-
       <Menu />
-      <div className="max-w-8xl mx-10 mx-auto mb-10 ml-10 mt-10 min-w-[300px] px-6 text-gray-500 lg:px-0 xl:ml-16">
+      <div className="max-w-8xl mx-10 mx-auto mb-10 ml-10 mt-10 min-w-[300px] text-gray-500 lg:px-0 xl:ml-16">
         <div>
-          <h1 className="mb-[48px] text-[29px] text-gray-500">Projects</h1>
+          <h1 className="mb-[48px] text-[29px] text-gray-500">
+            <BackToHome />
+            Projects
+          </h1>
           {projects.map((project: ProjectYear) => (
             <div key={project.year}>
               <span className="text-base xs:text-lg sm:text-xl md:text-xl">

@@ -44,6 +44,270 @@
     ]
   },
   {
+    "title": "Crop copy",
+    "albumDescription": "crop Text",
+    "thumbnail": "/Albums/Crop copy/Thumb.webp",
+    "albumHash": "UPFiurTJM{oz~Vt7aeaL8{%MtRkBaMRQV[j[",
+    "photos": [
+      {
+        "id": "1",
+        "src": "/Albums/Crop copy/Photos/01.webp",
+        "desc": "",
+        "imageHash": "UPFPpUTJNGoz~Vt7aeaL8|%MtQkBi~RQV[j["
+      },
+      {
+        "id": "2",
+        "src": "/Albums/Crop copy/Photos/02.webp",
+        "desc": "",
+        "imageHash": "U2CGi94Y00-%00.5#JWGU6-XWAk8rk-py29F"
+      },
+      {
+        "id": "3",
+        "src": "/Albums/Crop copy/Photos/03.webp",
+        "desc": "",
+        "imageHash": "UHFP1^?HRPt6~Xxtxuxux^WBRjt6xvM|a#t7"
+      },
+      {
+        "id": "4",
+        "src": "/Albums/Crop copy/Photos/04.webp",
+        "desc": "",
+        "imageHash": "UHGS7N%Mt7xu~qIUt7s:WEM{axt7xuj[IUM{"
+      },
+      {
+        "id": "5",
+        "src": "/Albums/Crop copy/Photos/05.webp",
+        "desc": "",
+        "imageHash": "UNGIoJxroc%J~nWAoct5t3Rlt5ayt6t6xrR%"
+      },
+      {
+        "id": "6",
+        "src": "/Albums/Crop copy/Photos/06.webp",
+        "desc": "",
+        "imageHash": "U1EVWlD$02?E%6IS0KIq9s02^+?G000M^%M_"
+      }
+    ]
+  },
+  {
+    "title": "Crop copy 2",
+    "albumDescription": "crop Text",
+    "thumbnail": "/Albums/Crop copy 2/Thumb.webp",
+    "albumHash": "UPFiurTJM{oz~Vt7aeaL8{%MtRkBaMRQV[j[",
+    "photos": [
+      {
+        "id": "1",
+        "src": "/Albums/Crop copy 2/Photos/01.webp",
+        "desc": "",
+        "imageHash": "UPFPpUTJNGoz~Vt7aeaL8|%MtQkBi~RQV[j["
+      },
+      {
+        "id": "2",
+        "src": "/Albums/Crop copy 2/Photos/02.webp",
+        "desc": "",
+        "imageHash": "U2CGi94Y00-%00.5#JWGU6-XWAk8rk-py29F"
+      },
+      {
+        "id": "3",
+        "src": "/Albums/Crop copy 2/Photos/03.webp",
+        "desc": "",
+        "imageHash": "UHFP1^?HRPt6~Xxtxuxux^WBRjt6xvM|a#t7"
+      },
+      {
+        "id": "4",
+        "src": "/Albums/Crop copy 2/Photos/04.webp",
+        "desc": "",
+        "imageHash": "UHGS7N%Mt7xu~qIUt7s:WEM{axt7xuj[IUM{"
+      },
+      {
+        "id": "5",
+        "src": "/Albums/Crop copy 2/Photos/05.webp",
+        "desc": "",
+        "imageHash": "UNGIoJxroc%J~nWAoct5t3Rlt5ayt6t6xrR%"
+      },
+      {
+        "id": "6",
+        "src": "/Albums/Crop copy 2/Photos/06.webp",
+        "desc": "",
+        "imageHash": "U1EVWlD$02?E%6IS0KIq9s02^+?G000M^%M_"
+      }
+    ]
+  },
+  {
+    "title": "Crop copy 3",
+    "albumDescription": "crop Text",
+    "thumbnail": "/Albums/Crop copy 3/Thumb.webp",
+    "albumHash": "UPFiurTJM{oz~Vt7aeaL8{%MtRkBaMRQV[j[",
+    "photos": [
+      {
+        "id": "1",
+        "src": "/Albums/Crop copy 3/Photos/01.webp",
+        "desc": "",
+        "imageHash": "UPFPpUTJNGoz~Vt7aeaL8|%MtQkBi~RQV[j["
+      },
+      {
+        "id": "2",
+        "src": "/Albums/Crop copy 3/Photos/02.webp",
+        "desc": "",
+        "imageHash": "U2CGi94Y00-%00.5#JWGU6-XWAk8rk-py29F"
+      },
+      {
+        "id": "3",
+        "src": "/Albums/Crop copy 3/Photos/03.webp",
+        "desc": "",
+        "imageHash": "UHFP1^?HRPt6~Xxtxuxux^WBRjt6xvM|a#t7"
+      },
+      {
+        "id": "4",
+        "src": "/Albums/Crop copy 3/Photos/04.webp",
+        "desc": "",
+        "imageHash": "UHGS7N%Mt7xu~qIUt7s:WEM{axt7xuj[IUM{"
+      },
+      {
+        "id": "5",
+        "src": "/Albums/Crop copy 3/Photos/05.webp",
+        "desc": "",
+        "imageHash": "UNGIoJxroc%J~nWAoct5t3Rlt5ayt6t6xrR%"
+      },
+      {
+        "id": "6",
+        "src": "/Albums/Crop copy 3/Photos/06.webp",
+        "desc": "",
+        "imageHash": "U1EVWlD$02?E%6IS0KIq9s02^+?G000M^%M_"
+      }
+    ]
+  },
+  {
+    "title": "Crop copy 4",
+    "albumDescription": "crop Text",
+    "thumbnail": "/Albums/Crop copy 4/Thumb.webp",
+    "albumHash": "UPFiurTJM{oz~Vt7aeaL8{%MtRkBaMRQV[j[",
+    "photos": [
+      {
+        "id": "1",
+        "src": "/Albums/Crop copy 4/Photos/01.webp",
+        "desc": "",
+        "imageHash": "UPFPpUTJNGoz~Vt7aeaL8|%MtQkBi~RQV[j["
+      },
+      {
+        "id": "2",
+        "src": "/Albums/Crop copy 4/Photos/02.webp",
+        "desc": "",
+        "imageHash": "U2CGi94Y00-%00.5#JWGU6-XWAk8rk-py29F"
+      },
+      {
+        "id": "3",
+        "src": "/Albums/Crop copy 4/Photos/03.webp",
+        "desc": "",
+        "imageHash": "UHFP1^?HRPt6~Xxtxuxux^WBRjt6xvM|a#t7"
+      },
+      {
+        "id": "4",
+        "src": "/Albums/Crop copy 4/Photos/04.webp",
+        "desc": "",
+        "imageHash": "UHGS7N%Mt7xu~qIUt7s:WEM{axt7xuj[IUM{"
+      },
+      {
+        "id": "5",
+        "src": "/Albums/Crop copy 4/Photos/05.webp",
+        "desc": "",
+        "imageHash": "UNGIoJxroc%J~nWAoct5t3Rlt5ayt6t6xrR%"
+      },
+      {
+        "id": "6",
+        "src": "/Albums/Crop copy 4/Photos/06.webp",
+        "desc": "",
+        "imageHash": "U1EVWlD$02?E%6IS0KIq9s02^+?G000M^%M_"
+      }
+    ]
+  },
+  {
+    "title": "Crop copy 5",
+    "albumDescription": "crop Text",
+    "thumbnail": "/Albums/Crop copy 5/Thumb.webp",
+    "albumHash": "UPFiurTJM{oz~Vt7aeaL8{%MtRkBaMRQV[j[",
+    "photos": [
+      {
+        "id": "1",
+        "src": "/Albums/Crop copy 5/Photos/01.webp",
+        "desc": "",
+        "imageHash": "UPFPpUTJNGoz~Vt7aeaL8|%MtQkBi~RQV[j["
+      },
+      {
+        "id": "2",
+        "src": "/Albums/Crop copy 5/Photos/02.webp",
+        "desc": "",
+        "imageHash": "U2CGi94Y00-%00.5#JWGU6-XWAk8rk-py29F"
+      },
+      {
+        "id": "3",
+        "src": "/Albums/Crop copy 5/Photos/03.webp",
+        "desc": "",
+        "imageHash": "UHFP1^?HRPt6~Xxtxuxux^WBRjt6xvM|a#t7"
+      },
+      {
+        "id": "4",
+        "src": "/Albums/Crop copy 5/Photos/04.webp",
+        "desc": "",
+        "imageHash": "UHGS7N%Mt7xu~qIUt7s:WEM{axt7xuj[IUM{"
+      },
+      {
+        "id": "5",
+        "src": "/Albums/Crop copy 5/Photos/05.webp",
+        "desc": "",
+        "imageHash": "UNGIoJxroc%J~nWAoct5t3Rlt5ayt6t6xrR%"
+      },
+      {
+        "id": "6",
+        "src": "/Albums/Crop copy 5/Photos/06.webp",
+        "desc": "",
+        "imageHash": "U1EVWlD$02?E%6IS0KIq9s02^+?G000M^%M_"
+      }
+    ]
+  },
+  {
+    "title": "Crop copy 7",
+    "albumDescription": "crop Text",
+    "thumbnail": "/Albums/Crop copy 7/Thumb.webp",
+    "albumHash": "UPFiurTJM{oz~Vt7aeaL8{%MtRkBaMRQV[j[",
+    "photos": [
+      {
+        "id": "1",
+        "src": "/Albums/Crop copy 7/Photos/01.webp",
+        "desc": "",
+        "imageHash": "UPFPpUTJNGoz~Vt7aeaL8|%MtQkBi~RQV[j["
+      },
+      {
+        "id": "2",
+        "src": "/Albums/Crop copy 7/Photos/02.webp",
+        "desc": "",
+        "imageHash": "U2CGi94Y00-%00.5#JWGU6-XWAk8rk-py29F"
+      },
+      {
+        "id": "3",
+        "src": "/Albums/Crop copy 7/Photos/03.webp",
+        "desc": "",
+        "imageHash": "UHFP1^?HRPt6~Xxtxuxux^WBRjt6xvM|a#t7"
+      },
+      {
+        "id": "4",
+        "src": "/Albums/Crop copy 7/Photos/04.webp",
+        "desc": "",
+        "imageHash": "UHGS7N%Mt7xu~qIUt7s:WEM{axt7xuj[IUM{"
+      },
+      {
+        "id": "5",
+        "src": "/Albums/Crop copy 7/Photos/05.webp",
+        "desc": "",
+        "imageHash": "UNGIoJxroc%J~nWAoct5t3Rlt5ayt6t6xrR%"
+      },
+      {
+        "id": "6",
+        "src": "/Albums/Crop copy 7/Photos/06.webp",
+        "desc": "",
+        "imageHash": "U1EVWlD$02?E%6IS0KIq9s02^+?G000M^%M_"
+      }
+    ]
+  },
+  {
     "title": "Energy",
     "albumDescription": "\"Energy\" – Levan Gaga Kapanadze’s ...",
     "thumbnail": "/Albums/Energy/Thumb.webp",

@@ -4,6 +4,7 @@ import TextInput from "../components/TextInput";
 import EmailInput from "../components/EmailInput";
 import TextArea from "../components/TextArea";
 import Menu from "../components/Menu";
+import BackToHome from "../components/BackToHome";
 
 interface FormData {
   firstName: string;
@@ -53,8 +54,8 @@ const Contact = () => {
 
       <div className="mx-auto mt-10 flex w-full min-w-[300px] max-w-[700px] flex-col px-8 sm:px-16">
         {/* Contact Us heading aligned to the left */}
-        <h2 className="mb-4 text-left text-xl font-normal text-gray-500">
-          Contact Us
+        <h2 className="mb-4 flex items-center gap-2 text-left text-xl font-normal text-gray-500">
+          <BackToHome /> Contact Us
         </h2>
         <h1 className="text-gray-500">
           For all pricing and booking inquiries , please fill out the form
@@ -114,7 +115,7 @@ const Contact = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="rounded bg-gaga1 px-6 py-3 text-gray-500 transition hover:bg-blue-700"
+              className="rounded rounded-md bg-gaga1 px-24 py-4 text-gray-500 transition hover:bg-blue-700 hover:bg-gaga lg:px-24"
             >
               Submit
             </button>

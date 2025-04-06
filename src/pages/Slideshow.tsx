@@ -35,7 +35,6 @@ export default function Slideshow() {
   return (
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
       <Menu />
-      <BackToHome />
       <SliderImage images={images} random={true} />
       <TabletMenu />
     </div>

@@ -23,33 +23,33 @@ export default function Menu({ isHome }: MenuProps) {
         className={`mt-[75px] flex-1 text-[19px] sm:mt-[0px] sm:hidden lg:mt-5 lg:block ${!isHome ? "hidden" : ""}`}
       >
         <ul className="flex flex-col">
-          <li className="order-5">
+          <li className="text-shadow-sm order-5">
             <Link to="/slideshow" className={menuClassname}>
               Slideshow
             </Link>
           </li>
-          <li className="order-1">
+          <li className="text-shadow-sm order-1">
             <Link to="/about" className={menuClassname}>
               About
             </Link>
           </li>
-          <li className="order-2">
+          <li className="text-shadow-sm order-2">
             <Link to="/projects" className={menuClassname}>
               Projects
             </Link>
           </li>
-          <li className="order-3">
+          <li className="text-shadow-sm order-3">
             <Link to="/photography" className={menuClassname}>
               Photography
             </Link>
           </li>
-          <li className="order-4">
+          <li className="text-shadow-sm order-4">
             <Link to="/videography" className={menuClassname}>
               Videography
             </Link>
           </li>
 
-          <li className="order-6">
+          <li className="text-shadow-sm order-6">
             <Link to="/contact" className={menuClassname}>
               Contact
             </Link>

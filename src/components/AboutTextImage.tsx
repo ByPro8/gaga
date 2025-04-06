@@ -1,14 +1,23 @@
 import gaga from "../assets/about/GagaKapanadze.jpg";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 interface AboutTextImgProps {
   className?: string;
 }
 
 export default function AboutTextImg({ className = "" }: AboutTextImgProps) {
+  const navigate = useNavigate();
   const BoldClassname = "text-[19px] font-bold";
   return (
     <div className={`mx-auto px-6 lg:px-0 ${className}`}>
       <h1 className="mb-[30px] text-[30px] text-gray-500 lg:mb-[48px] lg:block">
+        <button
+          onClick={() => navigate("/")}
+          className="items-center rounded-md border-0 py-2 pr-4 text-gray-500 transition focus:outline-none focus:ring-0 active:outline-none lg:hidden"
+        >
+          <ArrowLeft className="h-5 w-5" />
+        </button>{" "}
         About
       </h1>
       <div>
