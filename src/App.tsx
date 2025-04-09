@@ -12,7 +12,6 @@ import Home from "./pages/Home";
 import Album from "./pages/Album";
 import FromAlbumSlides from "./pages/FromAlbumSlides";
 import VimeoPlayer from "./pages/VimeoPlayer";
-import Home2 from "./pages/Home2";
 
 function App() {
   const location = useLocation();
@@ -22,7 +21,6 @@ function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
-          <Route path="/home2" element={<Home2 />} />
           <Route path="/about" element={<About />} />
           <Route path="/slideshow" element={<Slideshow />} />
           <Route path="/projects" element={<Projects />} />
