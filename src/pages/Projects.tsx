@@ -17,14 +17,14 @@ export default function Projects() {
   return (
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
       <Menu />
-      <div className="max-w-8xl mx-auto mb-10 ml-10 mr-10 mt-[60px] min-w-[300px] text-gray-500 lg:px-0 xl:ml-10">
+      <div className="mb-10 ml-10 mt-[60px] h-screen w-full min-w-[300px] overflow-y-auto text-gray-500 lg:px-0 xl:ml-10">
         <div>
           <h1 className="mb-[48px] text-[29px] text-gray-500">
             <BackToHome />
             Projects
           </h1>
           {projects.map((project: ProjectYear) => (
-            <div key={project.year}>
+            <div className="" key={project.year}>
               <span className="text-base xs:text-lg sm:text-xl md:text-xl">
                 {project.year}
               </span>

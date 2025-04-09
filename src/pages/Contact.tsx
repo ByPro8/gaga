@@ -15,45 +15,11 @@ interface FormData {
 }
 
 const Contact = () => {
-  // const [popupMessage, setPopupMessage] = useState<string | null>(null);
-  // const [showPopup, setShowPopup] = useState(false);
-
-  ////////////////////////////////////////////////////////////////////// const { register, handleSubmit } = useForm<FormData>();
   const { register } = useForm<FormData>();
-
-  // const onSubmit = () => {
-  //   // Trigger a popup message after form submission
-  //   setPopupMessage("Form submitted successfully! 🎉");
-  //   triggerPopup();
-
-  //   // Optional: Reset the form after submission
-  //   reset();
-  // };
-
-  // const triggerPopup = () => {
-  //   setShowPopup(true);
-  //   setTimeout(() => {
-  //     setShowPopup(false);
-  //   }, 2000);
-  // };
-
   return (
     <div className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row">
       <Menu />
-      {/* {popupMessage && (
-        <div
-          className={`absolute left-1/2 top-4 w-80 -translate-x-1/2 transform rounded bg-green-500 p-3 text-center text-white transition-opacity duration-500 ${
-            showPopup ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {popupMessage}
-        </div>
-      )} */}
-
-      {/* Contact form */}
-
-      <div className="mx-auto mt-10 flex w-full min-w-[300px] max-w-[700px] flex-col px-8 sm:px-16">
-        {/* Contact Us heading aligned to the left */}
+      <div className="flex w-full min-w-[300px] max-w-[700px] flex-col px-8 pt-[60px] sm:px-10">
         <h2 className="mb-4 flex items-center gap-2 text-left text-xl font-normal text-gray-500">
           <BackToHome /> Contact Us
         </h2>
