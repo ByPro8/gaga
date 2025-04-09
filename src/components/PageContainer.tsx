@@ -1,11 +1,48 @@
+import { motion } from "framer-motion";
+
+const fadeVariant = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 60,
+      damping: 15,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+};
+const pageTransition = {
+  duration: 0.5,
+  ease: "easeInOut",
+};
+
 export default function PageContainer({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen w-full min-w-0 flex-col text-gray-500 sm:flex-col lg:flex-[1_1_0%] lg:flex-row">
+    <motion.div
+      variants={fadeVariant}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={pageTransition}
+      className="flex h-screen w-full min-w-0 flex-col text-gray-500 sm:flex-col lg:flex-[1_1_0%] lg:flex-row"
+    >
       {children}
-    </div>
+    </motion.div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Blurhash } from "react-blurhash";
+import { motion } from "framer-motion";
 
 export default function LazyImage({
   src,
@@ -17,56 +18,31 @@ export default function LazyImage({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    // <div className="items-left relative flex flex-col">
-    //   {!loaded && (
-    //     <Blurhash
-    //       hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
-    //       width={300}
-    //       height={300}
-    //       className="absolute left-0 top-0"
-    //     />
-    //   )}
-    //   <img
-    //     src={src}
-    //     alt={alt}
-    //     loading="lazy"
-    //     onLoad={() => setLoaded(false)}
-    //     className={`object-cover shadow-md transition-all duration-500 ease-in-out ${
-    //       loaded ? "opacity-100" : "opacity-0"
-    //     } ${className}`}
-    //     style={style}
-    //   />
-    //   {/* <Blurhash
-    //     hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
-    //     width={300}
-    //     height={300}
-    //     className="absolute left-0 top-0"
-    //   /> */}
-    // </div>
+    <motion.div
+      layout
+      className="relative h-full w-full overflow-hidden"
+      style={style}
+    >
+      {!loaded && (
+        <Blurhash
+          hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
+          width="100%"
+          height="100%"
+          className="absolute left-0 top-0 h-full w-full object-cover"
+        />
+      )}
 
-    <>
-      {/* Always keep a placeholder for Blurhash */}
-      <div className="absolute left-0 top-0 h-full w-full">
-        {!loaded && (
-          <Blurhash
-            hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
-            width="100%"
-            height="100%"
-            className="absolute left-0 top-0"
-          />
-        )}
-      </div>
-
-      <img
+      <motion.img
         src={src}
         alt={alt}
         loading="lazy"
         onLoad={() => setLoaded(true)}
-        className={`object-cover shadow-md transition-opacity duration-100 ease-in-out ${
-          loaded ? "opacity-100" : "opacity-0"
-        } ${className}`}
-        style={style}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className={`h-full w-full object-cover ${className}`}
+        style={{ position: "relative", zIndex: 1 }}
       />
-    </>
+    </motion.div>
   );
 }

@@ -6,6 +6,16 @@ import { PhotoType } from "../types/albums"; // Import the PhotoType
 import SliderImage from "../components/SliderImage";
 // import BackToHome from "../components/BackToHome";
 import TabletMenu from "../components/TabletMenu";
+import { motion } from "framer-motion";
+const fadeVariant = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+const pageTransition = {
+  duration: 1,
+  ease: "easeInOut",
+};
 
 interface ShuffledImage extends PhotoType {
   albumId: string;
@@ -33,10 +43,17 @@ export default function Slideshow() {
   }, []);
 
   return (
-    <div className="flex min-h-screen w-full flex-col lg:flex-row">
+    <motion.div
+      variants={fadeVariant}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={pageTransition}
+      className="flex min-h-screen w-full flex-col lg:flex-row"
+    >
       <Menu />
       <SliderImage images={images} random={true} />
       <TabletMenu />
-    </div>
+    </motion.div>
   );
 }

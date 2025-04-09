@@ -1,7 +1,16 @@
 import projects from "../site/projects.ts";
 import Menu from "../components/Menu.tsx";
 import BackToHome from "../components/BackToHome.tsx";
-
+import { motion } from "framer-motion";
+const fadeVariant = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+const pageTransition = {
+  duration: 0.5,
+  ease: "easeInOut",
+};
 interface ProjectEntry {
   role: string;
   title: string;
@@ -15,9 +24,16 @@ interface ProjectYear {
 
 export default function Projects() {
   return (
-    <div className="flex min-h-screen w-full flex-col lg:flex-row">
+    <motion.div
+      variants={fadeVariant}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={pageTransition}
+      className="flex min-h-screen w-full flex-col lg:flex-row"
+    >
       <Menu />
-      <div className="mb-10 ml-10 mt-[60px] h-screen w-full min-w-[300px] overflow-y-auto text-gray-500 lg:px-0 xl:ml-10">
+      <div className="mb-10 ml-10 h-screen w-full min-w-[300px] overflow-y-auto pt-[60px] text-gray-500 lg:px-0 xl:ml-10">
         <div>
           <h1 className="mb-[48px] text-[29px] text-gray-500">
             <BackToHome />
@@ -55,6 +71,6 @@ export default function Projects() {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

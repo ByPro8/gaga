@@ -1,20 +1,30 @@
-// import GAGALENS from "../components/GAGALENS";
 import AboutTextImg from "../components/AboutTextImage";
 import Menu from "../components/Menu";
-// import TabletMenu from "../components/TabletMenu";
+import { motion } from "framer-motion";
+const fadeVariant = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+const pageTransition = {
+  duration: 0.5,
+  ease: "easeInOut",
+};
 
 export default function About() {
   return (
-    <div className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row">
+    <motion.div
+      variants={fadeVariant}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={pageTransition}
+      className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row"
+    >
       <Menu />
-      <img
-        src="/home.webp"
-        alt="Background"
-        className="fixed inset-0 -z-10 h-full w-full object-cover blur-3xl"
-      />
       <div className="mt-[60px] flex-1 lg:mx-10">
         <AboutTextImg className="mb-10 lg:max-w-[1300px]" />
       </div>
-    </div>
+    </motion.div>
   );
 }
