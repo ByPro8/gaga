@@ -5,16 +5,16 @@ import EmailInput from "../components/EmailInput";
 import TextArea from "../components/TextArea";
 import Menu from "../components/Menu";
 import BackToHome from "../components/BackToHome";
-import { motion } from "framer-motion";
-const fadeVariant = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-};
-const pageTransition = {
-  duration: 0.5,
-  ease: "easeInOut",
-};
+// import { motion } from "framer-motion";
+// const fadeVariant = {
+//   initial: { opacity: 0 },
+//   animate: { opacity: 1 },
+//   exit: { opacity: 0 },
+// };
+// const pageTransition = {
+//   duration: 0.5,
+//   ease: "easeInOut",
+// };
 
 interface FormData {
   firstName: string;
@@ -27,14 +27,15 @@ interface FormData {
 const Contact = () => {
   const { register } = useForm<FormData>();
   return (
-    <motion.div
-      variants={fadeVariant}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      transition={pageTransition}
-      className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row"
-    >
+    // <motion.div
+    //   variants={fadeVariant}
+    //   initial="initial"
+    //   animate="animate"
+    //   exit="exit"
+    //   transition={pageTransition}
+    //   className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row"
+    // >
+    <div className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row">
       <Menu />
       <div className="flex w-full min-w-[300px] max-w-[700px] flex-col px-8 pt-[60px] sm:px-10">
         <h2 className="mb-4 flex items-center gap-2 text-left text-xl font-normal text-gray-500">
@@ -105,7 +106,8 @@ const Contact = () => {
           </div>
         </form>
       </div>
-    </motion.div>
+    </div>
+    // </motion.div>
   );
 };
 

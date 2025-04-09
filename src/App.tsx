@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+// import { AnimatePresence } from "framer-motion";
 
 import Slideshow from "./pages/Slideshow";
 import Contact from "./pages/Contact";
@@ -18,23 +18,23 @@ function App() {
 
   return (
     <div className="flex h-screen w-full font-custom">
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/slideshow" element={<Slideshow />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/photography" element={<Photography />} />
-          <Route path="/photography/:albumId" element={<Album />} />
-          <Route
-            path="/photography/:albumId/:photoId"
-            element={<FromAlbumSlides />}
-          />
-          <Route path="/videography" element={<Videography />} />
-          <Route path="/videography/:vimeoId" element={<VimeoPlayer />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </AnimatePresence>
+      {/* <AnimatePresence mode="wait"> */}
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/slideshow" element={<Slideshow />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/photography" element={<Photography />} />
+        <Route path="/photography/:albumId" element={<Album />} />
+        <Route
+          path="/photography/:albumId/:photoId"
+          element={<FromAlbumSlides />}
+        />
+        <Route path="/videography" element={<Videography />} />
+        <Route path="/videography/:vimeoId" element={<VimeoPlayer />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      {/* </AnimatePresence> */}
     </div>
   );
 }

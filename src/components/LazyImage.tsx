@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Blurhash } from "react-blurhash";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 export default function LazyImage({
   src,
@@ -18,11 +18,7 @@ export default function LazyImage({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <motion.div
-      layout
-      className="relative h-full w-full overflow-hidden"
-      style={style}
-    >
+    <div className="relative h-full w-full overflow-hidden" style={style}>
       {!loaded && (
         <Blurhash
           hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
@@ -32,17 +28,14 @@ export default function LazyImage({
         />
       )}
 
-      <motion.img
+      <img
         src={src}
         alt={alt}
         loading="lazy"
         onLoad={() => setLoaded(true)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: loaded ? 1 : 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
         className={`h-full w-full object-cover ${className}`}
         style={{ position: "relative", zIndex: 1 }}
       />
-    </motion.div>
+    </div>
   );
 }
