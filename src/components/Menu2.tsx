@@ -12,7 +12,7 @@ export default function Menu2({ isHome }: MenuProps) {
 
   return (
     <div
-      className={`block w-full min-w-[330px] min-w-[374px] flex-none flex-col pl-[36px] pr-10 pt-[40px] text-center text-black lg:block lg:w-[280px] lg:text-left lg2:w-[320px] xl:max-w-[320px]`}
+      className={`block w-full min-w-[324px] min-w-[330px] flex-none flex-col pl-[36px] pr-10 pt-[40px] text-center text-black lg:block lg:w-[280px] lg:text-left lg2:w-[320px] xl:max-w-[320px]`}
     >
       <GAGALENS
         className="font-bold lg:block"
