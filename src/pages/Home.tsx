@@ -1,13 +1,13 @@
 import Menu from "../components/Menu";
-import MainImage from "../components/MainImage";
+// import MainImage from "../components/MainImage";
 import TabletMenu from "../components/TabletMenu";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
-const fadeVariant = {
-  initial: { opacity: 4 },
-  animate: { opacity: 4 },
-  exit: { opacity: 4 },
-};
+// const fadeVariant = {
+//   initial: { opacity: 4 },
+//   animate: { opacity: 4 },
+//   exit: { opacity: 4 },
+// };
 
 export default function Home() {
   return (
