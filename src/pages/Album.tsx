@@ -1,4 +1,3 @@
-// import Menu from "../components/Menu";
 import { useParams, Link } from "react-router-dom";
 import albums from "../site/data.json";
 import LazyImage from "../components/LazyImage";
@@ -17,11 +16,10 @@ export default function Album() {
   return (
     <PageContainer>
       <Menu />
-
-      <ContentContainer>
+      <ContentContainer className="grid-cols-1 lg:grid-cols-2" title="Albums">
         {album.photos.map((photo: PhotoType) => (
           <Link key={photo.id} to={`/photography/${albumId}/${photo.id}`}>
-            <div className="relative flex aspect-square items-start justify-center overflow-hidden">
+            <div className="relative flex aspect-[16/9] items-start justify-center overflow-hidden">
               <LazyImage
                 src={photo.src}
                 hash={photo.imageHash}
@@ -33,12 +31,12 @@ export default function Album() {
         ))}
       </ContentContainer>
 
-      <Link
+      {/* <Link
         to="/photography"
         className="absolute left-4 top-4 rounded bg-gray-800 px-4 py-2 text-white"
       >
         Back
-      </Link>
+      </Link> */}
     </PageContainer>
   );
 }

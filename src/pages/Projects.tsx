@@ -17,7 +17,7 @@ export default function Projects() {
   return (
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
       <Menu />
-      <div className="max-w-8xl mx-10 mx-auto mb-10 ml-10 mt-10 min-w-[300px] text-gray-500 lg:px-0 xl:ml-16">
+      <div className="max-w-8xl mx-auto mb-10 ml-10 mr-10 mt-[60px] min-w-[300px] text-gray-500 lg:px-0 xl:ml-10">
         <div>
           <h1 className="mb-[48px] text-[29px] text-gray-500">
             <BackToHome />

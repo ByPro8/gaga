@@ -10,7 +10,7 @@ export default function AboutTextImg({ className = "" }: AboutTextImgProps) {
   const navigate = useNavigate();
   const BoldClassname = "text-[19px] font-bold";
   return (
-    <div className={`mx-auto px-6 lg:px-0 ${className}`}>
+    <div className={`px-6 lg:px-0 ${className}`}>
       <h1 className="mb-[30px] text-[30px] text-gray-500 lg:mb-[48px] lg:block">
         <button
           onClick={() => navigate("/")}
@@ -24,7 +24,7 @@ export default function AboutTextImg({ className = "" }: AboutTextImgProps) {
         <img
           src={gaga}
           alt="Profile"
-          className="sm:shape-[circle()] ms:h-[255px] float-center mx-auto mb-4 max-w-[325px] sm:float-right sm:ml-4 sm:w-[170px]"
+          className="sm:shape-[circle()] ms:h-[255px] float-center mx-auto mb-4 max-w-[325px] sm:float-right sm:ml-4 sm:w-[270px]"
         />
         <p className="text-xl text-gray-500">
           <span className={BoldClassname}>Levan Gaga Kapanadze</span> is a

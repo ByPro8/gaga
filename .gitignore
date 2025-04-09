@@ -22,6 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-getNames.js
+getAlbumData.js
 getVideos.js
 getPureVideos.js
+getTextsforAlbums.js

@@ -25,5 +25,10 @@
     /* Enable JSON imports */
     "resolveJsonModule": true // <-- Add this line to allow importing .json files
   },
-  "include": ["src", "getNames.js", "src/site/**/*.json"] // Ensure JSON files are included
+  "include": [
+    "src",
+    "getAlbumData.js",
+    "src/site/**/*.json",
+    "getTextsforAlbums.js"
+  ] // Ensure JSON files are included
 }

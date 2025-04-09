@@ -13,13 +13,8 @@ export default function GAGALENS({
 }: GAGALENSProps) {
   return (
     <Link to="/" className={`${className}`}>
-      <div className="font-bold text-black">
-        <h1
-          className={`text-shadow-smgaga1 font-[500px] text-gaga1 ${classNameG}`}
-        >
-          {" "}
-          GAGALENS
-        </h1>
+      <div className="font-bold">
+        <h1 className={`text-gaga1 ${classNameG}`}> GAGALENS</h1>
         <h1 className={`font-extralight text-black ${classNameB}`}>
           {" "}
           By Levan Gaga Kapanadze
