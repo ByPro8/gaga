@@ -265,7 +265,7 @@ const projects = [
         role: "Director",
         title:
           "Promo Video Series 'Stand for Human Rights' - 70th Anniversary of the Universal Declaration of Human Rights",
-        company: "UN",
+        company: "UNDP",
       },
       { role: "Director", title: "LibArt - Promo Video", company: "Agruni" },
       { role: "Director", title: "Commercial Video", company: "TBC Insurance" },
@@ -378,13 +378,12 @@ const projects = [
     entries: [
       {
         role: "Photographer",
-        title:
-          "Photo Portfolio - 'Lightening' (Fall-Winter Collection by Tapo Shotadze)",
+        title: "Photo Portfolio - Photo Portfolio for Fall-Winter Collection",
         company: "Tapo Shotadze",
       },
       {
         role: "Director",
-        title: "crowd-sourced documentary Film: 'Life in a Day'",
+        title: "crowd-sourced documentary Film: 'Life in a Day",
         company: "Scott Free Productions",
       },
       {
@@ -443,9 +442,9 @@ const projects = [
     year: 2006,
     entries: [
       {
-        role: "Grand Prix Winner",
+        role: "Winner",
         title: "UN Photo Competition",
-        company: "UNFPA",
+        company: "UNFPA Georgia",
       },
     ],
   },
