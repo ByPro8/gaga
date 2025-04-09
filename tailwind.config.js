@@ -7,6 +7,9 @@ module.exports = {
         custom: ["MyCustomFont", "sans-serif"],
         fira: ['"Fira Sans"', "sans-serif"],
       },
+      fontWeight: {
+        demi: 600, // Demi-bold weight (optional, you can use any number)
+      },
       colors: {
         gaga: "#FFCA22",
         gaga1: "#FFE292",

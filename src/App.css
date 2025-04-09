@@ -50,8 +50,11 @@
   font-style: normal;
 }
 
-* {
-  transition: all 0.3s ease-in-out;
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("/fonts/FuturaCyrillicDemi.ttf") format("truetype");
+  font-weight: 600; /* Demi-bold is often represented by 600 */
+  font-style: normal;
 }
 
 /* Apply to body or specific elements */
