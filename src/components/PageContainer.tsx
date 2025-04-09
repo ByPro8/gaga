@@ -1,28 +1,11 @@
 import { motion } from "framer-motion";
 
 const fadeVariant = {
-  initial: {
-    opacity: 0,
-    y: 30,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 60,
-      damping: 15,
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -20,
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
 };
+
 const pageTransition = {
   duration: 0.5,
   ease: "easeInOut",
