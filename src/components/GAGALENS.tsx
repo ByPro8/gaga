@@ -12,7 +12,10 @@ export default function GAGALENS({
   classNameB = "",
 }: GAGALENSProps) {
   return (
-    <Link to="/" className={`${className} no-underline hover:no-underline`}>
+    <Link
+      to="/"
+      className={`${className} hover:no-underline focus:no-underline`}
+    >
       <div className="flex flex-col font-bold">
         <h1 className={`text-gaga1 ${classNameG}`}>GAGALENS</h1>
         <h1 className={`self-end font-extralight ${classNameB}`}>
