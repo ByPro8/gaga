@@ -384,8 +384,8 @@ const projects = [
       },
       {
         role: "Director",
-        title: "Short Documentary Film: 'Life in a Day'",
-        company: "Ridley Scott Company",
+        title: "crowd-sourced documentary Film: 'Life in a Day'",
+        company: "Scott Free Productions",
       },
       {
         role: "Photographer",
