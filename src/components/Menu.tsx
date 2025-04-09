@@ -11,7 +11,7 @@ export default function Menu({ isHome }: MenuProps) {
     "block py-2 text-[20px] font-extralight transition-all duration-200 text-gray-400 hover:text-black";
   return (
     <div
-      className={`block w-full min-w-[17%] flex-none flex-col pt-[50px] text-center text-gray-600 lg:block lg:w-[280px] lg:min-w-[230px] lg:text-right lg2:w-[320px] xl:max-w-[320px]`}
+      className={`block w-full min-w-[17%] flex-none flex-col pt-[50px] text-center text-gray-600 lg:block lg:w-[280px] lg:min-w-[230px] lg:text-right lg2:w-[360px] xl:max-w-[360px]`}
     >
       <GAGALENS
         className="font-bold lg:block"
