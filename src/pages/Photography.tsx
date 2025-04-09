@@ -11,7 +11,7 @@ export default function Photography() {
     <PageContainer>
       <Menu />
       <ContentContainer
-        className="grid-cols-2 sm:grid-cols-2 xl_1500:grid-cols-3"
+        className="grid-cols-2 sm:grid-cols-2 xl_1500:grid-cols-4"
         title="Home"
       >
         {albums.map((album: AlbumType) => (
