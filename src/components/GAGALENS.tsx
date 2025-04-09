@@ -18,7 +18,7 @@ export default function GAGALENS({
     >
       <div className="flex flex-col font-bold">
         <h1 className={`text-gaga1 ${classNameG}`}>GAGALENS</h1>
-        <h1 className={`self-end font-extralight ${classNameB}`}>
+        <h1 className={`font-extralight lg:self-end ${classNameB}`}>
           By Levan Gaga Kapanadze
         </h1>
       </div>
