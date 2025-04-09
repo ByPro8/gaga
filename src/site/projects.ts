@@ -85,8 +85,8 @@ const projects = [
       },
       {
         role: "Co-Director",
-        title: "Documentary Film: Place of Birth: Tbilisi",
-        company: "",
+        title: "Documentary Film ",
+        company: "Place of Birth: Tbilisi",
       },
       {
         role: "Director, Editor",
