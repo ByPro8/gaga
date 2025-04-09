@@ -4,7 +4,7 @@ import albums from "../site/data.json";
 import shuffleArray from "../functions/shuffleArr";
 import { PhotoType } from "../types/albums"; // Import the PhotoType
 import SliderImage from "../components/SliderImage";
-import BackToHome from "../components/BackToHome";
+// import BackToHome from "../components/BackToHome";
 import TabletMenu from "../components/TabletMenu";
 
 interface ShuffledImage extends PhotoType {
