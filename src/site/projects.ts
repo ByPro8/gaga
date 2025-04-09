@@ -389,7 +389,7 @@ const projects = [
       },
       {
         role: "Photographer",
-        title: "Urban Photography - Tsereteli Avenue",
+        title: "Urban Photography",
         company: "Tsereteli Avenue",
       },
       {
