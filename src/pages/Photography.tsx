@@ -21,7 +21,7 @@ export default function Photography() {
                 src={album.thumbnail}
                 hash={album.albumHash}
                 alt={album.title}
-                className="object-containobject-contain max-h-full max-w-full"
+                className="max-h-full max-w-full object-contain"
                 style={{ width: "100%", height: "100%" }}
               />
             </div>
