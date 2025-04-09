@@ -8,7 +8,7 @@ interface MenuProps {
 
 export default function Menu({ isHome }: MenuProps) {
   const menuClassname =
-    "block py-2 text-[20px] font-extralight transition-all duration-200 text-gray-200 hover:text-black";
+    "block py-2 text-[20px] font-extralight transition-all duration-500 text-gray-200 hover:text-black";
   return (
     <div
       className={`block w-full min-w-[17%] flex-none flex-col pt-[50px] text-center text-gray-600 lg:block lg:w-[280px] lg:min-w-[230px] lg:text-right lg2:w-[360px] xl:max-w-[360px]`}
@@ -16,7 +16,7 @@ export default function Menu({ isHome }: MenuProps) {
       <GAGALENS
         className="font-bold lg:block"
         classNameG="text-[46px] lg2:text-[50px] text-gaga1"
-        classNameB="text-[15px] lg2:text-[18px] no-underline hover:text-gray-500"
+        classNameB="text-[15px] lg2:text-[18px] no-underline hover:text-black"
       />
 
       <nav

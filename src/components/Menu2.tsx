@@ -8,7 +8,7 @@ interface MenuProps {
 
 export default function Menu2({ isHome }: MenuProps) {
   const menuClassname =
-    "block py-2 text-[24px] font-extralight transition-all duration-200 text-gray-500 hover:text-white";
+    "block py-2 text-[24px] font-extralight transition-all duration-200 text-gray-400 hover:text-white";
 
   return (
     <div
