@@ -1,5 +1,5 @@
-import Menu from "../components/Menu";
-import MainImage from "../components/MainImage";
+// import Menu from "../components/Menu";
+// import MainImage from "../components/MainImage";
 import TabletMenu from "../components/TabletMenu";
 import { motion } from "framer-motion";
 import Menu2 from "../components/Menu2";
