@@ -22,7 +22,7 @@ export default function ContentContainer({
   album?: AlbumType;
 }) {
   return (
-    <div className="flex h-full w-full flex-col pt-[60px]">
+    <div className="flex h-full w-full flex-col">
       <h1 className="mb-4 ml-10 text-[29px] text-gray-500 lg:hidden">
         <BackToHome />
         {title}
@@ -30,10 +30,10 @@ export default function ContentContainer({
       <div
         className={`min-h-0 w-full min-w-0 self-start !overflow-y-auto overflow-y-auto px-10 pb-10 scrollbar-hide sm:scrollbar-default lg:gap-10 lg:overflow-y-auto lg:px-10`}
       >
-        <div className="mb-6 w-full">
-          <h1 className={`mb-10 text-2xl ${!button ? "hidden" : ""}`}>
+        <div className="mb-6 mt-[55px] w-full">
+          <div className={`mb-10 text-2xl ${!button ? "hidden" : ""}`}>
             <FormattedParagraph text={album.albumDescription} />
-          </h1>
+          </div>
           <div className={`${className}`}>{children}</div>
         </div>
       </div>

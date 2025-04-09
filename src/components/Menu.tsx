@@ -20,7 +20,7 @@ export default function Menu({ isHome }: MenuProps) {
       />
 
       <nav
-        className={`mt-[75px] flex-1 text-[19px] sm:mt-[0px] sm:hidden lg:mt-[47px] lg:block ${!isHome ? "hidden" : ""}`}
+        className={`mt-[75px] flex-1 text-[19px] sm:mt-[0px] sm:hidden lg:mt-[18px] lg:block ${!isHome ? "hidden" : ""}`}
       >
         <ul className="flex flex-col">
           <li className="order-5">

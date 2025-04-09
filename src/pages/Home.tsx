@@ -24,6 +24,11 @@ export default function Home() {
     //   className="relative min-h-screen w-full"
     // >
     <div className="relative min-h-screen w-full">
+      <img
+        src="/home.webp"
+        alt="Background"
+        className="fixed inset-0 -z-10 h-full w-full object-cover sm:hidden"
+      />
       {/* Content on top of background */}
       <div className="z-10 flex min-h-screen w-full sm:flex-col lg:flex-row">
         <Menu isHome={true} />
