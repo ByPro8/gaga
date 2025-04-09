@@ -404,7 +404,7 @@ const projects = [
     entries: [
       {
         role: "Photographer",
-        title: "Photo Project - Destiny",
+        title: "Photo Project",
         company: "Destiny",
       },
     ],
@@ -414,7 +414,7 @@ const projects = [
     entries: [
       {
         role: "Photographer",
-        title: "Landscape Photo Project - Horizon",
+        title: "Landscape Photo Project",
         company: "Horizon",
       },
     ],
@@ -424,7 +424,7 @@ const projects = [
     entries: [
       {
         role: "Photographer",
-        title: "Photo Project - Energy",
+        title: "Photo Project",
         company: "Energy",
       },
     ],
@@ -434,7 +434,7 @@ const projects = [
     entries: [
       {
         role: "Photographer",
-        title: "Urban Photo Series - Archaos",
+        title: "Urban Photo Series",
         company: "Archaos",
       },
     ],
@@ -445,7 +445,7 @@ const projects = [
       {
         role: "Grand Prix Winner",
         title: "UN Photo Competition",
-        company: "UN",
+        company: "UNFPA",
       },
     ],
   },
