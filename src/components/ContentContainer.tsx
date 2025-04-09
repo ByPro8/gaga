@@ -1,6 +1,6 @@
 import BackToHome from "./BackToHome";
 import FormattedParagraph from "./FormattedParagraph";
-import { AlbumType as AlbumType, PhotoType } from "../types/albums";
+import { AlbumType as AlbumType } from "../types/albums";
 
 export default function ContentContainer({
   children,

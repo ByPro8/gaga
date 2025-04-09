@@ -53,7 +53,11 @@ const Videography = () => {
   return (
     <PageContainer>
       <Menu />
-      <ContentContainer className="grid-cols-1 lg:grid-cols-2" title="Home">
+      <ContentContainer
+        className="grid-cols-1 lg:grid-cols-2"
+        title="Home"
+        button={false}
+      >
         {thumbnails.map(({ id, thumbnail, hash, aspectRatio, title }) => (
           <div className="flex flex-col">
             <div
