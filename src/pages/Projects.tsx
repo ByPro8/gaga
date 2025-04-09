@@ -50,9 +50,6 @@ export default function Projects() {
                   key={index}
                   className="text-sm xs:text-base sm:text-lg md:text-xl"
                 >
-                  <span className="text- text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-xl">
-                    •
-                  </span>{" "}
                   <span className="text-[20px]">{entry.role}</span> |{" "}
                   <span className="text-[20px]">{entry.title}</span>{" "}
                   {entry.company && (
