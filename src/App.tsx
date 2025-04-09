@@ -1,5 +1,7 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
 import Slideshow from "./pages/Slideshow";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
@@ -12,10 +14,12 @@ import FromAlbumSlides from "./pages/FromAlbumSlides";
 import VimeoPlayer from "./pages/VimeoPlayer";
 
 function App() {
+  const location = useLocation();
+
   return (
-    <>
-      <div className="font-custom flex h-screen w-full">
-        <Routes>
+    <div className="flex h-screen w-full font-custom">
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/slideshow" element={<Slideshow />} />
@@ -30,8 +34,8 @@ function App() {
           <Route path="/videography/:vimeoId" element={<VimeoPlayer />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-      </div>
-    </>
+      </AnimatePresence>
+    </div>
   );
 }
 
