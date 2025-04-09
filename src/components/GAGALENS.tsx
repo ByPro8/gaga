@@ -14,7 +14,7 @@ export default function GAGALENS({
   return (
     <Link to="/" className={`${className}`}>
       <div className="font-bold">
-        <h1 className={`text-gaga1 ${classNameG}`}> GAGALENS</h1>
+        <h1 className={`text-gaga4 ${classNameG}`}> GAGALENS</h1>
         <h1 className={`font-extralight text-black ${classNameB}`}>
           {" "}
           By Levan Gaga Kapanadze
