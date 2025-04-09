@@ -11,7 +11,8 @@ export default function Photography() {
     <PageContainer>
       <Menu />
       <ContentContainer
-        className="grid-cols-2 sm:grid-cols-2 xl_1500:grid-cols-4"
+        className="grid grid-cols-2 gap-8 sm:grid-cols-2 xl_1500:grid-cols-4"
+        button={false}
         title="Home"
       >
         {albums.map((album: AlbumType) => (

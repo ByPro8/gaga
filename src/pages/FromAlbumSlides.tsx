@@ -31,7 +31,7 @@ export default function FromAlbumSlides() {
     <div className="s1 flex w-full flex-col lg:flex-row">
       <Menu />
       <div className="s2 flex flex-1 flex-col lg:overflow-y-auto">
-        <h1 className="mb ml-10 mt-10 text-[29px] text-gray-500">
+        <h1 className="mb ml-10 mt-10 text-[29px] text-gray-500 lg:hidden">
           <BackToHome />
           {album.title}
         </h1>

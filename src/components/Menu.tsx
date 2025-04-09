@@ -8,10 +8,10 @@ interface MenuProps {
 
 export default function Menu({ isHome }: MenuProps) {
   const menuClassname =
-    "block py-2 text-[20px] font-extralight transition-all duration-500 text-gray-500 hover:text-black";
+    "block py-2 text-[20px] font-extralight transition-all duration-500 text-gray-400 hover:text-black";
   return (
     <div
-      className={`block w-full min-w-[17%] flex-none flex-col pt-[50px] text-center text-gray-600 lg:block lg:w-[280px] lg:min-w-[230px] lg:text-right lg2:w-[360px] xl:max-w-[360px]`}
+      className={`block w-full min-w-[17%] flex-none flex-col pt-[50px] text-center text-gray-400 lg:block lg:w-[280px] lg:min-w-[230px] lg:text-right lg2:w-[360px] xl:max-w-[360px]`}
     >
       <GAGALENS
         className="font-bold lg:block"
@@ -20,17 +20,12 @@ export default function Menu({ isHome }: MenuProps) {
       />
 
       <nav
-        className={`mt-[75px] flex-1 text-[19px] sm:mt-[0px] sm:hidden lg:mt-5 lg:block ${!isHome ? "hidden" : ""}`}
+        className={`mt-[75px] flex-1 text-[19px] sm:mt-[0px] sm:hidden lg:mt-[47px] lg:block ${!isHome ? "hidden" : ""}`}
       >
         <ul className="flex flex-col">
           <li className="order-5">
             <Link to="/slideshow" className={menuClassname}>
               Slideshow
-            </Link>
-          </li>
-          <li className="order-1">
-            <Link to="/home2" className={menuClassname}>
-              HOME 2
             </Link>
           </li>
           <li className="order-2">
@@ -60,7 +55,7 @@ export default function Menu({ isHome }: MenuProps) {
             </Link>
           </li>
         </ul>
-        <ContactIcons className="mt-[30px] lg:mt-0 lg:justify-end xl2:mt-[0px]" />
+        <ContactIcons className="mt-[30px] lg:mt-[8px] lg:justify-end xl2:mt-[8px]" />
       </nav>
     </div>
   );

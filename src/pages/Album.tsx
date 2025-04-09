@@ -16,7 +16,12 @@ export default function Album() {
   return (
     <PageContainer>
       <Menu />
-      <ContentContainer className="grid-cols-1 lg:grid-cols-2" title="Albums">
+      <ContentContainer
+        className="grid grid-cols-2 gap-8 sm:grid-cols-2 xl_1500:grid-cols-2"
+        title="Albums"
+        button={true}
+        album={album}
+      >
         {album.photos.map((photo: PhotoType) => (
           <Link key={photo.id} to={`/photography/${albumId}/${photo.id}`}>
             <div className="relative flex aspect-[16/9] items-start justify-center overflow-hidden">
