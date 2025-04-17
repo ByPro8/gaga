@@ -31,7 +31,7 @@ const Videography = () => {
         title="Home"
         button={false}
       >
-        {thumbnails.map(({ id, thumbnail, hash, aspectRatio, title }) => (
+        {thumbnails.map(({ id, thumbnail, hash, title }) => (
           <div key={id} className="flex flex-col">
             <div
               className="relative flex aspect-[16/9] cursor-pointer items-center justify-center"

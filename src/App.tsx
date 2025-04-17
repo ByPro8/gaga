@@ -11,7 +11,7 @@ import Projects from "./pages/Projects";
 import Home from "./pages/Home";
 import Album from "./pages/Album";
 import FromAlbumSlides from "./pages/FromAlbumSlides";
-import VimeoPlayer from "./pages/VimeoPlayer";
+// import VimeoPlayer from "./pages/VimeoPlayer";
 import TestVideoP from "./pages/TestVideoP";
 
 function App() {
