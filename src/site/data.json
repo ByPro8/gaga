@@ -1,7 +1,63 @@
 [
   {
+    "title": "Academic",
+    "albumDescription": "**Academic Perspectives (2010–2025)** reflects fifteen years of visual storytelling at Free University of Tbilisi and Agricultural University of Georgia. As the head of the universities' media studio, the photographer was deeply involved in a range of creative projects - from educational initiatives and promotional campaigns to documentary and conceptual photography. This collection highlights the essence of university life, capturing moments of learning, collaboration, and innovation.",
+    "thumbnail": "/Albums/Academic/Thumb.webp",
+    "albumHash": "UkL2[4$+-Ut7}GjZM|oJIAWBIpjFxuoft7bI",
+    "photos": [
+      {
+        "id": "1",
+        "src": "/Albums/Academic/Photos/Amel.webp",
+        "desc": "",
+        "imageHash": "U13vEntp0Lu6DNoa%MWn4Ti]^iR3xyWaMynP"
+      },
+      {
+        "id": "2",
+        "src": "/Albums/Academic/Photos/Arch.webp",
+        "desc": "",
+        "imageHash": "UBH_[GIBX9%L^*8^S6WCD%tRt7Rj~q%hRONF"
+      },
+      {
+        "id": "3",
+        "src": "/Albums/Academic/Photos/Inj 1.webp",
+        "desc": "",
+        "imageHash": "U:I5n[k8btt7}:t7V[js$daLRkaeg4R%azba"
+      },
+      {
+        "id": "4",
+        "src": "/Albums/Academic/Photos/Inj 2.webp",
+        "desc": "",
+        "imageHash": "UMBDc-nNVrt8*0WANHozTeadbaXSS$nibHo#"
+      },
+      {
+        "id": "5",
+        "src": "/Albums/Academic/Photos/Jap.webp",
+        "desc": "",
+        "imageHash": "UmKJ7R$+$*xa}aspNGn*IAf5IpR*xubIt7W;"
+      },
+      {
+        "id": "6",
+        "src": "/Albums/Academic/Photos/Lab.webp",
+        "desc": "",
+        "imageHash": "UAEx|fDz9eD$Hqt9I;oh00-q^N$,EFISobo_"
+      },
+      {
+        "id": "7",
+        "src": "/Albums/Academic/Photos/Phis.webp",
+        "desc": "",
+        "imageHash": "UL5}znnyNOS4S.abn,ocb0axobfPW9a$oJj]"
+      },
+      {
+        "id": "8",
+        "src": "/Albums/Academic/Photos/Rati.webp",
+        "desc": "",
+        "imageHash": "U9By]W$$00bc0gWVofRjngR*sWs:~qt7E0bI"
+      }
+    ]
+  },
+  {
     "title": "Crop",
-    "albumDescription": "**Horizon** is a photo series created between 2007 and 2009 and first exhibited at **Artisterium 2009** as part of The Manifest of Changes and an Inner Experience in Tbilisi, Georgia.\n\nDedicated to horizons—the way we gaze into infinity—the series captures serene, geometric, and meticulously composed landscapes that evoke a sense of stillness and contemplation.\n\nThe project continued until 2016, with the artist adding numerous new works, expanding the visual narrative. Today, the series consists of around 50 photographs, each offering a unique perspective on the infinite.",
+    "albumDescription": "**Crop (2015)** explores a departure from open horizons, shifting focus to the textures and fragments of nature.\n\nExhibited at 2nd Tbilisi Triennial – MAF Memoirs, The Writer’s House, Tbilisi, 2015.",
     "thumbnail": "/Albums/Crop/Thumb.webp",
     "albumHash": "UPFiurTJM{oz~Vt7aeaL8{%MtRkBaMRQV[j[",
     "photos": [
@@ -45,7 +101,7 @@
   },
   {
     "title": "Energy",
-    "albumDescription": "**Horizon** is a photo series created between 2007 and 2009 and first exhibited at **Artisterium 2009** as part of The Manifest of Changes and an Inner Experience in Tbilisi, Georgia.\n\nDedicated to horizons—the way we gaze into infinity—the series captures serene, geometric, and meticulously composed landscapes that evoke a sense of stillness and contemplation.\n\nThe project continued until 2016, with the artist adding numerous new works, expanding the visual narrative. Today, the series consists of around 50 photographs, each offering a unique perspective on the infinite.",
+    "albumDescription": "**Energy **(2006–2008)\n\nLevan Gaga Kapanadze’s diploma project exploring the perception, transformation, and sharing of various forms of energy. First exhibited at the Tbilisi State Academy of Arts (2008), the series was later showcased in various exhibitions, publications, and books.",
     "thumbnail": "/Albums/Energy/Thumb.webp",
     "albumHash": "UOEo;@?]iwxa:Tift7t7SsbqozWBM}WFozjY",
     "photos": [
@@ -53,7 +109,7 @@
         "id": "1",
         "src": "/Albums/Energy/Photos/Clarified.webp",
         "desc": "",
-        "imageHash": "U58DqgFf4.}mpJjIV?oy009axv-:R3n~XBRm"
+        "imageHash": "U~IhgLfk~qxakCjtoefkWBayj[j[j[fQoffR"
       },
       {
         "id": "2",
@@ -95,7 +151,7 @@
         "id": "8",
         "src": "/Albums/Energy/Photos/Teacher.webp",
         "desc": "",
-        "imageHash": "UOH2NAuNaJI]YPVrN]~W$+xvxa-;xCI:e-V@"
+        "imageHash": "UzMQq:tS~qi{x]s.RjbIxas;R*R%xuofWBRj"
       }
     ]
   },
@@ -402,58 +458,28 @@
     ]
   },
   {
-    "title": "University",
-    "albumDescription": "**Horizon** is a photo series created between 2007 and 2009 and first exhibited at **Artisterium 2009** as part of The Manifest of Changes and an Inner Experience in Tbilisi, Georgia.\n\nDedicated to horizons—the way we gaze into infinity—the series captures serene, geometric, and meticulously composed landscapes that evoke a sense of stillness and contemplation.\n\nThe project continued until 2016, with the artist adding numerous new works, expanding the visual narrative. Today, the series consists of around 50 photographs, each offering a unique perspective on the infinite.",
-    "thumbnail": "/Albums/University/Thumb.webp",
-    "albumHash": "UkLCbz$+-Ut7}GjZM|oJIAWBIpjFxuoft7bI",
+    "title": "Manifest of Nothing",
+    "albumDescription": "**WAITING FOR DESC**",
+    "thumbnail": "/Albums/Manifest of Nothing/Thumb.webp",
+    "albumHash": "UTE.X+xZIVof01Rkt7Rk~oodsmt74.WCS5ae",
     "photos": [
       {
         "id": "1",
-        "src": "/Albums/University/Photos/Amel.webp",
+        "src": "/Albums/Manifest of Nothing/Photos/01.webp",
         "desc": "",
-        "imageHash": "U13vEntp0Lu6DNoa%MWn4Ti]^iR3xyWaMynP"
+        "imageHash": "UvHLrLt7Rkof_4oft7of%NofoeofjYf6Rjay"
       },
       {
         "id": "2",
-        "src": "/Albums/University/Photos/Arch.webp",
+        "src": "/Albums/Manifest of Nothing/Photos/02.webp",
         "desc": "",
-        "imageHash": "UBH_[GIBX9%L^*8^S6WCD%tRt7Rj~q%hRONF"
+        "imageHash": "UVE.Rot6Ipof01R+t7R*~ooeslof4:WDR.jF"
       },
       {
         "id": "3",
-        "src": "/Albums/University/Photos/Inj 1.webp",
+        "src": "/Albums/Manifest of Nothing/Photos/03.webp",
         "desc": "",
-        "imageHash": "U:I5n[k8btt7}:t7V[js$daLRkaeg4R%azba"
-      },
-      {
-        "id": "4",
-        "src": "/Albums/University/Photos/Inj 2.webp",
-        "desc": "",
-        "imageHash": "UMBDc-nNVrt8*0WANHozTeadbaXSS$nibHo#"
-      },
-      {
-        "id": "5",
-        "src": "/Albums/University/Photos/Jap.webp",
-        "desc": "",
-        "imageHash": "UmKJ7R$+$*xa}aspNGn*IAf5IpR*xubIt7W;"
-      },
-      {
-        "id": "6",
-        "src": "/Albums/University/Photos/Lab.webp",
-        "desc": "",
-        "imageHash": "UAEx|fDz9eD$Hqt9I;oh00-q^N$,EFISobo_"
-      },
-      {
-        "id": "7",
-        "src": "/Albums/University/Photos/Phis.webp",
-        "desc": "",
-        "imageHash": "UL5}znnyNOS4S.abn,ocb0axobfPW9a$oJj]"
-      },
-      {
-        "id": "8",
-        "src": "/Albums/University/Photos/Rati.webp",
-        "desc": "",
-        "imageHash": "U9By]W$$00bc0gWVofRjngR*sWs:~qt7E0bI"
+        "imageHash": "U57_cz%NMc%g~qt8S5bcMwt6WYMx8_V@x]t7"
       }
     ]
   }

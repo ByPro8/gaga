@@ -58,7 +58,7 @@ export default function SliderImage({
 
   return (
     <div className="mx-auto mt-10 px-6 pb-[40px] sm:block sm:px-10 lg:mt-0 lg:h-screen lg:pb-[100px] lg:pt-10">
-      <div className="relative w-full max-w-full shadow-2xl">
+      <div className="relative w-full max-w-full">
         <LazyImage
           src={images[currentIndex].src}
           hash={images[currentIndex].imageHash}
@@ -69,14 +69,14 @@ export default function SliderImage({
 
         <button
           onClick={prevImage}
-          className="absolute left-0 top-0 z-10 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-white transition-colors duration-300 ease-in-out focus:outline-none focus:ring-0 active:bg-black/30 active:outline-none sm:w-[70px]"
+          className="absolute left-0 top-0 z-10 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-gray-500 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-0 active:bg-black/30 active:outline-none sm:w-[70px]"
         >
           <ArrowLeft className="h-4 w-4 sm:h-6 sm:w-6" />
         </button>
 
         <button
           onClick={nextImage}
-          className="absolute right-0 top-0 z-10 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-white transition-colors duration-300 ease-in-out focus:outline-none focus:ring-0 active:bg-black/30 active:outline-none sm:w-[70px]"
+          className="absolute right-0 top-0 z-10 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-gray-500 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-0 active:bg-black/30 active:outline-none sm:w-[70px]"
         >
           <ArrowRight className="h-4 w-4 sm:h-6 sm:w-6" />
         </button>
