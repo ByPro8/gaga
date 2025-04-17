@@ -18,7 +18,7 @@ export default function LazyImage({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="relative h-full w-full overflow-hidden" style={style}>
+    <div className="s2 relative h-full w-full overflow-hidden" style={style}>
       {!loaded && (
         <Blurhash
           hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}

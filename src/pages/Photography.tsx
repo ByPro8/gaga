@@ -17,7 +17,7 @@ export default function Photography() {
       >
         {albums.map((album: AlbumType) => (
           <Link key={album.title} to={`/photography/${album.title}`}>
-            <div className="relative flex aspect-square items-center justify-center transition duration-300 hover:shadow-none">
+            <div className="s3 relative flex aspect-square items-center justify-center transition duration-300 hover:shadow-none">
               <LazyImage
                 src={album.thumbnail}
                 hash={album.albumHash}

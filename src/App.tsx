@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Album from "./pages/Album";
 import FromAlbumSlides from "./pages/FromAlbumSlides";
 import VimeoPlayer from "./pages/VimeoPlayer";
+import TestVideoP from "./pages/TestVideoP";
 
 function App() {
   const location = useLocation();
@@ -31,7 +32,7 @@ function App() {
           element={<FromAlbumSlides />}
         />
         <Route path="/videography" element={<Videography />} />
-        <Route path="/videography/:vimeoId" element={<VimeoPlayer />} />
+        <Route path="/videography/:vimeoId" element={<TestVideoP />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       {/* </AnimatePresence> */}

@@ -24,7 +24,7 @@ export default function Album() {
       >
         {album.photos.map((photo: PhotoType) => (
           <Link key={photo.id} to={`/photography/${albumId}/${photo.id}`}>
-            <div className="relative flex aspect-[16/9] items-start justify-center overflow-hidden">
+            <div className="relative flex aspect-[3/2] items-start justify-center overflow-hidden">
               <LazyImage
                 src={photo.src}
                 hash={photo.imageHash}

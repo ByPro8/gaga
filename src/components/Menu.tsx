@@ -16,7 +16,7 @@ export default function Menu({ isHome }: MenuProps) {
       <GAGALENS
         className="font-bold lg:block"
         classNameG="text-[46px] lg2:text-[50px] text-gaga1"
-        classNameB="text-[15px] lg2:text-[18px] no-underline hover:text-black"
+        classNameB="text-[15px] lg2:text-[18px] no-underline hover:text-gray-400"
       />
 
       <nav

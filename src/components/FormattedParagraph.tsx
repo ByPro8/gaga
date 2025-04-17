@@ -1,7 +1,7 @@
 export default function FormattedParagraph({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g); // split by bold parts
 
-  const classNameForAlbumText = "text-black ";
+  const classNameForAlbumText = " ";
   const classNameForAlbumTextBold = "font-bold";
 
   return (
