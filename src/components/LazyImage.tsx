@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Blurhash } from "react-blurhash";
+// import { Blurhash } from "react-blurhash";
 // import { motion } from "framer-motion";
 
 export default function LazyImage({
   src,
-  hash,
+  // hash,
   alt,
   className,
   style,
@@ -16,17 +16,19 @@ export default function LazyImage({
   style?: React.CSSProperties;
 }) {
   const [loaded, setLoaded] = useState(false);
-
+  if (loaded) {
+    console.log("s");
+  }
   return (
     <div className="s2 relative h-full w-full overflow-hidden" style={style}>
-      {!loaded && (
+      {/* {!loaded && (
         <Blurhash
           hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
           width="100%"
           height="100%"
           className="absolute left-0 top-0 h-full w-full object-cover"
         />
-      )}
+      )} */}
 
       <img
         src={src}
