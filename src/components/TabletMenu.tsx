@@ -41,7 +41,7 @@ export default function TabletMenu() {
           </Link>
         </li>
       </ul>
-      <ContactIcons className="mb-10 hidden sm:mt-10 sm:flex" />
+      <ContactIcons className="mb-10 hidden sm:mt-4 sm:flex" />
     </div>
   );
 }

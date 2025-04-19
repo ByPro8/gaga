@@ -27,6 +27,8 @@ module.exports = {
         xl: "1440px",
         xl_1500: "1500px",
         xl2: "1920px",
+        xl25: "2560px",
+        xxl: "3840px",
       },
       textShadow: {
         sm: "1px 1px 1px rgba(121, 121, 121, 0.5)",

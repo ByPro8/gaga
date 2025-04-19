@@ -5,7 +5,7 @@ import Menu from "../components/Menu";
 import PageContainer from "../components/PageContainer";
 import ContentContainer from "../components/ContentContainer";
 
-const TestVideoP = () => {
+const VideoPage = () => {
   const { vimeoId } = useParams<{ vimeoId: string }>();
   const [embedUrl, setEmbedUrl] = useState("");
   const [aspectRatio, setAspectRatio] = useState("16/9"); // default
@@ -101,14 +101,18 @@ const TestVideoP = () => {
         </div>
 
         {/* Text below */}
-        <div className="mt-6 whitespace-pre-line text-lg text-gray-700">
+        <div className="mt-6 text-lg text-gray-700">
           {vimeoId}
           <br />
           {textContent}
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates,
+          minus. Saepe illum eveniet assumenda, recusandae architecto magni
+          pariatur tempore repudiandae ex, sit facilis molestiae mollitia nobis
+          inventore, quasi quibusdam similique.
         </div>
       </ContentContainer>
     </PageContainer>
   );
 };
 
-export default TestVideoP;
+export default VideoPage;

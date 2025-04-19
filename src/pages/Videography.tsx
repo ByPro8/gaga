@@ -45,7 +45,7 @@ const Videography = () => {
                 style={{ width: "100%", height: "100%" }}
               />
             </div>
-            <h1 className="mt-3 text-xl font-bold text-gray-700">{title}</h1>
+            <h1 className="mt-3 text-xl font-demi text-gray-700">{title}</h1>
           </div>
         ))}
       </ContentContainer>

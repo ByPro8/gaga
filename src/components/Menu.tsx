@@ -8,21 +8,20 @@ interface MenuProps {
 
 export default function Menu({ isHome }: MenuProps) {
   const menuClassname =
-    "block py-2 text-[20px] font-extralight transition-all duration-500 text-gray-500 sm:text-gray-400 hover:text-black";
+    "block py-2 text-[20px] xxl:text-[34px] font-extralight transition-all duration-500 text-gray-500 sm:text-gray-400 hover:text-black xl25:text-[25px]";
   return (
     <div
-      className={`block w-full min-w-[17%] flex-none flex-col pt-[50px] text-center text-gray-400 lg:block lg:w-[280px] lg:min-w-[230px] lg:text-right lg2:w-[360px] xl:max-w-[360px]`}
+      className={`xl25:w-[470px] xxl:w-[600px] block w-full min-w-[17%] flex-none flex-col pt-[50px] text-center text-gray-400 lg:block lg:w-[280px] lg:min-w-[230px] lg:text-right lg2:w-[330px] xl:w-[350px] xl2:w-[400px]`}
     >
       <GAGALENS
-        className="font-bold lg:block"
-        classNameG="text-[46px] lg2:text-[50px] text-gaga1"
-        classNameB="text-[15px] lg2:text-[18px] no-underline hover:text-gray-400"
+        className="select-none font-bold lg:block"
+        classNameG="text-[46px] lg2:text-[50px] xl25:text-[64px] xxl:text-[80px] text-gaga1 select-none"
+        classNameB="text-[15px] lg2:text-[18px] xxl:text-[30px] xl25:text-[22px] no-underline hover:text-gray-400 select-none"
       />
-
       <nav
-        className={`mt-[75px] flex-1 text-[19px] sm:mt-[0px] sm:hidden lg:mt-[18px] lg:block ${!isHome ? "hidden" : ""}`}
+        className={`xxl:mt-[40px] mt-[50px] flex-1 text-[19px] sm:mt-[0px] sm:mt-[75px] sm:hidden lg:mt-[18px] lg:block ${!isHome ? "hidden" : ""}`}
       >
-        <ul className="flex flex-col">
+        <ul className="flex select-none flex-col">
           <li className="order-5">
             <Link to="/slideshow" className={menuClassname}>
               Slideshow
@@ -55,7 +54,7 @@ export default function Menu({ isHome }: MenuProps) {
             </Link>
           </li>
         </ul>
-        <ContactIcons className="mt-[30px] lg:mt-[8px] lg:justify-end xl2:mt-[8px]" />
+        <ContactIcons className="mt-[30px] select-none lg:mt-[8px] lg:justify-end xl2:mt-[8px]" />
       </nav>
     </div>
   );

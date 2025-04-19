@@ -57,7 +57,7 @@ export default function SliderImage({
   };
 
   return (
-    <div className="mx-auto mt-10 px-6 pb-[40px] sm:block sm:px-10 lg:mt-0 lg:h-screen lg:pb-[100px] lg:pt-10">
+    <div className="mx-auto mt-10 px-6 pb-[40px] sm:block sm:px-10 lg:mt-0 lg:h-screen lg:pb-[100px] lg:pt-[55px]">
       <div className="relative w-full max-w-full">
         <LazyImage
           src={images[currentIndex].src}

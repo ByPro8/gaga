@@ -18,8 +18,10 @@
   main {
     margin: 0;
     padding: 0;
+    transition: all 0.5s ease;
   }
 }
+
 @layer base {
   body {
     /* background-color: white; */
@@ -56,21 +58,3 @@
   font-weight: 600; /* Demi-bold is often represented by 600 */
   font-style: normal;
 }
-
-/* Apply to body or specific elements */
-/* body {
-  font-family: "MyCustomFont", sans-serif;
-}
-
-::-webkit-scrollbar {
-  width: 8px !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ffe292 !important;
-  border-radius: 4px !important;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ffca21 !important;
-} */
