@@ -27,7 +27,6 @@ export default function Home() {
     // >
     <div className="relative min-h-screen w-full">
       <MobileBGIMG />
-      <h1 className="bg-black">test</h1>
       {/* Content on top of background */}
       <div className="z-10 flex min-h-screen w-full sm:flex-col lg:flex-row">
         <Menu isHome={true} />
