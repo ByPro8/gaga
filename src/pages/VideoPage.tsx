@@ -16,9 +16,7 @@ const VideoPage = () => {
     if (video) {
       setEmbedUrl(video.embedUrl);
       setAspectRatio(video.aspectRatio || "16/9");
-      setTextContent(
-        `This is a dynamic video page for:\n\n${video.title}\n\nLorem ipsum dolor sit amet...`,
-      );
+      setTextContent(video.description);
     }
   }, [vimeoId]);
 
@@ -102,13 +100,7 @@ const VideoPage = () => {
 
         {/* Text below */}
         <div className="mt-6 text-lg text-gray-700">
-          {vimeoId}
-          <br />
-          {textContent}
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates,
-          minus. Saepe illum eveniet assumenda, recusandae architecto magni
-          pariatur tempore repudiandae ex, sit facilis molestiae mollitia nobis
-          inventore, quasi quibusdam similique.
+          <h1>{textContent}</h1>
         </div>
       </ContentContainer>
     </PageContainer>
