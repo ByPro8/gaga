@@ -1,3 +1,4 @@
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 import {defineField, defineType} from 'sanity'
 
 // Videos shown on the Videography page (hosted on Vimeo, managed here)
@@ -6,18 +7,13 @@ export const video = defineType({
   title: 'Video',
   type: 'document',
   fields: [
+    // Hidden field managed automatically when Gaga drags videos up/down in the list
+    orderRankField({type: 'video', newItemPosition: 'before'}),
     defineField({
       name: 'title',
       title: 'Video Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'displayOrder',
-      title: 'Display Order',
-      type: 'number',
-      description: 'Lower numbers appear first on the Videography page (1, 2, 3...).',
-      initialValue: 10,
     }),
     defineField({
       name: 'vimeoId',
@@ -74,25 +70,17 @@ export const video = defineType({
       },
     }),
   ],
-  orderings: [
-    {
-      title: 'Display Order',
-      name: 'displayOrderAsc',
-      by: [{field: 'displayOrder', direction: 'asc'}],
-    },
-  ],
+  orderings: [orderRankOrdering],
   preview: {
     select: {
       title: 'title',
       vimeoId: 'vimeoId',
-      displayOrder: 'displayOrder',
       media: 'customCoverImage',
     },
-    prepare({title, vimeoId, displayOrder, media}) {
-      const orderPrefix = typeof displayOrder === 'number' ? `#${displayOrder} · ` : ''
+    prepare({title, vimeoId, media}) {
       return {
         title: title || 'Untitled Video',
-        subtitle: `${orderPrefix}Vimeo ${vimeoId || ''}`,
+        subtitle: vimeoId ? `Vimeo ${vimeoId}` : '',
         media,
       }
     },

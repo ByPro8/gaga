@@ -1,3 +1,4 @@
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 // Shared form template used by BOTH "Photo Albums" and "Photo Stories"
@@ -12,22 +13,13 @@ export function createGallerySchema(options: {
     title: options.singularTitle,
     type: 'document',
     fields: [
+      // Hidden field managed automatically when Gaga drags items up/down in the list
+      orderRankField({type: options.schemaName, newItemPosition: 'before'}),
       defineField({
         name: 'title',
         title: 'Title',
         type: 'string',
-        description: 'Name shown under the cover photo and at the top of the gallery.',
-        validation: (Rule) => Rule.required(),
-      }),
-      defineField({
-        name: 'slug',
-        title: 'Web Address (Slug)',
-        type: 'slug',
-        description: 'Click "Generate" to create a clean URL (for example: manifest-of-nothing).',
-        options: {
-          source: 'title',
-          maxLength: 96,
-        },
+        description: 'Name shown under the cover photo, at the top of the gallery, and in the URL.',
         validation: (Rule) => Rule.required(),
       }),
       defineField({
@@ -35,13 +27,6 @@ export function createGallerySchema(options: {
         title: 'Year or Years (Optional)',
         type: 'string',
         description: 'Shown under the cover photo (for example: 2015–2026 or 2008).',
-      }),
-      defineField({
-        name: 'displayOrder',
-        title: 'Display Order',
-        type: 'number',
-        description: 'Controls order on the overview page. Lower numbers appear first (1, 2, 3...).',
-        initialValue: 10,
       }),
       defineField({
         name: 'coverImage',
@@ -139,11 +124,7 @@ export function createGallerySchema(options: {
       }),
     ],
     orderings: [
-      {
-        title: 'Display Order',
-        name: 'displayOrderAsc',
-        by: [{field: 'displayOrder', direction: 'asc'}],
-      },
+      orderRankOrdering,
       {
         title: 'Title (A–Z)',
         name: 'titleAsc',
@@ -156,15 +137,12 @@ export function createGallerySchema(options: {
         years: 'years',
         photos: 'photos',
         media: 'coverImage',
-        displayOrder: 'displayOrder',
       },
-      prepare({title, years, photos, media, displayOrder}) {
+      prepare({title, years, photos, media}) {
         const photoCount = Array.isArray(photos) ? photos.length : 0
-        const parts = [
-          typeof displayOrder === 'number' ? `#${displayOrder}` : null,
-          years || null,
-          `${photoCount} photo${photoCount === 1 ? '' : 's'}`,
-        ].filter(Boolean)
+        const parts = [years || null, `${photoCount} photo${photoCount === 1 ? '' : 's'}`].filter(
+          Boolean,
+        )
 
         return {
           title: title || 'Untitled',
