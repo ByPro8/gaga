@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@portabletext/react": "^8.0.1",
+    "@sanity/client": "^8.17.0",
+    "@sanity/image-url": "^2.2.0",
     "blurhash": "^2.0.5",
     "framer-motion": "^12.6.3",
     "jsdom": "^26.0.0",

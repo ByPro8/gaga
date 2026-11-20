@@ -1,42 +1,57 @@
-import { useState } from "react";
-// import { Blurhash } from "react-blurhash";
-// import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+interface LazyImageProps {
+  src: string;
+  alt: string;
+  // Tiny base64 blur image returned automatically by Sanity (metadata.lqip)
+  blurPreviewUrl?: string;
+  // Kept optional for temporary compatibility with pages not yet switched to Sanity
+  hash?: string;
+  // Set eager={true} for main/fullscreen photos so they start downloading immediately
+  eager?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
 
 export default function LazyImage({
   src,
-  // hash,
   alt,
-  className,
+  blurPreviewUrl,
+  eager = false,
+  className = "",
   style,
-}: {
-  src: string;
-  hash: string;
-  alt: string;
-  className?: string;
-  style?: React.CSSProperties;
-}) {
-  const [loaded, setLoaded] = useState(false);
-  if (loaded) {
-    console.log("s");
-  }
+}: LazyImageProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Reset fade-in state whenever the photo URL changes (e.g. clicking Next in the slider)
+  useEffect(() => {
+    setIsLoaded(false);
+  }, [src]);
+
   return (
-    <div className="s2 relative h-full w-full overflow-hidden" style={style}>
-      {/* {!loaded && (
-        <Blurhash
-          hash={hash || "LEHV6nWB2yk8pyo0adR*.7kCMdnj"}
-          width="100%"
-          height="100%"
-          className="absolute left-0 top-0 h-full w-full object-cover"
+    <div
+      className="relative h-full w-full overflow-hidden"
+      style={style}
+    >
+      {/* Instant blurred preview while the real WebP/AVIF photo downloads */}
+      {blurPreviewUrl && !isLoaded && (
+        <img
+          src={blurPreviewUrl}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-md"
         />
-      )} */}
+      )}
 
       <img
         src={src}
         alt={alt}
-        loading="lazy"
-        onLoad={() => setLoaded(true)}
-        className={`h-full w-full object-cover ${className}`}
-        style={{ position: "relative", zIndex: 1 }}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        className={`relative z-10 h-full w-full object-cover transition-opacity duration-300 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        } ${className}`}
       />
     </div>
   );
