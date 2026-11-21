@@ -1,20 +1,10 @@
-// import { useState } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "../components/TextInput";
 import EmailInput from "../components/EmailInput";
 import TextArea from "../components/TextArea";
 import Menu from "../components/Menu";
 import BackToHome from "../components/BackToHome";
-// import { motion } from "framer-motion";
-// const fadeVariant = {
-//   initial: { opacity: 0 },
-//   animate: { opacity: 1 },
-//   exit: { opacity: 0 },
-// };
-// const pageTransition = {
-//   duration: 0.5,
-//   ease: "easeInOut",
-// };
+import { useSiteSettings } from "../context/SiteSettingsContext";
 
 interface FormData {
   firstName: string;
@@ -26,28 +16,36 @@ interface FormData {
 
 const Contact = () => {
   const { register } = useForm<FormData>();
+  const { settings } = useSiteSettings();
+
+  const heading = settings?.contactHeading || "Contact";
+  const introText = settings?.contactIntroText;
+  const publicEmail = settings?.contactEmail;
+
   return (
-    // <motion.div
-    //   variants={fadeVariant}
-    //   initial="initial"
-    //   animate="animate"
-    //   exit="exit"
-    //   transition={pageTransition}
-    //   className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row"
-    // >
     <div className="mb-10 flex min-h-screen w-full flex-col pb-10 lg:flex-row">
       <Menu />
       <div className="flex w-full min-w-[300px] max-w-[700px] flex-col px-8 pt-[60px] sm:px-10">
         <h2 className="mb-4 flex items-center gap-2 text-left text-xl font-normal text-gray-500">
-          <BackToHome /> Contact Us
+          <BackToHome /> {heading}
         </h2>
-        <h1 className="text-gray-500">
-          For all pricing and booking inquiries , please fill out the form
-          below. Please include as much relevant information as possible, for
-          example, the location of the project, amount of images needed,
-          intended usage of the images, and timeframe for project completion. I
-          look forward to hearing from you.
-        </h1>
+
+        {introText && (
+          <p className="mb-4 whitespace-pre-line text-gray-500">{introText}</p>
+        )}
+
+        {publicEmail && (
+          <p className="mb-6 text-gray-500">
+            Email:{" "}
+            <a
+              href={`mailto:${publicEmail}`}
+              className="underline transition-colors hover:text-black"
+            >
+              {publicEmail}
+            </a>
+          </p>
+        )}
+
         <form
           name="contact"
           method="POST"
@@ -99,7 +97,7 @@ const Contact = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="rounded rounded-md bg-gaga1 px-24 py-4 text-gray-500 transition hover:bg-blue-700 hover:bg-gaga lg:px-24"
+              className="rounded-md bg-gaga1 px-24 py-4 text-gray-500 transition hover:bg-gaga lg:px-24"
             >
               Submit
             </button>
@@ -107,7 +105,6 @@ const Contact = () => {
         </form>
       </div>
     </div>
-    // </motion.div>
   );
 };
 

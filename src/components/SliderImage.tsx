@@ -12,8 +12,6 @@ export interface SlideImageItem {
   cornerNote?: string;
   // Optional tiny blur preview from Sanity
   blurPreviewUrl?: string;
-  // Optional legacy BlurHash field (kept until Step 3C finishes)
-  imageHash?: string;
 }
 
 interface SliderImageProps {

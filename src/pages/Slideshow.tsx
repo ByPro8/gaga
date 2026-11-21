@@ -1,61 +1,64 @@
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import Menu from "../components/Menu";
-import albums from "../site/data.json";
-import shuffleArray from "../functions/shuffleArr";
-import { PhotoType } from "../types/albums"; // Import the PhotoType
-import SliderImage from "../components/SliderImage";
-// import BackToHome from "../components/BackToHome";
 import TabletMenu from "../components/TabletMenu";
-// import { motion } from "framer-motion";
-// const fadeVariant = {
-//   initial: { opacity: 0 },
-//   animate: { opacity: 1 },
-//   exit: { opacity: 0 },
-// };
-// const pageTransition = {
-//   duration: 1,
-//   ease: "easeInOut",
-// };
-
-interface ShuffledImage extends PhotoType {
-  albumId: string;
-}
+import SliderImage, { type SlideImageItem } from "../components/SliderImage";
+import shuffleArray from "../functions/shuffleArr";
+import {
+  buildOptimizedImageUrl,
+  fetchSlideshowPhotos,
+  getBlurPreviewUrl,
+} from "../lib/sanity";
 
 export default function Slideshow() {
-  // Collect all album photos and include album name
-  const images = useMemo(() => {
-    let shuffledImages: ShuffledImage[] = albums.flatMap((album) =>
-      album.photos.map((photo) => ({
-        id: photo.id,
-        src: photo.src,
-        desc: photo.desc || album.title, // Fallback to album title if no description
-        imageHash: photo.imageHash,
-        albumId: album.title, // Store album name
-      })),
-    );
+  const [slides, setSlides] = useState<SlideImageItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    // Shuffle multiple times to increase randomness
-    for (let i = 0; i < 3; i++) {
-      shuffledImages = shuffleArray(shuffledImages);
-    }
+  useEffect(() => {
+    let isMounted = true;
 
-    return shuffledImages;
+    fetchSlideshowPhotos()
+      .then((photos) => {
+        if (!isMounted) return;
+
+        // Build high-res slides only from photos Gaga checked "Include in Slideshow Page"
+        let mappedSlides: SlideImageItem[] = photos.map((photo) => ({
+          id: photo.photoKey,
+          src: buildOptimizedImageUrl(photo.image, { width: 2200, quality: 85 }),
+          blurPreviewUrl: getBlurPreviewUrl(photo.image),
+          cornerNote: photo.cornerNote,
+          alt: photo.altText || photo.galleryTitle,
+        }));
+
+        // Shuffle thoroughly for a fresh order on each visit
+        for (let i = 0; i < 3; i++) {
+          mappedSlides = shuffleArray(mappedSlides);
+        }
+
+        setSlides(mappedSlides);
+      })
+      .catch((error) => {
+        console.error("Could not load Slideshow photos from Sanity:", error);
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
-    // <motion.div
-    //   variants={fadeVariant}
-    //   initial="initial"
-    //   animate="animate"
-    //   exit="exit"
-    //   transition={pageTransition}
-    //   className="flex min-h-screen w-full flex-col lg:flex-row"
-    // >
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
       <Menu />
-      <SliderImage images={images} random={true} />
+      {isLoading ? (
+        <div className="mx-auto flex flex-1 items-center justify-center p-10 text-gray-400">
+          Loading...
+        </div>
+      ) : (
+        <SliderImage images={slides} random={true} />
+      )}
       <TabletMenu />
     </div>
-    // </motion.div>
   );
 }

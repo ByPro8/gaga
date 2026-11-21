@@ -5,8 +5,6 @@ interface LazyImageProps {
   alt: string;
   // Tiny base64 blur image returned automatically by Sanity (metadata.lqip)
   blurPreviewUrl?: string;
-  // Kept optional for temporary compatibility with pages not yet switched to Sanity
-  hash?: string;
   // Set eager={true} for main/fullscreen photos so they start downloading immediately
   eager?: boolean;
   className?: string;

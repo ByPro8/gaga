@@ -10,7 +10,7 @@ export const siteSettings = defineType({
     {name: 'home', title: 'Home & Social Links', default: true},
     {name: 'about', title: 'About Page'},
     {name: 'contact', title: 'Contact Page'},
-    {name: 'layouts', title: 'Page Grids & Tab/SEO'},
+    {name: 'layouts', title: 'Page Grids & SEO'},
   ],
   fields: [
     // --- TAB 1: HOME & SOCIAL LINKS ---
@@ -118,7 +118,7 @@ export const siteSettings = defineType({
       group: 'contact',
     }),
 
-    // --- TAB 4: PAGE GRIDS & BROWSER TAB / SEO ---
+    // --- TAB 4: PAGE GRIDS & SEO ---
     defineField({
       name: 'albumsPerRow',
       title: 'Photography Page: Albums Per Row',
@@ -163,20 +163,6 @@ export const siteSettings = defineType({
         ],
         layout: 'radio',
       },
-    }),
-    defineField({
-      name: 'browserTabTitle',
-      title: 'Browser Tab Name',
-      type: 'string',
-      group: 'layouts',
-      initialValue: 'Levan Gaga Kapanadze',
-    }),
-    defineField({
-      name: 'browserTabIcon',
-      title: 'Browser Tab Icon (Favicon)',
-      type: 'image',
-      group: 'layouts',
-      description: 'Small square icon shown in the browser tab.',
     }),
     defineField({
       name: 'shareDescription',

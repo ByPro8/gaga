@@ -1,14 +1,39 @@
-import gaga from "../assets/about/GagaKapanadze.jpg";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useSiteSettings } from "../context/SiteSettingsContext";
+import { buildOptimizedImageUrl, getBlurPreviewUrl } from "../lib/sanity";
+import LazyImage from "./LazyImage";
 
 interface AboutTextImgProps {
   className?: string;
 }
 
+// How Sanity's rich-text paragraphs, bold, and italic text look on the About page
+const bioTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="mb-4 text-xl text-gray-500 last:mb-0">{children}</p>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => (
+      <span className="text-[19px] font-bold">{children}</span>
+    ),
+    em: ({ children }) => <em className="italic">{children}</em>,
+  },
+};
+
 export default function AboutTextImg({ className = "" }: AboutTextImgProps) {
   const navigate = useNavigate();
-  const BoldClassname = "text-[19px] font-bold";
+  const { settings } = useSiteSettings();
+
+  const heading = settings?.aboutHeading || "About";
+  const profilePhotoUrl = settings?.profilePhoto
+    ? buildOptimizedImageUrl(settings.profilePhoto, { width: 700, quality: 85 })
+    : "";
+  const profileBlurPreview = getBlurPreviewUrl(settings?.profilePhoto);
+
   return (
     <div className={`px-6 lg:px-0 ${className}`}>
       <h1 className="mb-[30px] text-[30px] text-gray-500 lg:mb-[48px] lg:block">
@@ -18,31 +43,27 @@ export default function AboutTextImg({ className = "" }: AboutTextImgProps) {
         >
           <ArrowLeft className="h-5 w-5" />
         </button>{" "}
-        About
+        {heading}
       </h1>
       <div>
-        <img
-          src={gaga}
-          alt="Profile"
-          className="sm:shape-[circle()] ms:h-[255px] float-center mx-auto mb-4 max-w-[325px] sm:float-right sm:ml-4 sm:w-[270px]"
-        />
-        <p className="text-xl text-gray-500">
-          <span className={BoldClassname}>Levan Gaga Kapanadze</span> is a
-          filmmaker, photographer, and media producer with over 15 years of
-          experience in video production, photography, and media management. As
-          the founder of <span className={BoldClassname}>Araki Production</span>
-          , he has collaborated with international organizations such as{" "}
-          <span className={BoldClassname}>UNFPA, UNDP, WHO, and USAID</span>, as
-          well as various commercial brands and businesses. His work covers a
-          wide range of topics, including gender equality, health, education,
-          and social development, bringing complex issues to life through
-          compelling visuals. His work has been showcased in exhibitions and
-          publications, reflecting a deep passion for storytelling that informs
-          and inspires. As the Media Studio Manager at Free University of
-          Tbilisi, he has played a key role in shaping the university’s visual
-          identity, producing high-quality educational content and promotional
-          videos that enhance student engagement and academic outreach.
-        </p>
+        {profilePhotoUrl && (
+          <div className="float-center mx-auto mb-4 max-w-[325px] sm:float-right sm:ml-4 sm:w-[270px]">
+            <LazyImage
+              src={profilePhotoUrl}
+              alt="Levan Gaga Kapanadze"
+              blurPreviewUrl={profileBlurPreview}
+              eager
+              className="h-auto w-full object-cover"
+            />
+          </div>
+        )}
+
+        {settings?.aboutBio && settings.aboutBio.length > 0 && (
+          <PortableText
+            value={settings.aboutBio}
+            components={bioTextComponents}
+          />
+        )}
       </div>
     </div>
   );

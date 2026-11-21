@@ -108,8 +108,6 @@ export interface CmsSiteSettings {
   albumsPerRow?: 1 | 2 | 3;
   storiesPerRow?: 1 | 2 | 3;
   videosPerRow?: 3 | 4 | 5;
-  browserTabTitle?: string;
-  browserTabIcon?: CmsImage;
   shareDescription?: string;
   sharePreviewImage?: CmsImage;
 }

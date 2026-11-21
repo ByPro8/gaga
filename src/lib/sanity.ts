@@ -10,12 +10,13 @@ import type {
   OptimizableImage,
 } from "../types/cms";
 
-// Connection to your Gagalens Sanity cloud project (read-only public CDN = fast!)
+// Connection to your Gagalens Sanity cloud project.
+// Uses the fast global CDN in production, and live uncached API on localhost so edits show up immediately.
 export const sanityClient = createClient({
   projectId: "vhc079ss",
   dataset: "production",
   apiVersion: "2025-01-01",
-  useCdn: true,
+  useCdn: !import.meta.env.DEV,
 });
 
 const imageUrlBuilder = createImageUrlBuilder(sanityClient);
@@ -26,19 +27,25 @@ export function buildOptimizedImageUrl(
   image: OptimizableImage | null | undefined,
   options: { width?: number; height?: number; quality?: number } = {},
 ): string {
+  // Guard against empty/unfinished image slots in Sanity (e.g. { asset: null })
   if (!image) return "";
+  if (typeof image === "object" && "asset" in image && !image.asset) return "";
 
   const { width, height, quality = 82 } = options;
-  let builder = imageUrlBuilder
-    .image(image)
-    .auto("format") // Automatically serves WebP or AVIF
-    .fit("max") // Never stretches small images larger than their original size
-    .quality(quality);
+  try {
+    let builder = imageUrlBuilder
+      .image(image)
+      .auto("format") // Automatically serves WebP or AVIF
+      .fit("max") // Never stretches small images larger than their original size
+      .quality(quality);
 
-  if (width) builder = builder.width(width);
-  if (height) builder = builder.height(height);
+    if (width) builder = builder.width(width);
+    if (height) builder = builder.height(height);
 
-  return builder.url();
+    return builder.url();
+  } catch {
+    return "";
+  }
 }
 
 // Reads Sanity's built-in tiny blur preview (base64 data URL) for instant loading
@@ -77,7 +84,7 @@ function fetchWithCache<T>(cacheKey: string, query: string): Promise<T> {
 
 // 1. Fetch Home, About, Contact, Social Links, Browser Tab, and Grid settings
 export function fetchSiteSettings(): Promise<CmsSiteSettings | null> {
-  const query = `*[_type == "siteSettings"][0] {
+  const query = `coalesce(*[_id == "siteSettings"][0], *[_type == "siteSettings"][0]) {
     homeWallpaper ${IMAGE_FIELDS},
     mobileWallpaper ${IMAGE_FIELDS},
     instagramUrl,
@@ -92,8 +99,6 @@ export function fetchSiteSettings(): Promise<CmsSiteSettings | null> {
     albumsPerRow,
     storiesPerRow,
     videosPerRow,
-    browserTabTitle,
-    browserTabIcon ${IMAGE_FIELDS},
     shareDescription,
     sharePreviewImage ${IMAGE_FIELDS}
   }`;
@@ -114,7 +119,7 @@ export function fetchGalleries(
     mainDescription,
     secondaryNote,
     coverImage ${IMAGE_FIELDS},
-    "photos": coalesce(photos, [])[] {
+    "photos": coalesce(photos[defined(asset)], [])[] {
       _key,
       includeInSlideshow,
       cornerNote,
