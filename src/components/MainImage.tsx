@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSiteSettings } from "../context/SiteSettingsContext";
 import { buildOptimizedImageUrl } from "../lib/sanity";
 
 export default function MainImage() {
   const { settings } = useSiteSettings();
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
   const checkIsUltraWide = () => window.innerWidth >= 2560;
   const calculateMaxHeight = () =>
@@ -32,8 +33,14 @@ export default function MainImage() {
       })
     : "";
 
+  // Check if Safari/browser already loaded the image from cache so it never stays invisible
   useEffect(() => {
-    setIsImageLoaded(false);
+    const img = imageRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setIsImageLoaded(true);
+    } else {
+      setIsImageLoaded(false);
+    }
   }, [imageSrc]);
 
   return (
@@ -41,11 +48,13 @@ export default function MainImage() {
       <div className="relative w-full max-w-full">
         {imageSrc && (
           <img
+            ref={imageRef}
             src={imageSrc}
             alt="Levan Gaga Kapanadze portfolio wallpaper"
             loading="eager"
             decoding="async"
             onLoad={() => setIsImageLoaded(true)}
+            onError={() => setIsImageLoaded(true)}
             style={{ maxHeight: `${maxHeight}px` }}
             className={`mt-[48px] h-full w-full object-contain transition-opacity duration-300 lg:mt-0 ${
               isImageLoaded ? "opacity-100" : "opacity-0"

@@ -5,7 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { fetchSiteSettings } from "../lib/sanity";
+import { buildOptimizedImageUrl, fetchSiteSettings } from "../lib/sanity";
 import type { CmsSiteSettings } from "../types/cms";
 
 interface SiteSettingsContextValue {
@@ -17,6 +17,22 @@ const SiteSettingsContext = createContext<SiteSettingsContextValue>({
   settings: null,
   isLoading: true,
 });
+
+function upsertMetaTag(
+  attribute: "name" | "property",
+  key: string,
+  content: string,
+) {
+  let tag = document.querySelector<HTMLMetaElement>(
+    `meta[${attribute}="${key}"]`,
+  );
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute(attribute, key);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
 
 // Fetches Site Settings from Sanity once when the site opens and shares them with every page.
 export function SiteSettingsProvider({ children }: { children: ReactNode }) {
@@ -45,6 +61,27 @@ export function SiteSettingsProvider({ children }: { children: ReactNode }) {
       isMounted = false;
     };
   }, []);
+
+  // Keep meta description & OpenGraph preview image synced with Sanity SEO fields
+  useEffect(() => {
+    if (settings?.shareDescription) {
+      upsertMetaTag("name", "description", settings.shareDescription);
+      upsertMetaTag("property", "og:description", settings.shareDescription);
+      upsertMetaTag("name", "twitter:description", settings.shareDescription);
+    }
+
+    if (settings?.sharePreviewImage) {
+      const previewUrl = buildOptimizedImageUrl(settings.sharePreviewImage, {
+        width: 1200,
+        height: 630,
+        quality: 85,
+      });
+      if (previewUrl) {
+        upsertMetaTag("property", "og:image", previewUrl);
+        upsertMetaTag("name", "twitter:image", previewUrl);
+      }
+    }
+  }, [settings]);
 
   return (
     <SiteSettingsContext.Provider value={{ settings, isLoading }}>

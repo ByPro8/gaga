@@ -7,12 +7,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies & builds
 node_modules
 dist
 dist-ssr
+
+# Local secrets & environment variables
+.env
+.env.*
+!.env.example
 *.local
 
-# Editor directories and files
+# Editor & OS files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,7 +28,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-getAlbumData.js
-getVideos.js
-getPureVideos.js
-getTextsforAlbums.js

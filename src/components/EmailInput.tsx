@@ -1,33 +1,43 @@
-import React from "react";
+import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-interface EmailInputProps {
-  id: string;
+interface EmailInputProps<T extends FieldValues> {
+  id: Path<T>;
   label: string;
   placeholder: string;
-  register: any;
+  register: UseFormRegister<T>;
+  errorMessage?: string;
 }
 
-const EmailInput: React.FC<EmailInputProps> = ({
+export default function EmailInput<T extends FieldValues>({
   id,
   label,
   placeholder,
   register,
-}) => {
+  errorMessage,
+}: EmailInputProps<T>) {
   return (
-    <div>
-      <label htmlFor={id} className="block text-gray-500">
+    <div className="w-full">
+      <label htmlFor={id} className="mb-1.5 block text-sm text-gray-500">
         {label}
       </label>
       <input
-        required
         id={id}
-        {...register(id)}
         type="email"
         placeholder={placeholder}
-        className="w-full rounded border border-gray-300 bg-white p-3 text-gray-500 focus:border-[2px] focus:border-gaga1 focus:outline-none"
+        {...register(id, {
+          required: "Email address is required",
+          pattern: {
+            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            message: "Please enter a valid email address",
+          },
+        })}
+        className={`w-full rounded border bg-white p-3 text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
+          errorMessage ? "border-red-400" : "border-gray-300"
+        }`}
       />
+      {errorMessage && (
+        <p className="mt-1 text-xs text-red-500">{errorMessage}</p>
+      )}
     </div>
   );
-};
-
-export default EmailInput;
+}

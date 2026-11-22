@@ -92,6 +92,13 @@ export interface CmsProjectYear {
   entries: CmsProjectEntry[];
 }
 
+// A client logo shown on the Projects page
+export interface CmsClientLogo {
+  _key: string;
+  name: string;
+  logo?: CmsImage;
+}
+
 // Global settings for Home, About, Contact, Social Links, Browser Tab, and Grids
 export interface CmsSiteSettings {
   homeWallpaper?: CmsImage;
@@ -102,6 +109,7 @@ export interface CmsSiteSettings {
   aboutHeading?: string;
   profilePhoto?: CmsImage;
   aboutBio?: PortableTextBlock[];
+  clientLogos?: CmsClientLogo[];
   contactHeading?: string;
   contactIntroText?: string;
   contactEmail?: string;

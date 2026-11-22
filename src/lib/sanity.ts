@@ -93,6 +93,11 @@ export function fetchSiteSettings(): Promise<CmsSiteSettings | null> {
     aboutHeading,
     profilePhoto ${IMAGE_FIELDS},
     aboutBio,
+    "clientLogos": coalesce(clientLogos[defined(logo.asset)], [])[] {
+      _key,
+      name,
+      logo ${IMAGE_FIELDS}
+    },
     contactHeading,
     contactIntroText,
     contactEmail,

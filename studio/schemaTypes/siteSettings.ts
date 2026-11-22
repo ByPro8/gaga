@@ -9,6 +9,7 @@ export const siteSettings = defineType({
   groups: [
     {name: 'home', title: 'Home & Social Links', default: true},
     {name: 'about', title: 'About Page'},
+    {name: 'projects', title: 'Projects & Clients'},
     {name: 'contact', title: 'Contact Page'},
     {name: 'layouts', title: 'Page Grids & SEO'},
   ],
@@ -95,7 +96,44 @@ export const siteSettings = defineType({
       ],
     }),
 
-    // --- TAB 3: CONTACT PAGE ---
+    // --- TAB 3: PROJECTS & CLIENTS ---
+    defineField({
+      name: 'clientLogos',
+      title: 'Selected Client Logos (Projects Page)',
+      type: 'array',
+      group: 'projects',
+      description:
+        'Upload transparent PNG or SVG logos of organizations Gaga worked with. Drag to reorder.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'clientLogoItem',
+          title: 'Client Logo',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Company / Organization Name',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'logo',
+              title: 'Logo File (Transparent PNG or SVG)',
+              type: 'image',
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'name',
+              media: 'logo',
+            },
+          },
+        }),
+      ],
+    }),
+
+    // --- TAB 4: CONTACT PAGE ---
     defineField({
       name: 'contactHeading',
       title: 'Contact Page Title',

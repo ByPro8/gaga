@@ -5,7 +5,6 @@ module.exports = {
     extend: {
       fontFamily: {
         custom: ["MyCustomFont", "sans-serif"],
-        fira: ['"Fira Sans"', "sans-serif"],
       },
       fontWeight: {
         demi: 600, // Demi-bold weight (optional, you can use any number)

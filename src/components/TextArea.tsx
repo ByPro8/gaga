@@ -1,35 +1,39 @@
-import React from "react";
+import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-interface TextAreaProps {
-  id: string;
+interface TextAreaProps<T extends FieldValues> {
+  id: Path<T>;
   label: string;
   placeholder: string;
   rows: number;
-  register: any;
+  register: UseFormRegister<T>;
+  errorMessage?: string;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({
+export default function TextArea<T extends FieldValues>({
   id,
   label,
   placeholder,
   rows,
   register,
-}) => {
+  errorMessage,
+}: TextAreaProps<T>) {
   return (
-    <div>
-      <label htmlFor={id} className="block text-gray-500">
+    <div className="w-full">
+      <label htmlFor={id} className="mb-1.5 block text-sm text-gray-500">
         {label}
       </label>
       <textarea
-        required
         id={id}
-        {...register(id)}
-        placeholder={placeholder}
         rows={rows}
-        className="w-full rounded border border-gray-300 bg-white p-3 text-gray-500 focus:border-[2px] focus:border-gaga1 focus:outline-none"
+        placeholder={placeholder}
+        {...register(id, { required: "Please write a message" })}
+        className={`w-full rounded border bg-white p-3 text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
+          errorMessage ? "border-red-400" : "border-gray-300"
+        }`}
       />
+      {errorMessage && (
+        <p className="mt-1 text-xs text-red-500">{errorMessage}</p>
+      )}
     </div>
   );
-};
-
-export default TextArea;
+}

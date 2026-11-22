@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface LazyImageProps {
   src: string;
@@ -19,18 +19,22 @@ export default function LazyImage({
   className = "",
   style,
 }: LazyImageProps) {
+  const imageRef = useRef<HTMLImageElement | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Reset fade-in state whenever the photo URL changes (e.g. clicking Next in the slider)
+  // When the photo URL changes (or on first mount in Safari with a cached image),
+  // check if the browser ALREADY finished loading it so we never get stuck on the blur!
   useEffect(() => {
-    setIsLoaded(false);
+    const img = imageRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setIsLoaded(true);
+    } else {
+      setIsLoaded(false);
+    }
   }, [src]);
 
   return (
-    <div
-      className="relative h-full w-full overflow-hidden"
-      style={style}
-    >
+    <div className="relative h-full w-full overflow-hidden" style={style}>
       {/* Instant blurred preview while the real WebP/AVIF photo downloads */}
       {blurPreviewUrl && !isLoaded && (
         <img
@@ -42,11 +46,13 @@ export default function LazyImage({
       )}
 
       <img
+        ref={imageRef}
         src={src}
         alt={alt}
         loading={eager ? "eager" : "lazy"}
         decoding="async"
         onLoad={() => setIsLoaded(true)}
+        onError={() => setIsLoaded(true)}
         className={`relative z-10 h-full w-full object-cover transition-opacity duration-300 ${
           isLoaded ? "opacity-100" : "opacity-0"
         } ${className}`}
