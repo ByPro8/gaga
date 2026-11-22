@@ -1,14 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import LazyImage from "./LazyImage";
 
 export interface SlideImageItem {
   id: string;
   src: string;
   alt?: string;
-  desc?: string;
-  // Optional short note shown in the bottom corner when viewing this photo fullscreen
+  // Optional short note set by Gaga in Sanity
   cornerNote?: string;
   // Optional tiny blur preview from Sanity
   blurPreviewUrl?: string;
@@ -16,142 +13,194 @@ export interface SlideImageItem {
 
 interface SliderImageProps {
   images: SlideImageItem[];
-  random?: boolean;
   startIndex?: number;
-  // Base URL for updating the browser link when moving between photos (e.g. "/photography" or "/photo-stories")
-  basePath?: string;
+  // "top" aligns the photo's top edge with GAGALENS / tablet nav; "center" centers it in fullscreen lightbox
+  align?: "top" | "center";
+  // Called cleanly from user events (never inside setState) when the active slide changes
+  onSlideChange?: (nextIndex: number, activeSlide: SlideImageItem) => void;
+  // Optional Escape key handler (e.g. close fullscreen viewer back to album)
+  onEscape?: () => void;
+  className?: string;
 }
 
 export default function SliderImage({
   images,
-  random = false,
   startIndex = 0,
-  basePath = "/photography",
+  align = "center",
+  onSlideChange,
+  onEscape,
+  className = "",
 }: SliderImageProps) {
-  const navigate = useNavigate();
-  const { albumId } = useParams();
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
-  const [maxHeight, setMaxHeight] = useState(() => window.innerHeight * 0.9);
   const [currentIndex, setCurrentIndex] = useState(() => {
     if (images.length === 0) return 0;
-    if (random) return Math.floor(Math.random() * images.length);
     return Math.min(Math.max(startIndex, 0), images.length - 1);
   });
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Sync current index if the URL changes to a different photo
+  // Sync currentIndex if parent changes startIndex (e.g. browser back/forward)
   useEffect(() => {
-    if (!random && images.length > 0) {
-      setCurrentIndex(Math.min(Math.max(startIndex, 0), images.length - 1));
+    if (images.length > 0) {
+      const clamped = Math.min(Math.max(startIndex, 0), images.length - 1);
+      setCurrentIndex(clamped);
     }
-  }, [startIndex, random, images.length]);
+  }, [startIndex, images.length]);
 
-  // Update max image height when the browser window is resized
+  const activePhoto = images[currentIndex] || images[0];
+
+  // If the preloaded or cached image is already ready, show it immediately with zero blur flash
   useEffect(() => {
-    const updateHeight = () => setMaxHeight(window.innerHeight * 0.9);
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
+    const img = imageRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setIsLoaded(true);
+    } else {
+      setIsLoaded(false);
+    }
+  }, [activePhoto?.src]);
 
-  // Preload ONLY the next and previous photos (instead of all 50+ photos at once)
+  // Preload the next 2 photos and previous 1 photo in the background so arrow clicks feel instant
   useEffect(() => {
     if (images.length <= 1) return;
 
-    const nextIndex = (currentIndex + 1) % images.length;
-    const prevIndex = (currentIndex - 1 + images.length) % images.length;
+    const offsetsToPreload = images.length > 2 ? [1, 2, -1] : [1];
+    const preloadedIndices = new Set<number>();
 
-    const nextPreload = new Image();
-    nextPreload.src = images[nextIndex].src;
+    for (const offset of offsetsToPreload) {
+      const idx = (currentIndex + offset + images.length) % images.length;
+      if (idx === currentIndex || preloadedIndices.has(idx)) continue;
+      preloadedIndices.add(idx);
 
-    if (prevIndex !== nextIndex) {
-      const prevPreload = new Image();
-      prevPreload.src = images[prevIndex].src;
+      const preload = new Image();
+      preload.src = images[idx].src;
     }
   }, [currentIndex, images]);
 
-  const showNextImage = useCallback(() => {
-    if (images.length <= 1) return;
-    setCurrentIndex((previousIndex) => {
-      const nextIndex = (previousIndex + 1) % images.length;
-      if (!random && albumId) {
-        navigate(`${basePath}/${encodeURIComponent(albumId)}/${images[nextIndex].id}`);
-      }
-      return nextIndex;
-    });
-  }, [images, random, albumId, navigate, basePath]);
+  const goToOffset = useCallback(
+    (offset: number) => {
+      if (images.length <= 1) return;
+      const nextIndex = (currentIndex + offset + images.length) % images.length;
+      setCurrentIndex(nextIndex);
+      onSlideChange?.(nextIndex, images[nextIndex]);
+    },
+    [currentIndex, images, onSlideChange],
+  );
 
-  const showPreviousImage = useCallback(() => {
-    if (images.length <= 1) return;
-    setCurrentIndex((previousIndex) => {
-      const prevIndex = (previousIndex - 1 + images.length) % images.length;
-      if (!random && albumId) {
-        navigate(`${basePath}/${encodeURIComponent(albumId)}/${images[prevIndex].id}`);
-      }
-      return prevIndex;
-    });
-  }, [images, random, albumId, navigate, basePath]);
+  const showNextImage = useCallback(() => goToOffset(1), [goToOffset]);
+  const showPreviousImage = useCallback(() => goToOffset(-1), [goToOffset]);
 
-  // Allow Left and Right keyboard arrows to switch photos
+  // Keyboard shortcuts: Left / Right arrows to browse, Escape to return to album
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") showNextImage();
       if (event.key === "ArrowLeft") showPreviousImage();
+      if (event.key === "Escape" && onEscape) onEscape();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [showNextImage, showPreviousImage]);
+  }, [showNextImage, showPreviousImage, onEscape]);
 
-  if (images.length === 0) {
+  // Phone touch-swipe handlers (horizontal swipe switches photos without hijacking vertical scroll)
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || images.length <= 1) return;
+
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+
+    // Only trigger swipe when gesture is clearly horizontal and exceeds 45px
+    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      if (deltaX < 0) {
+        showNextImage();
+      } else {
+        showPreviousImage();
+      }
+    }
+  };
+
+  if (images.length === 0 || !activePhoto) {
     return (
-      <div className="mx-auto flex flex-1 items-center justify-center p-10 text-gray-500">
+      <div className="flex flex-1 items-center justify-center p-10 text-gray-400">
         No photos to display yet.
       </div>
     );
   }
 
-  const activePhoto = images[currentIndex] || images[0];
-  const cornerNoteText = activePhoto.cornerNote;
+  const isTopAligned = align === "top";
+  const stageAlignClass = isTopAligned ? "items-start" : "items-center";
+  // Keep arrows at a steady spot in the stage whether the photo is loading, portrait, or landscape
+  const arrowVerticalClass = isTopAligned
+    ? "top-[36%] -translate-y-1/2"
+    : "top-1/2 -translate-y-1/2";
 
   return (
-    <div className="mx-auto mt-10 px-6 pb-[40px] sm:block sm:px-10 lg:mt-0 lg:h-screen lg:pb-[100px] lg:pt-[55px]">
-      <div className="relative w-full max-w-full">
-        <LazyImage
+    <div
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      className={`relative flex h-full min-h-[280px] w-full flex-1 select-none justify-center ${stageAlignClass} ${className}`}
+    >
+      {/* Left navigation arrow */}
+      {images.length > 1 && (
+        <button
+          type="button"
+          onClick={showPreviousImage}
+          aria-label="Previous photo"
+          className={`absolute left-1 z-20 flex h-11 w-11 items-center justify-center rounded-full border-0 bg-white/85 text-gray-500 transition-colors hover:bg-white hover:text-gray-900 focus:outline-none sm:left-2 sm:h-12 sm:w-12 ${arrowVerticalClass}`}
+        >
+          <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+        </button>
+      )}
+
+      {/* Photo stage with clean horizontal breathing room for the arrows */}
+      <div
+        className={`relative flex h-full w-full justify-center px-12 sm:px-16 ${stageAlignClass}`}
+      >
+        {activePhoto.blurPreviewUrl && !isLoaded && (
+          <img
+            src={activePhoto.blurPreviewUrl}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none max-h-full max-w-full object-contain opacity-60 blur-md"
+          />
+        )}
+
+        <img
+          ref={imageRef}
           src={activePhoto.src}
-          blurPreviewUrl={activePhoto.blurPreviewUrl}
-          alt={activePhoto.alt || activePhoto.desc || "Portfolio photo"}
-          eager={true}
-          className="h-full w-full object-contain lg:mt-0"
-          style={{ maxHeight: `${maxHeight}px` }}
+          alt={activePhoto.alt || "Portfolio photo"}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)}
+          className={`max-h-full max-w-full object-contain transition-opacity duration-200 ${
+            isLoaded ? "opacity-100" : "absolute opacity-0"
+          }`}
         />
-
-        {/* Optional short corner note set by Gaga in Sanity */}
-        {cornerNoteText && (
-          <div className="pointer-events-none absolute bottom-3 right-3 z-20 max-w-[75%] rounded bg-black/55 px-3 py-1.5 text-xs text-white backdrop-blur-sm sm:text-sm">
-            {cornerNoteText}
-          </div>
-        )}
-
-        {images.length > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={showPreviousImage}
-              aria-label="Previous photo"
-              className="absolute left-0 top-0 z-10 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-gray-500 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-0 active:bg-black/30 active:outline-none sm:w-[70px]"
-            >
-              <ArrowLeft className="h-4 w-4 sm:h-6 sm:w-6" />
-            </button>
-
-            <button
-              type="button"
-              onClick={showNextImage}
-              aria-label="Next photo"
-              className="absolute right-0 top-0 z-10 flex h-full w-[50px] items-center justify-center rounded-none border-0 text-gray-500 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-0 active:bg-black/30 active:outline-none sm:w-[70px]"
-            >
-              <ArrowRight className="h-4 w-4 sm:h-6 sm:w-6" />
-            </button>
-          </>
-        )}
       </div>
+
+      {/* Right navigation arrow */}
+      {images.length > 1 && (
+        <button
+          type="button"
+          onClick={showNextImage}
+          aria-label="Next photo"
+          className={`absolute right-1 z-20 flex h-11 w-11 items-center justify-center rounded-full border-0 bg-white/85 text-gray-500 transition-colors hover:bg-white hover:text-gray-900 focus:outline-none sm:right-2 sm:h-12 sm:w-12 ${arrowVerticalClass}`}
+        >
+          <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
+        </button>
+      )}
     </div>
   );
 }

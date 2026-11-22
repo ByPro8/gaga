@@ -27,7 +27,7 @@ export default function TextArea<T extends FieldValues>({
         rows={rows}
         placeholder={placeholder}
         {...register(id, { required: "Please write a message" })}
-        className={`w-full rounded border bg-white p-3 text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
+        className={`w-full rounded border bg-white p-3 text-base text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
           errorMessage ? "border-red-400" : "border-gray-300"
         }`}
       />

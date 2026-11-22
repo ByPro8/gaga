@@ -6,26 +6,23 @@ export default function MainImage() {
   const { settings } = useSiteSettings();
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  const checkIsUltraWide = () => window.innerWidth >= 2560;
-  const calculateMaxHeight = () =>
-    checkIsUltraWide() ? window.innerHeight * 0.9 : window.innerHeight * 0.85;
-
-  const [isUltraWide, setIsUltraWide] = useState(checkIsUltraWide);
-  const [maxHeight, setMaxHeight] = useState(calculateMaxHeight);
+  // Only watch the 2560px threshold so ultrawide monitors get a sharper Sanity image
+  const [isUltraWide, setIsUltraWide] = useState(
+    () => window.matchMedia("(min-width: 2560px)").matches,
+  );
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsUltraWide(checkIsUltraWide());
-      setMaxHeight(calculateMaxHeight());
+    const mediaQuery = window.matchMedia("(min-width: 2560px)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsUltraWide(event.matches);
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  // Load Home wallpaper directly from Sanity (auto-sized for normal vs 2560px+ screens)
+  // Load Home wallpaper directly from Sanity (auto-sized for standard vs 2560px+ screens)
   const imageSrc = settings?.homeWallpaper
     ? buildOptimizedImageUrl(settings.homeWallpaper, {
         width: isUltraWide ? 2800 : 1800,
@@ -44,24 +41,23 @@ export default function MainImage() {
   }, [imageSrc]);
 
   return (
-    <div className="mx-auto hidden px-10 pb-[30px] sm:block lg:h-screen lg:pb-[40px] lg:pt-[60px]">
-      <div className="relative w-full max-w-full">
-        {imageSrc && (
-          <img
-            ref={imageRef}
-            src={imageSrc}
-            alt="Levan Gaga Kapanadze portfolio wallpaper"
-            loading="eager"
-            decoding="async"
-            onLoad={() => setIsImageLoaded(true)}
-            onError={() => setIsImageLoaded(true)}
-            style={{ maxHeight: `${maxHeight}px` }}
-            className={`mt-[48px] h-full w-full object-contain transition-opacity duration-300 lg:mt-0 ${
-              isImageLoaded ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        )}
-      </div>
-    </div>
+    /* Top-aligned: sticks neatly below the nav on tablet, and flush with GAGALENS (52px) on desktop */
+    <main className="hidden min-w-0 flex-1 items-start justify-center px-6 pb-8 pt-6 sm:flex lg:h-[100dvh] lg:justify-start lg:px-10 lg:pb-10 lg:pt-[52px] xl:px-12">
+      {imageSrc && (
+        <img
+          ref={imageRef}
+          src={imageSrc}
+          alt="Levan Gaga Kapanadze portfolio wallpaper"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          onLoad={() => setIsImageLoaded(true)}
+          onError={() => setIsImageLoaded(true)}
+          className={`max-h-[75dvh] w-auto max-w-full object-contain transition-opacity duration-300 lg:max-h-[calc(100dvh-92px)] ${
+            isImageLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      )}
+    </main>
   );
 }

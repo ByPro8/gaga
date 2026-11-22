@@ -6,32 +6,34 @@ interface SlideshowPhotoItem {
   baseDocumentId: string
   hasDraft: boolean
   hasPublished: boolean
-  galleryType: 'album' | 'photoStory'
   galleryTitle: string
   photoKey: string
   imageUrl: string
   cornerNote?: string
 }
 
-interface RawGalleryDocument {
+interface RawAlbumDocument {
   _id: string
-  _type: 'album' | 'photoStory'
   title?: string
   photos?: Array<{
     _key: string
+    includeInSlideshow?: boolean
     cornerNote?: string
     imageUrl?: string
   }>
 }
 
 // Custom Admin Page inside Sanity Studio:
-// Shows every photo currently marked "Include in Slideshow" across all Albums & Photo Stories,
-// and lets Gaga remove a photo from the Slideshow with one click (without deleting it from its album).
+// Manages the Slideshow across Photo Albums only (Photo Stories stay separate).
+// Every new album photo is included automatically; Gaga can exclude any photo with one click
+// or restore all album photos back into the Slideshow.
 export function SlideshowManager() {
   const sanityClient = useClient({apiVersion: '2025-01-01'})
 
   const [slideshowPhotos, setSlideshowPhotos] = useState<SlideshowPhotoItem[]>([])
+  const [hiddenCount, setHiddenCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [isIncludingAll, setIsIncludingAll] = useState(false)
   const [removingKey, setRemovingKey] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -41,24 +43,24 @@ export function SlideshowManager() {
 
     try {
       const query = `
-        *[_type in ["album", "photoStory"] && count(photos[includeInSlideshow == true]) > 0] | order(orderRank asc) {
+        *[_type == "album"] | order(orderRank asc) {
           _id,
-          _type,
           title,
-          "photos": photos[includeInSlideshow == true] {
+          "photos": coalesce(photos[defined(asset)], [])[] {
             _key,
+            includeInSlideshow,
             cornerNote,
             "imageUrl": asset->url
           }
         }
       `
 
-      const rawDocuments = await sanityClient.fetch<RawGalleryDocument[]>(query)
+      const rawDocuments = await sanityClient.fetch<RawAlbumDocument[]>(query)
 
       // Group published and draft copies of the same album so photos never appear twice
       const documentsByBaseId = new Map<
         string,
-        {draft?: RawGalleryDocument; published?: RawGalleryDocument}
+        {draft?: RawAlbumDocument; published?: RawAlbumDocument}
       >()
 
       for (const doc of rawDocuments) {
@@ -75,7 +77,8 @@ export function SlideshowManager() {
         documentsByBaseId.set(baseId, existing)
       }
 
-      const flattenedPhotos: SlideshowPhotoItem[] = []
+      const activePhotos: SlideshowPhotoItem[] = []
+      let excludedPhotos = 0
 
       for (const [baseId, pair] of documentsByBaseId.entries()) {
         const activeDoc = pair.draft || pair.published
@@ -84,12 +87,16 @@ export function SlideshowManager() {
         for (const photo of activeDoc.photos) {
           if (!photo.imageUrl) continue
 
-          flattenedPhotos.push({
+          if (photo.includeInSlideshow === false) {
+            excludedPhotos += 1
+            continue
+          }
+
+          activePhotos.push({
             documentId: activeDoc._id,
             baseDocumentId: baseId,
             hasDraft: Boolean(pair.draft),
             hasPublished: Boolean(pair.published),
-            galleryType: activeDoc._type,
             galleryTitle: activeDoc.title || 'Untitled',
             photoKey: photo._key,
             imageUrl: photo.imageUrl,
@@ -98,7 +105,8 @@ export function SlideshowManager() {
         }
       }
 
-      setSlideshowPhotos(flattenedPhotos)
+      setSlideshowPhotos(activePhotos)
+      setHiddenCount(excludedPhotos)
     } catch (error) {
       console.error('Failed to load slideshow photos:', error)
       setErrorMessage('Could not load slideshow photos. Click Refresh to try again.')
@@ -134,11 +142,44 @@ export function SlideshowManager() {
             !(photo.baseDocumentId === item.baseDocumentId && photo.photoKey === item.photoKey),
         ),
       )
+      setHiddenCount((count) => count + 1)
     } catch (error) {
       console.error('Failed to remove photo from slideshow:', error)
       setErrorMessage('Could not remove that photo. Please try again.')
     } finally {
       setRemovingKey(null)
+    }
+  }
+
+  // One-click helper: sets includeInSlideshow = true on every album photo that was previously off
+  const includeAllAlbumPhotos = async () => {
+    setIsIncludingAll(true)
+    setErrorMessage(null)
+
+    try {
+      const query = `
+        *[_type == "album"] {
+          _id,
+          "hiddenKeys": coalesce(photos[includeInSlideshow == false]._key, [])
+        }
+      `
+      const docs = await sanityClient.fetch<Array<{_id: string; hiddenKeys: string[]}>>(query)
+
+      for (const doc of docs) {
+        if (!doc.hiddenKeys || doc.hiddenKeys.length === 0) continue
+        const patchObject: Record<string, boolean> = {}
+        for (const key of doc.hiddenKeys) {
+          patchObject[`photos[_key=="${key}"].includeInSlideshow`] = true
+        }
+        await sanityClient.patch(doc._id).set(patchObject).commit()
+      }
+
+      await loadSlideshowPhotos()
+    } catch (error) {
+      console.error('Failed to include all album photos:', error)
+      setErrorMessage('Could not include all album photos. Please try again.')
+    } finally {
+      setIsIncludingAll(false)
     }
   }
 
@@ -159,28 +200,51 @@ export function SlideshowManager() {
             Slideshow Photos ({slideshowPhotos.length})
           </h2>
           <p style={{margin: '6px 0 0', opacity: 0.7, fontSize: '14px'}}>
-            All photos currently marked &ldquo;Include in Slideshow&rdquo; across your Photo Albums
-            and Photo Stories. Removing a photo here only removes it from the Slideshow—it stays
-            safe in its album.
+            All Photo Album images are included automatically (Photo Stories stay separate).
+            Removing a photo here only hides it from Slideshow—it stays safe in its album.
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={loadSlideshowPhotos}
-          disabled={isLoading}
-          style={{
-            padding: '8px 14px',
-            borderRadius: '6px',
-            border: '1px solid rgba(128,128,128,0.4)',
-            background: 'transparent',
-            color: 'inherit',
-            cursor: 'pointer',
-            fontSize: '14px',
-          }}
-        >
-          {isLoading ? 'Loading...' : 'Refresh'}
-        </button>
+        <div style={{display: 'flex', gap: '8px', flexWrap: 'wrap'}}>
+          {hiddenCount > 0 && (
+            <button
+              type="button"
+              onClick={includeAllAlbumPhotos}
+              disabled={isIncludingAll || isLoading}
+              style={{
+                padding: '8px 14px',
+                borderRadius: '6px',
+                border: '1px solid rgba(234, 179, 8, 0.6)',
+                background: 'rgba(255, 226, 146, 0.25)',
+                color: 'inherit',
+                cursor: isIncludingAll ? 'wait' : 'pointer',
+                fontSize: '14px',
+                fontWeight: 500,
+              }}
+            >
+              {isIncludingAll
+                ? 'Adding all...'
+                : `Include All Hidden Album Photos (${hiddenCount})`}
+            </button>
+          )}
+
+          <button
+            type="button"
+            onClick={loadSlideshowPhotos}
+            disabled={isLoading}
+            style={{
+              padding: '8px 14px',
+              borderRadius: '6px',
+              border: '1px solid rgba(128,128,128,0.4)',
+              background: 'transparent',
+              color: 'inherit',
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}
+          >
+            {isLoading ? 'Loading...' : 'Refresh'}
+          </button>
+        </div>
       </div>
 
       {errorMessage && (
@@ -208,10 +272,10 @@ export function SlideshowManager() {
             opacity: 0.75,
           }}
         >
-          <p style={{margin: 0, fontSize: '15px'}}>No photos are marked for the Slideshow yet.</p>
+          <p style={{margin: 0, fontSize: '15px'}}>No album photos are in the Slideshow yet.</p>
           <p style={{margin: '8px 0 0', fontSize: '13px'}}>
-            Open any Photo Album or Photo Story, click a photo, and turn on{' '}
-            <strong>Include in Slideshow Page</strong>.
+            Click <strong>Include All Hidden Album Photos</strong> above, or upload photos to any
+            Photo Album.
           </p>
         </div>
       )}
@@ -226,7 +290,6 @@ export function SlideshowManager() {
         {slideshowPhotos.map((item) => {
           const uniqueRowId = `${item.baseDocumentId}-${item.photoKey}`
           const isRemoving = removingKey === uniqueRowId
-          const sourceLabel = item.galleryType === 'album' ? 'Album' : 'Photo Story'
 
           return (
             <div
@@ -242,7 +305,7 @@ export function SlideshowManager() {
               <div
                 style={{
                   aspectRatio: '3 / 2',
-                  background: 'rgba(0,0,0,0.2)',
+                  background: 'rgba(0,0,0,0.08)',
                   overflow: 'hidden',
                 }}
               >
@@ -260,10 +323,9 @@ export function SlideshowManager() {
                     <span style={{marginLeft: '6px', fontSize: '11px', opacity: 0.6}}>(Draft)</span>
                   )}
                 </div>
-                <div style={{fontSize: '12px', opacity: 0.65}}>
-                  {sourceLabel}
-                  {item.cornerNote ? ` · ${item.cornerNote}` : ''}
-                </div>
+                {item.cornerNote && (
+                  <div style={{fontSize: '12px', opacity: 0.65}}>{item.cornerNote}</div>
+                )}
                 <button
                   type="button"
                   onClick={() => removeFromSlideshow(item)}

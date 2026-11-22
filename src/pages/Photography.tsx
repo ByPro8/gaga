@@ -21,7 +21,7 @@ interface PhotographyProps {
 
 // Map Gaga's 1 / 2 / 3 per-row choice from Sanity into responsive Tailwind grid columns
 function getGridColumnsClass(perRow: 1 | 2 | 3): string {
-  if (perRow === 1) return "grid-cols-1";
+  if (perRow === 1) return "grid-cols-1 max-w-[780px]";
   if (perRow === 3) return "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3";
   return "grid-cols-1 sm:grid-cols-2";
 }
@@ -76,7 +76,7 @@ export default function Photography({
         ) : galleries.length === 0 ? (
           <p className="text-gray-400">No items published yet.</p>
         ) : (
-          galleries.map((gallery) => {
+          galleries.map((gallery, index) => {
             const coverUrl = buildOptimizedImageUrl(gallery.coverImage, {
               width: coverImageWidth,
               quality: 82,
@@ -95,7 +95,7 @@ export default function Photography({
                       src={coverUrl}
                       blurPreviewUrl={blurPreview}
                       alt={gallery.title}
-                      className="h-full w-full object-cover"
+                      eager={index < 2}
                     />
                   )}
                 </div>

@@ -18,8 +18,8 @@ function App() {
 
   return (
     <SiteSettingsProvider>
-      <div className="flex h-screen w-full font-custom">
-        <Routes location={location} key={location.pathname}>
+      <div className="min-h-[100dvh] w-full bg-white font-custom text-gray-500">
+        <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/slideshow" element={<Slideshow />} />

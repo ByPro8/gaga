@@ -60,7 +60,12 @@ export default function VideoPage() {
     return (
       <PageContainer>
         <Menu />
-        <ContentContainer title="Videography">
+        <ContentContainer
+          title="Videography"
+          showTitleOnDesktop={true}
+          backTo="/videography"
+          backLabel="Back to Videography"
+        >
           <p className="text-gray-400">Loading...</p>
         </ContentContainer>
       </PageContainer>
@@ -71,7 +76,12 @@ export default function VideoPage() {
     return (
       <PageContainer>
         <Menu />
-        <ContentContainer title="Videography">
+        <ContentContainer
+          title="Video not found"
+          showTitleOnDesktop={true}
+          backTo="/videography"
+          backLabel="Back to Videography"
+        >
           <p className="text-gray-500">Video not found.</p>
         </ContentContainer>
       </PageContainer>
@@ -83,21 +93,25 @@ export default function VideoPage() {
   return (
     <PageContainer>
       <Menu />
-      <ContentContainer title={video.title}>
-        <div className="relative w-full" style={videoStyle}>
-          <iframe
-            src={video.embedUrl}
-            title={video.title}
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            className="absolute left-0 top-0 h-full w-full rounded-md border-none"
-          />
-        </div>
+      <ContentContainer
+        title={video.title}
+        showTitleOnDesktop={true}
+        backTo="/videography"
+        backLabel="Back to Videography"
+      >
+        <div className="max-w-[1040px]">
+          <div className="relative w-full bg-gray-50" style={videoStyle}>
+            <iframe
+              src={video.embedUrl}
+              title={video.title}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              className="absolute left-0 top-0 h-full w-full rounded-md border-none"
+            />
+          </div>
 
-        <div className="mt-6">
-          <h1 className="text-2xl font-demi text-gray-700">{video.title}</h1>
           {video.description && (
-            <p className="mt-3 whitespace-pre-line text-lg text-gray-600">
+            <p className="mt-6 max-w-[780px] whitespace-pre-line text-[17px] leading-relaxed text-gray-500 sm:text-[18px]">
               {video.description}
             </p>
           )}

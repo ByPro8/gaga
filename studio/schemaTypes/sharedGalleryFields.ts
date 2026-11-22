@@ -2,12 +2,43 @@ import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 // Shared form template used by BOTH "Photo Albums" and "Photo Stories"
-// so they always have the exact same features (grid size, 2 descriptions,
-// drag-and-drop photo ordering, corner notes, and slideshow toggle).
+// so they always have the exact same core features (grid size, 2 descriptions,
+// drag-and-drop photo ordering, and corner notes).
+// Photo Albums also auto-include photos in the Slideshow by default.
 export function createGallerySchema(options: {
   schemaName: string
   singularTitle: string
+  enableSlideshow?: boolean
 }) {
+  const enableSlideshow = options.enableSlideshow ?? false
+
+  const photoFields = [
+    ...(enableSlideshow
+      ? [
+          defineField({
+            name: 'includeInSlideshow',
+            title: 'Include in Slideshow Page',
+            type: 'boolean',
+            description:
+              'On by default for all Photo Albums. Turn off to hide this photo from the random Slideshow.',
+            initialValue: true,
+          }),
+        ]
+      : []),
+    defineField({
+      name: 'cornerNote',
+      title: 'Corner Note When Opened (Optional)',
+      type: 'string',
+      description:
+        'Short note shown in the bottom-left corner when a visitor opens this photo or sees it in Slideshow.',
+    }),
+    defineField({
+      name: 'altText',
+      title: 'Image Description for Google / Accessibility (Optional)',
+      type: 'string',
+    }),
+  ]
+
   return defineType({
     name: options.schemaName,
     title: options.singularTitle,
@@ -85,8 +116,9 @@ export function createGallerySchema(options: {
         name: 'photos',
         title: 'Photos',
         type: 'array',
-        description:
-          'Drop multiple photos here to upload at once. Drag thumbnails to change their order. Click any photo to add a corner note or include it in the Slideshow.',
+        description: enableSlideshow
+          ? 'Drop multiple photos here to upload at once. Drag thumbnails to change order. All album photos appear in Slideshow automatically unless turned off.'
+          : 'Drop multiple photos here to upload at once. Drag thumbnails to change order. Click any photo to add a corner note.',
         options: {
           layout: 'grid',
         },
@@ -98,27 +130,7 @@ export function createGallerySchema(options: {
             options: {
               hotspot: true,
             },
-            fields: [
-              defineField({
-                name: 'includeInSlideshow',
-                title: 'Include in Slideshow Page',
-                type: 'boolean',
-                description: 'Turn on to include this photo in the random Slideshow.',
-                initialValue: false,
-              }),
-              defineField({
-                name: 'cornerNote',
-                title: 'Corner Note When Opened (Optional)',
-                type: 'string',
-                description:
-                  'Short note shown in the corner when a visitor clicks to view this photo fullscreen.',
-              }),
-              defineField({
-                name: 'altText',
-                title: 'Image Description for Google / Accessibility (Optional)',
-                type: 'string',
-              }),
-            ],
+            fields: photoFields,
           }),
         ],
       }),

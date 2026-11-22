@@ -61,7 +61,7 @@ export default function Videography() {
         ) : videos.length === 0 ? (
           <p className="text-gray-400">No videos published yet.</p>
         ) : (
-          videos.map((video) => {
+          videos.map((video, index) => {
             // Prefer Gaga's custom uploaded cover photo; fall back to Vimeo's thumbnail URL
             const customCoverUrl = buildOptimizedImageUrl(
               video.customCoverImage,
@@ -84,7 +84,7 @@ export default function Videography() {
                       src={coverUrl}
                       blurPreviewUrl={blurPreview}
                       alt={video.title}
-                      className="h-full w-full object-cover"
+                      eager={index < 3}
                     />
                   )}
                 </div>

@@ -7,7 +7,12 @@ interface LazyImageProps {
   blurPreviewUrl?: string;
   // Set eager={true} for main/fullscreen photos so they start downloading immediately
   eager?: boolean;
+  // Explicit image fit prevents Tailwind "object-cover" from overriding "object-contain"
+  fit?: "cover" | "contain";
+  // Mark above-the-fold hero / active slide photos as high download priority
+  highPriority?: boolean;
   className?: string;
+  wrapperClassName?: string;
   style?: React.CSSProperties;
 }
 
@@ -16,7 +21,10 @@ export default function LazyImage({
   alt,
   blurPreviewUrl,
   eager = false,
+  fit = "cover",
+  highPriority = false,
   className = "",
+  wrapperClassName = "h-full w-full",
   style,
 }: LazyImageProps) {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -33,15 +41,20 @@ export default function LazyImage({
     }
   }, [src]);
 
+  const objectFitClass = fit === "contain" ? "object-contain" : "object-cover";
+
   return (
-    <div className="relative h-full w-full overflow-hidden" style={style}>
+    <div
+      className={`relative overflow-hidden ${wrapperClassName}`}
+      style={style}
+    >
       {/* Instant blurred preview while the real WebP/AVIF photo downloads */}
       {blurPreviewUrl && !isLoaded && (
         <img
           src={blurPreviewUrl}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover blur-md"
+          className={`pointer-events-none absolute inset-0 h-full w-full scale-105 blur-md ${objectFitClass}`}
         />
       )}
 
@@ -51,9 +64,10 @@ export default function LazyImage({
         alt={alt}
         loading={eager ? "eager" : "lazy"}
         decoding="async"
+        fetchPriority={highPriority ? "high" : undefined}
         onLoad={() => setIsLoaded(true)}
         onError={() => setIsLoaded(true)}
-        className={`relative z-10 h-full w-full object-cover transition-opacity duration-300 ${
+        className={`relative z-10 h-full w-full transition-opacity duration-200 ${objectFitClass} ${
           isLoaded ? "opacity-100" : "opacity-0"
         } ${className}`}
       />

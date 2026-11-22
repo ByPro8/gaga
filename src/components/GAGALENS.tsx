@@ -2,28 +2,31 @@ import { Link } from "react-router-dom";
 
 interface GAGALENSProps {
   className?: string;
-  classNameG?: string;
-  classNameB?: string;
+  titleClassName?: string;
+  subtitleClassName?: string;
+  showSubtitle?: boolean;
 }
 
+// Brand wordmark rendered with <span> elements so each page keeps a single semantic <h1>
 export default function GAGALENS({
   className = "",
-  classNameG = "",
-  classNameB = "",
+  titleClassName = "",
+  subtitleClassName = "",
+  showSubtitle = true,
 }: GAGALENSProps) {
   return (
     <Link
       to="/"
-      className={`${className} text-inherit hover:text-inherit hover:no-underline focus:no-underline`}
+      className={`inline-flex flex-col text-inherit no-underline hover:text-inherit hover:no-underline focus:no-underline ${className}`}
     >
-      <div className="flex flex-col font-bold">
-        <h1 className={`font-demi text-gaga1 ${classNameG}`}>GAGALENS</h1>
-        <h1
-          className={`font-extralight lg:self-end ${classNameB} text-inherit no-underline hover:text-inherit`}
-        >
+      <span className={`font-demi leading-none tracking-tight ${titleClassName}`}>
+        GAGALENS
+      </span>
+      {showSubtitle && (
+        <span className={`font-normal leading-snug ${subtitleClassName}`}>
           By Levan Gaga Kapanadze
-        </h1>
-      </div>
+        </span>
+      )}
     </Link>
   );
 }

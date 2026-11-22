@@ -145,26 +145,33 @@ export function fetchGalleries(
   return fetchWithCache<CmsGallery[]>(`galleries-${galleryType}`, query);
 }
 
-// 3. Fetch only photos marked "Include in Slideshow Page" across Albums & Photo Stories
-export async function fetchSlideshowPhotos(): Promise<CmsSlideshowPhoto[]> {
-  const [albums, stories] = await Promise.all([
-    fetchGalleries("album"),
-    fetchGalleries("photoStory"),
-  ]);
+// Picks an optimal Sanity image width for the visitor's current screen & retina density
+// so phones download ~70% smaller files while large desktop displays stay razor-sharp.
+export function getResponsiveSlideWidth(): number {
+  if (typeof window === "undefined") return 1800;
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  const targetWidth = window.innerWidth * pixelRatio;
+  if (targetWidth <= 900) return 1000;
+  if (targetWidth <= 1800) return 1600;
+  return 2200;
+}
 
-  const allGalleries = [...albums, ...stories];
+// 3. Fetch Slideshow photos from Photo Albums ONLY (Photo Stories stay separate).
+// Every album photo is included automatically unless Gaga explicitly turns it OFF in Sanity.
+export async function fetchSlideshowPhotos(): Promise<CmsSlideshowPhoto[]> {
+  const albums = await fetchGalleries("album");
   const slideshowPhotos: CmsSlideshowPhoto[] = [];
 
-  for (const gallery of allGalleries) {
-    for (const photo of gallery.photos || []) {
-      if (photo.includeInSlideshow && photo.asset?.url) {
+  for (const album of albums) {
+    for (const photo of album.photos || []) {
+      if (photo.includeInSlideshow !== false && photo.asset?.url) {
         slideshowPhotos.push({
           photoKey: photo._key,
-          galleryType: gallery._type,
-          galleryTitle: gallery.title,
+          galleryType: album._type,
+          galleryTitle: album.title,
           image: photo,
           cornerNote: photo.cornerNote,
-          altText: photo.altText || photo.cornerNote || gallery.title,
+          altText: photo.altText || photo.cornerNote || album.title,
         });
       }
     }

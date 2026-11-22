@@ -23,6 +23,7 @@ export default function EmailInput<T extends FieldValues>({
       <input
         id={id}
         type="email"
+        autoComplete="email"
         placeholder={placeholder}
         {...register(id, {
           required: "Email address is required",
@@ -31,7 +32,7 @@ export default function EmailInput<T extends FieldValues>({
             message: "Please enter a valid email address",
           },
         })}
-        className={`w-full rounded border bg-white p-3 text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
+        className={`w-full rounded border bg-white p-3 text-base text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
           errorMessage ? "border-red-400" : "border-gray-300"
         }`}
       />

@@ -6,11 +6,19 @@ import { useSiteSettings } from "../context/SiteSettingsContext";
 interface ContactIconsProps {
   className?: string;
   iconClassName?: string;
+  align?: "left" | "center" | "right";
 }
+
+const ALIGN_CLASSES = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end",
+} as const;
 
 export default function ContactIcons({
   className = "",
   iconClassName = "",
+  align = "center",
 }: ContactIconsProps) {
   const { settings } = useSiteSettings();
 
@@ -26,7 +34,9 @@ export default function ContactIcons({
   }
 
   return (
-    <div className={`flex justify-center space-x-3 ${className}`}>
+    <div
+      className={`flex items-center gap-3 ${ALIGN_CLASSES[align]} ${className}`}
+    >
       {socialLinks.map((social) => (
         <a
           key={social.name}
@@ -34,12 +44,12 @@ export default function ContactIcons({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={social.name}
-          className="transition-opacity duration-200 hover:opacity-70"
+          className="inline-flex transition-opacity duration-200 hover:opacity-70"
         >
           <img
             src={social.icon}
             alt={social.name}
-            className={`xxl:h-12 xxl:w-12 xl25:h-[35px] xl25:w-[35px] h-8 w-8 lg:w-[28px] ${iconClassName}`}
+            className={`h-7 w-7 xl25:h-9 xl25:w-9 xxl:h-11 xxl:w-11 ${iconClassName}`}
           />
         </a>
       ))}

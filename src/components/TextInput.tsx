@@ -5,6 +5,7 @@ interface TextInputProps<T extends FieldValues> {
   label: string;
   placeholder: string;
   type?: string;
+  autoComplete?: string;
   register: UseFormRegister<T>;
   errorMessage?: string;
   className?: string;
@@ -15,6 +16,7 @@ export default function TextInput<T extends FieldValues>({
   label,
   placeholder,
   type = "text",
+  autoComplete,
   register,
   errorMessage,
   className = "",
@@ -27,9 +29,10 @@ export default function TextInput<T extends FieldValues>({
       <input
         id={id}
         type={type}
+        autoComplete={autoComplete}
         placeholder={placeholder}
         {...register(id, { required: `${label} is required` })}
-        className={`w-full rounded border bg-white p-3 text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
+        className={`w-full rounded border bg-white p-3 text-base text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
           errorMessage ? "border-red-400" : "border-gray-300"
         }`}
       />
