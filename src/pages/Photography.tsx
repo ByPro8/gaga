@@ -70,6 +70,7 @@ export default function Photography({
       <ContentContainer
         className={`grid gap-8 ${getGridColumnsClass(itemsPerRow)}`}
         title={pageTitle}
+        hideBackButton={true}
       >
         {isLoading ? (
           <p className="text-gray-400">Loading...</p>

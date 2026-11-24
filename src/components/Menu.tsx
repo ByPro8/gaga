@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu as MenuIcon, X } from "lucide-react";
+import { X } from "lucide-react";
 import GAGALENS from "./GAGALENS";
 import ContactIcons from "./ContactIcons";
 
@@ -36,20 +36,30 @@ export default function Menu({
   const { pathname } = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Automatically close the mobile menu overlay whenever the route changes
+  // Automatically close the mobile menu whenever the route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
+
+  // Lock background page scroll while the frosted mobile menu is open
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <>
       {/* =================================================================
           1. MOBILE NAVIGATION (< 640px)
-             - On Home: full-height centered menu over the soft-washed wallpaper
-             - On inner pages: slim sticky top bar + floating overlay menu (never pushes content down)
+             - On Home: centered menu over the soft-washed wallpaper
+             - On inner pages: slim top bar + calm frosted white overlay
          ================================================================= */}
       {isHome ? (
-        <header className="relative z-10 flex min-h-[100dvh] w-full flex-col items-center justify-center px-6 py-10 text-center sm:hidden">
+        <header className="relative z-10 flex min-h-[100dvh] w-full flex-col items-center justify-start px-6 pb-10 pt-[clamp(4.5rem,17dvh,9.5rem)] text-center sm:hidden">
           <GAGALENS
             className="select-none items-center"
             titleClassName="text-[44px] text-gaga"
@@ -76,44 +86,79 @@ export default function Menu({
           </nav>
         </header>
       ) : (
-        <header className="sticky top-0 z-40 w-full border-b border-gray-100 bg-white/95 backdrop-blur-sm sm:hidden">
-          <div className="relative z-40 flex items-center justify-between px-5 py-3.5">
-            <GAGALENS
-              className="select-none items-start"
-              titleClassName="text-[26px] text-gaga"
-              showSubtitle={false}
-            />
+        <>
+          <header className="sticky top-0 z-40 w-full border-b border-gray-100 bg-white/95 backdrop-blur-sm sm:hidden">
+            <div className="grid grid-cols-[52px_1fr_52px] items-center px-4 py-3.5">
+              {/* Empty left spacer keeps GAGALENS dead-center */}
+              <div aria-hidden="true" />
 
-            <button
-              type="button"
-              onClick={() => setIsMobileMenuOpen((open) => !open)}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-nav-drawer"
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-              className="-mr-2 inline-flex items-center justify-center rounded-md border-0 bg-transparent p-2 text-gray-500 transition-colors hover:text-gray-900 focus:outline-none"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <MenuIcon className="h-6 w-6" />
-              )}
-            </button>
-          </div>
+              <div className="flex justify-center">
+                <GAGALENS
+                  className="select-none items-center"
+                  titleClassName="text-[26px] text-gaga"
+                  showSubtitle={false}
+                />
+              </div>
 
-          {/* Floating overlay drawer — sits OVER page content without pushing anything down */}
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen((open) => !open)}
+                  aria-expanded={isMobileMenuOpen}
+                  aria-controls="mobile-nav-overlay"
+                  aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                  className="inline-flex h-10 items-center justify-center border-0 bg-transparent px-1 text-gray-500 transition-colors hover:text-gray-900 focus:outline-none"
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="h-5 w-5" strokeWidth={1.5} />
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      className="flex flex-col items-end gap-[5px]"
+                    >
+                      <span className="block h-[1.5px] w-5 bg-current" />
+                      <span className="block h-[1.5px] w-3.5 bg-current" />
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
+          </header>
+
+          {/* Frosted white full-screen veil rendered outside <header>; tap any empty space to close */}
           {isMobileMenuOpen && (
-            <>
-              <div
-                aria-hidden="true"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 top-[55px] z-30 bg-black/15"
-              />
+            <div
+              id="mobile-nav-overlay"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 z-50 flex flex-col bg-white/35 px-4 pb-8 pt-3.5 backdrop-blur-md sm:hidden"
+            >
+              <div className="grid grid-cols-[52px_1fr_52px] items-center">
+                <div aria-hidden="true" />
+                <div className="flex justify-center">
+                  <GAGALENS
+                    className="select-none items-center"
+                    titleClassName="text-[26px] text-gaga"
+                    showSubtitle={false}
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-label="Close menu"
+                    className="inline-flex h-10 w-10 items-center justify-center border-0 bg-transparent text-gray-400 hover:text-gray-900 focus:outline-none"
+                  >
+                    <X className="h-5 w-5" strokeWidth={1.5} />
+                  </button>
+                </div>
+              </div>
+
               <nav
-                id="mobile-nav-drawer"
                 aria-label="Main navigation"
-                className="absolute left-0 right-0 top-full z-40 border-b border-gray-100 bg-white px-5 pb-5 pt-2 shadow-sm"
+                onClick={(event) => event.stopPropagation()}
+                className="my-auto flex flex-col items-center text-center"
               >
-                <ul className="flex select-none flex-col">
+                <ul className="flex select-none flex-col items-center gap-1">
                   {NAV_LINKS.map((item) => {
                     const isActive = isNavLinkActive(pathname, item.to);
                     return (
@@ -121,32 +166,22 @@ export default function Menu({
                         <Link
                           to={item.to}
                           aria-current={isActive ? "page" : undefined}
-                          className={`flex items-center gap-2.5 py-2.5 text-[18px] transition-colors duration-200 ${
-                            isActive
-                              ? "font-demi text-gray-900"
-                              : "text-gray-500 hover:text-gray-900"
-                          }`}
+                          className={`relative inline-block py-2 text-[21px] tracking-wide transition-colors duration-200 ${isActive
+                            ? "font-demi text-gray-900 after:absolute after:bottom-1 after:left-0 after:right-0 after:h-[2px] after:bg-gaga"
+                            : "text-gray-600 hover:text-gray-900"
+                            }`}
                         >
-                          {isActive && (
-                            <span
-                              aria-hidden="true"
-                              className="h-1.5 w-1.5 rounded-full bg-gaga"
-                            />
-                          )}
-                          <span>{item.label}</span>
+                          {item.label}
                         </Link>
                       </li>
                     );
                   })}
                 </ul>
-                <ContactIcons
-                  align="left"
-                  className="mt-4 select-none border-t border-gray-100 pt-4"
-                />
+                <ContactIcons className="mt-8 select-none" />
               </nav>
-            </>
+            </div>
           )}
-        </header>
+        </>
       )}
 
       {/* =================================================================
@@ -154,9 +189,8 @@ export default function Menu({
              Clean centered wordmark + horizontal links on EVERY page
          ================================================================= */}
       <header
-        className={`hidden w-full shrink-0 flex-col items-center bg-white px-6 pt-7 text-center sm:flex lg:hidden ${
-          isHome ? "pb-3" : "border-b border-gray-100 pb-4"
-        }`}
+        className={`hidden w-full shrink-0 flex-col items-center bg-white px-4 pt-7 text-center sm:flex md:px-6 lg:hidden ${isHome ? "pb-3" : "border-b border-gray-100 pb-4"
+          }`}
       >
         <GAGALENS
           className="select-none items-center"
@@ -165,7 +199,7 @@ export default function Menu({
         />
 
         <nav aria-label="Main navigation" className="mt-4 w-full">
-          <ul className="flex select-none flex-wrap items-center justify-center gap-x-6 gap-y-1.5 md:gap-x-8">
+          <ul className="flex select-none flex-wrap items-center justify-center gap-x-4 gap-y-1.5 md:gap-x-7">
             {NAV_LINKS.map((item) => {
               const isActive = isNavLinkActive(pathname, item.to);
               return (
@@ -173,11 +207,10 @@ export default function Menu({
                   <Link
                     to={item.to}
                     aria-current={isActive ? "page" : undefined}
-                    className={`relative block py-1.5 text-[17px] transition-colors duration-200 ${
-                      isActive
-                        ? "font-demi text-gray-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:rounded-full after:bg-gaga"
-                        : "text-gray-500 hover:text-gray-900"
-                    }`}
+                    className={`relative block whitespace-nowrap py-1.5 text-[15px] transition-colors duration-200 md:text-[17px] ${isActive
+                      ? "font-demi text-gray-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:rounded-full after:bg-gaga"
+                      : "text-gray-500 hover:text-gray-900"
+                      }`}
                   >
                     {item.label}
                   </Link>
@@ -209,11 +242,10 @@ export default function Menu({
                   <Link
                     to={item.to}
                     aria-current={isActive ? "page" : undefined}
-                    className={`inline-flex items-center justify-end gap-2.5 py-2 text-[19px] transition-colors duration-200 xl25:text-[24px] xxl:text-[32px] ${
-                      isActive
-                        ? "font-demi text-gray-900"
-                        : "text-gray-400 hover:text-gray-900"
-                    }`}
+                    className={`inline-flex items-center justify-end gap-2.5 py-2 text-[19px] transition-colors duration-200 xl25:text-[24px] xxl:text-[32px] ${isActive
+                      ? "font-demi text-gray-900"
+                      : "text-gray-400 hover:text-gray-900"
+                      }`}
                   >
                     {isActive && (
                       <span

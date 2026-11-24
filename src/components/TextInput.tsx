@@ -32,8 +32,8 @@ export default function TextInput<T extends FieldValues>({
         autoComplete={autoComplete}
         placeholder={placeholder}
         {...register(id, { required: `${label} is required` })}
-        className={`w-full rounded border bg-white p-3 text-base text-gray-700 transition-colors duration-200 focus:border-gaga focus:outline-none ${
-          errorMessage ? "border-red-400" : "border-gray-300"
+        className={`w-full rounded border bg-white px-3.5 py-3 text-base text-gray-700 placeholder:text-gray-300 transition-colors duration-200 focus:border-gaga focus:outline-none ${
+          errorMessage ? "border-red-400" : "border-gray-200"
         }`}
       />
       {errorMessage && (

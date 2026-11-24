@@ -55,6 +55,7 @@ export default function Videography() {
       <ContentContainer
         className={`grid gap-8 ${getVideoGridClass(videosPerRow)}`}
         title="Videography"
+        hideBackButton={true}
       >
         {isLoading ? (
           <p className="text-gray-400">Loading...</p>

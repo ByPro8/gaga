@@ -12,6 +12,11 @@
     min-height: 100%;
     background-color: #ffffff;
   }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 @font-face {
